@@ -1,0 +1,133 @@
+\documentclass[a4paper,10pt]{article}
+%\documentclass[a4paper,10pt]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+
+\title{Project Proposal Machine Learning}
+\author{}
+\date{}
+
+
+
+\begin{document}
+\maketitle
+
+% 
+% 
+% > 1) Title project 
+% > 2) Student member names with student numbers 
+% > 3) Application, explain how you get data or simulator, how many examples, how 
+% > many inputs, outputs, whether it is an RL, classification, or regression problem. 
+% > 4) Methods. Explain the methods that you will compare. Identify the learning 
+% > algorithm and the optimization method. 
+
+
+\paragraph{Title project:}
+Structured Prediction for Named Entity Recognition
+
+\paragraph{Student member names \& number:}
+
+Joachim Daiber: 2397331\\
+Carmen Klaussner: 2401541\\
+
+\paragraph{Application}
+We will obtain our training data from CoNLL-2003\cite{TjongKimSang:2003:ICS:1119176.1119195}, which contains
+data in English and German.Additionally, we may also use the CoNLL-2002 data for Dutch and Spanish. 
+Named Entity Recognition is a classification problem in which the goal is to correctly predict the named entity types for
+the tokens in a text. Table blala shows the input/output distribution.
+
+
+
+\begin{table}[h!]
+\centering
+ \begin{tabular}{l|l|l|l}
+ \textbf{English Data}& Articles & Sentences & Tokens \\ \hline
+ Training set &   946       &   14,987        &   203,621     \\
+ Development set& 216        &  3,466         &    51,362     \\
+ Test set       & 231        &   3,684        &     46,435    \\
+  
+ \end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+ \begin{tabular}{l|l|l|l|l}
+ \textbf{English Data} & LOC      & MISC     & ORG &PER       \\ \hline
+ Training set &   7140       &  3438  & 6321     & 6600    \\
+ Development set&  1837       &  922         &  1341    &  1842    \\
+ Test set       &  1668       &   702        &   1661    &  1617   \\
+  
+ \end{tabular}
+\end{table}
+
+
+
+
+
+\begin{table}[h!]
+\centering
+ \begin{tabular}{l|l|l|l}
+ \textbf{German Data} & Articles & Sentences & Tokens \\ \hline
+ Training set &     553     &  12,705         &  206,931      \\ 
+ Development set&    201     &  3,068         &  51,444       \\
+ Test set       &    155     &   3,160        &   51,943      \\
+  
+ \end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+ \begin{tabular}{l|l|l|l|l}
+ \textbf{German Data} & LOC      & MISC     & ORG &PER       \\        \hline
+ Training set &   4363       &   2288        & 2427     & 2773    \\
+ Development set&  1181       &   1010        &  1241    &  1401    \\
+ Test set       &   1035      &    670       &  773     &  1195   \\
+  
+ \end{tabular}
+\end{table}
+
+
+
+
+\paragraph{Methods:}
+We believe that Structured Prediction provides a flexible and efficient model for Named Entity Recognition. 
+The learning algorithm Structured Perceptron with Averaging \cite{Collins:2002:DTM:1118693.1118694}.
+
+
+
+% > 6) Chosen programming language 
+% > 7) Planning. Describe the different phases and the planning deadlines (until November).
+% 
+\paragraph{Setup of Experiments:}
+We will compare multiple sets of features on the given training and test set, 
+while trying to find a good balance between complexity and performance.
+
+
+\paragraph{Chosen programming language:}
+Python with the NumPy package
+
+\paragraph{Planning:}
+17-23 Sep.: Data Preparation/Literature Review
+
+24-30 Sep.: Implementation of Learning Algorithm
+
+1-7 Okt.: Implementation of Decoding
+
+8-14 Okt.: Improvement of Features
+
+15-21 Okt.: Evaluation 
+
+22-28 Okt.: Paper 
+
+29-4 Nov.: Paper
+
+
+
+
+{\small
+\bibliographystyle{plain}
+\bibliography{ML.bib}
+}
+
+
+\end{document}
