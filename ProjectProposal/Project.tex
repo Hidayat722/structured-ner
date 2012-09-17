@@ -7,6 +7,16 @@
 \author{}
 \date{}
 
+\usepackage{hyperref}
+\usepackage{xcolor}
+\definecolor{dark-red}{rgb}{0.4,0.15,0.15}
+\definecolor{dark-blue}{rgb}{0.15,0.15,0.4}
+\definecolor{medium-blue}{rgb}{0,0,0.5}
+\hypersetup{
+    colorlinks, linkcolor={dark-red},
+    citecolor={dark-blue}, urlcolor={medium-blue}
+}
+
 
 
 \begin{document}
@@ -24,22 +34,29 @@
 
 \section*{Project Proposal}
 
-\paragraph{Title project:}
+\paragraph{Project title:}
 Structured Prediction for Named Entity Recognition
 
-\paragraph{Student member names \& number:}\\
-Joachim Daiber: 2397331\\
-Carmen Klaussner: 2401541\\
+\paragraph{Student member names \& number:\\\\}
+
+\begin{tabular}{l l}
+Joachim Daiber   & 2397331 \\
+Carmen Klaussner & 2401541\\
+\end{tabular}
+
+
 
 \paragraph{Application}
-We will obtain our training data from CoNLL-2003\cite{TjongKimSang:2003:ICS:1119176.1119195}, which contains
-data in English and German.Additionally, we may also use the CoNLL-2002 data for Dutch and Spanish. 
+We will obtain our training data from the CoNLL-2003\cite{TjongKimSang:2003:ICS:1119176.1119195} dataset, which contains
+data in English and German. Additionally, we may also use the CoNLL-2002 data for Dutch and Spanish. 
+
 Named Entity Recognition is a classification problem in which the goal is to correctly predict the named entity types for
-the tokens in a text. Table blala shows the input/output distribution.
+the tokens in a text. Table~\ref{table:input} shows the size of the input data and Table~\ref{table:output} shows the types and amount of Named Entity annotations on the input data for German and English.
 
 
 
 \begin{table}[h!]
+
 \centering
  \begin{tabular}{l|l|l|l}
  \textbf{English Data}& Articles & Sentences & Tokens \\ \hline
@@ -48,25 +65,9 @@ the tokens in a text. Table blala shows the input/output distribution.
  Test set       & 231        &   3,684        &     46,435    \\
   
  \end{tabular}
-\end{table}
 
-\begin{table}[h!]
-\centering
- \begin{tabular}{l|l|l|l|l}
- \textbf{English Data} & LOC      & MISC     & ORG &PER       \\ \hline
- Training set &   7140       &  3438  & 6321     & 6600    \\
- Development set&  1837       &  922         &  1341    &  1842    \\
- Test set       &  1668       &   702        &   1661    &  1617   \\
-  
- \end{tabular}
-\end{table}
+\vspace*{0.2cm}
 
-
-
-
-
-\begin{table}[h!]
-\centering
  \begin{tabular}{l|l|l|l}
  \textbf{German Data} & Articles & Sentences & Tokens \\ \hline
  Training set &     553     &  12,705         &  206,931      \\ 
@@ -74,9 +75,25 @@ the tokens in a text. Table blala shows the input/output distribution.
  Test set       &    155     &   3,160        &   51,943      \\
   
  \end{tabular}
+\caption{Sizes of the training, development and test sets.}
+\label{table:input}
+
 \end{table}
 
+
 \begin{table}[h!]
+
+\centering
+ \begin{tabular}{l|l|l|l|l}
+ \textbf{English Data} & LOC      & MISC     & ORG &PER       \\ \hline
+ Training set &   7140       &  3438  & 6321     & 6600    \\
+ Development set&  1837       &  922         &  1341    &  1842    \\
+ Test set       &  1668       &   702        &   1661    &  1617   \\
+
+ \end{tabular}
+
+\vspace*{0.2cm}
+
 \centering
  \begin{tabular}{l|l|l|l|l}
  \textbf{German Data} & LOC      & MISC     & ORG &PER       \\        \hline
@@ -85,13 +102,16 @@ the tokens in a text. Table blala shows the input/output distribution.
  Test set       &   1035      &    670       &  773     &  1195   \\
   
  \end{tabular}
+\caption{Named Entity annotations in the training, development and test sets.}
+\label{table:output}
+
 \end{table}
 
 
 
 
 \paragraph{Methods:}
-We believe that Structured Prediction provides a flexible and efficient model for Named Entity Recognition. 
+We believe that Structured Prediction provides a flexible and efficient model for Named Entity Recognition (see \cite{strlearn}).
 The learning algorithm is the Structured Perceptron with Averaging \cite{Collins:2002:DTM:1118693.1118694}.
 
 
@@ -112,7 +132,7 @@ Python with the NumPy package
 
 \begin{table}[h!]
 \begin{tabular}{l l}
-17-23 Sep. & Data Preparation/Literature Review \\
+17-23 Sep. & Data Preparation and Literature Review \\
 24-30 Sep. & Implementation of Learning Algorithm\\
 1-7 Oct.   & Implementation of Decoding\\
 8-14 Oct.  & Improvement of Features\\
