@@ -5,7 +5,7 @@ def sentence_from_conll(chunked_sent):
     for element in chunked_sent:
         if type(element) == tuple:
             x.append(element)
-            y.append("O")
+            y.append('O')
         else:
             for ne_token in element.leaves():
                 x.append(ne_token)
@@ -18,6 +18,9 @@ class Sentence:
     def __init__(self, x, y):
         self.x = x
         self.y = y
+
+    def size(self):
+        return len(self.x)
 
     def __str__(self):
         return " ".join(map(lambda (a,b): a[0]+"/"+a[1]+"/"+b, zip(self.x, self.y)))

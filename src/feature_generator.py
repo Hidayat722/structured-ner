@@ -3,8 +3,20 @@ class FeatureGenerator:
 
     feature_ids = {}
 
+    trained = False
+
+    def __init__(self, sentences):
+        for sentence in sentences:
+            for i in xrange(sentence.size()):
+                if i == 0:
+                    last_label = None
+                else:
+                    last_label = sentence.y[i-1]
+                self.generate(sentence, i, last_label, sentence.y[i])
+        self.trained = True
+
     def n_features(self):
-        pass
+        return len(self.feature_ids)
 
     def generate(self, sequence, i, last_label, label):
         pass
@@ -13,6 +25,9 @@ class FeatureGenerator:
         """
         Remember the id of the feature.
         """
+
+        if self.trained:
+            return -1
 
         if feature in self.feature_ids:
             return self.feature_ids[feature]
@@ -24,14 +39,12 @@ class FeatureGenerator:
 
 class SimpleFeatureGenerator(FeatureGenerator):
 
-    def n_features(self):
-        return 0
 
     def generate(self, sequence, i, last_label, label):
 
         features_fired = []
 
-        x_token, x_tag = sequence[i]
+        x_token, x_tag = sequence.x[i]
 
         #Token:
         feature_id = self.add_feature("token: %s-%s" % (x_token, label))

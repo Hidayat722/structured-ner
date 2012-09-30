@@ -14,7 +14,7 @@ class StructuredPerceptron:
 
     def train(self, sentences):
 
-        self.w = np.zeros(n_features, dtype=float)
+        self.w = np.zeros(self.n_features, dtype=float)
 
         for i_epoch in xrange(self.n_epochs):
 
@@ -74,23 +74,23 @@ class StructuredPerceptron:
         return total, incorrect
 
     def f(self, sentence, i, last_label, current_label):
-        f = np.zeros(self.n_features)
-        f[self.feature_generator.generate(sentence, i, last_label, current_label)] = 1
+        f = np.zeros(self.n_features, dtype=float)
+        f[self.feature_generator.generate(sentence, i, last_label, current_label)] = 1.
         return f
 
     def viterbi_decode(self, sentence):
-        alphas = np.zeros(sentence.size, len(self.labels))
+        alphas = np.zeros((sentence.size(), len(self.labels)), dtype=float)
         path = {}
 
         for y in xrange(len(self.labels)):
             path[y] = [y]
-            alphas[0, y] = self.w * self.f(sentence, 0, None, y)
+            alphas[0, y] = sum(self.w * self.f(sentence, 0, None, y))
 
-        for i in xrange(1, sentence.size):
+        for i in xrange(1, sentence.size()):
             new_path = {}
 
             for y in xrange(len(self.labels)):
-                (b, alphas[i, y]) = max([(alphas[i-1, y_last] + self.w * self.f(sentence, i, y_last, y), y_last) for y_last in xrange(len(self.labels))])
+                (alphas[i, y], b) = max([(sum(alphas[i-1, y_last] + self.w * self.f(sentence, i, y_last, y)), y_last) for y_last in xrange(len(self.labels))])
                 new_path[y] = path[b] + [y]
 
             path = new_path
