@@ -1,3 +1,4 @@
+import re
 import sys
 from repoze.lru import lru_cache
 
@@ -56,6 +57,11 @@ class SimpleNodeFeatureGenerator(FeatureGenerator):
             feature_id = self.add_feature("capital_first-%s" % label)
             features_fired.append(feature_id)
 
+        #All uppercase?:
+        if token.isupper():
+            feature_id = self.add_feature("all_upper-%s" % label)
+            features_fired.append(feature_id)
+
         #Token:
         feature_id = self.add_feature("token:%s-%s" % (token, label))
         features_fired.append(feature_id)
@@ -64,9 +70,14 @@ class SimpleNodeFeatureGenerator(FeatureGenerator):
         feature_id = self.add_feature("tag:%s-%s" % (pos_tag, label))
         features_fired.append(feature_id)
 
+        #Token:
+        if '-' in token:
+            feature_id = self.add_feature("contains_dash:%s" % (label))
+            features_fired.append(feature_id)
+
         #Digits:
-        if unicode.isdigit(token):
-            feature_id = self.add_feature("digit:%s" % label)
+        if re.search("\d", token):
+            feature_id = self.add_feature("contains_digit:%s" % label)
             features_fired.append(feature_id)
 
         return features_fired
@@ -86,5 +97,10 @@ class ExtendedFeatureGenerator(SimpleNodeFeatureGenerator):
         #Label bigram:
         feature_id = self.add_feature("label_bigram:%s-%s" % (last_label, label))
         features_fired.append(feature_id)
+
+        #Token+label bigram:
+        feature_id = self.add_feature("token:%s-%s-%s" % (x_token, label, last_label))
+        features_fired.append(feature_id)
+
 
         return features_fired
