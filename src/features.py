@@ -99,8 +99,8 @@ class ExtendedFeatureGenerator(SimpleNodeFeatureGenerator):
         features_fired.append(feature_id)
 
         #Token+label bigram:
-        feature_id = self.add_feature("token:%s-%s-%s" % (x_token, label, last_label))
-        features_fired.append(feature_id)
+        #feature_id = self.add_feature("token:%s-%s-%s" % (x_token, label, last_label))
+        #features_fired.append(feature_id)
 
 
         return features_fired
