@@ -1,7 +1,10 @@
 from __future__ import division
+import codecs
 import numpy as np
 import sys
 from linear_classifier import LinearClassifier
+import matplotlib.pyplot as plt
+
 
 class StructuredPerceptron(LinearClassifier):
 
@@ -15,21 +18,28 @@ class StructuredPerceptron(LinearClassifier):
         self.eta = eta
 
 
-    def train(self, sentences):
+    def train(self, data, heldout, verbose=False, run_label=None):
 
         self.w = np.zeros(self.n_features, dtype=float)
+
+        training_accuracy = [0.0]
+        heldout_accuracy = [0.0]
 
         for i_epoch in xrange(self.n_epochs):
 
             incorrect = 0.
             total     = 0.
 
-            for sentence in sentences:
+            for sentence in data:
                 total, incorrect = self.train_one(sentence, total, incorrect)
 
             self.parameters_for_epoch.append(self.w.copy())
 
             accuracy = 1.0 - (incorrect/total)
+            training_accuracy.append(accuracy)
+
+            if verbose:
+                heldout_accuracy.append(self.test(heldout))
 
             print >>sys.stderr, "Epoch %i, Accuracy: %f" % (i_epoch, accuracy)
 
@@ -44,6 +54,26 @@ class StructuredPerceptron(LinearClassifier):
         #Finished training
         self.trained = True
 
+        #Export training info in verbose mode:
+        if verbose:
+            x = np.arange(0, self.n_epochs+1, 1.0)
+            plt.plot(x, training_accuracy, marker='o', linestyle='--', color='r', label='Training')
+            plt.plot(x, heldout_accuracy,  marker='o', linestyle='--', color='b', label='Heldout')
+
+            plt.xlabel('Epoch')
+            plt.ylabel('Accuracy')
+            plt.title('Training and Heldout Accuracy')
+
+            plt.ylim([0.5, 1.0])
+
+            plt.legend(bbox_to_anchor=(1., 0.2))
+
+            codecs.open('../eval/%s_training.csv' % run_label, 'w', encoding='utf-8').write('\n'.join(map(lambda x: '\t'.join(map(str, x)) +'\n', zip(x, training_accuracy, heldout_accuracy))))
+            plt.savefig('../eval/%s_training.png' % run_label)
+
+            plt.close()
+
+
 
     def train_one(self, sentence, total, incorrect):
 
@@ -57,8 +87,8 @@ class StructuredPerceptron(LinearClassifier):
             z_i = z[i]
 
             if i == 0:
-                y_prev = None
-                z_prev = None
+                y_prev = '<S>'
+                z_prev = '<S>'
             else:
                 y_prev = sentence.y[i-1]
                 z_prev = z[i-1]

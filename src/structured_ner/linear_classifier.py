@@ -1,4 +1,6 @@
+from __future__ import division
 import numpy as np
+import sys
 
 class LinearClassifier(object):
 
@@ -16,7 +18,7 @@ class LinearClassifier(object):
 
         for y in xrange(len(self.labels)):
             path[y] = [y]
-            alphas[0][y] = np.sum(self.w[self.fs(sentence, 0, None, self.labels[y])])
+            alphas[0][y] = np.sum(self.w[self.fs(sentence, 0, '<S>', self.labels[y])])
 
         for i in xrange(1, sentence.size()):
             new_path = {}
@@ -60,6 +62,24 @@ class LinearClassifier(object):
 
         print >>sys.stderr,     "Label,  Precision,  Recall"
         print >>sys.stderr,     "--------------------------"
+
         for l in self.labels:
             if l != 'O':
-                print >>sys.stderr, l, str(tp_for_label[l]/(tp_for_label[l] + fp_for_label[l])), str(tp_for_label[l]/(tp_for_label[l] + fn_for_label[l]))
+
+                try:
+                    p = tp_for_label[l]/(tp_for_label[l] + fp_for_label[l])
+                except ZeroDivisionError:
+                    p = 0.
+
+                try:
+                    r = tp_for_label[l]/(tp_for_label[l] + fn_for_label[l])
+                except ZeroDivisionError:
+                    r = 0.
+
+                print >>sys.stderr, l, str(p), str(r)
+
+        return 1.0 - (incorrect/total)
+
+
+    def evaluate_features(self):
+        return [ ("%s\t%.2f" % (self.feature_generator.get_feature_by_id(top_feature), self.w[top_feature])) for top_feature in reversed(np.argsort(self.w)[-100:])]
