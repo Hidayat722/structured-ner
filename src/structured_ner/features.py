@@ -3,13 +3,11 @@ import sys
 from repoze.lru import lru_cache
 
 
-class FeatureGenerator:
-
-    feature_ids = {}
-
-    trained = False
+class FeatureGenerator(object):
 
     def __init__(self, sentences):
+        self.trained = False
+        self.feature_ids = {}
 
         for sentence in sentences:
             for i in xrange(sentence.size()):
@@ -41,6 +39,16 @@ class FeatureGenerator:
             self.feature_ids[feature] = id
             return id
 
+    def prune(self, w):
+        remove_features = []
+        for (feature, feature_id) in self.feature_ids.items():
+            if w[feature_id] == 0.0:
+                remove_features.append(feature)
+
+        for f in remove_features:
+            del self.feature_ids[f]
+
+
 
 class SimpleNodeFeatureGenerator(FeatureGenerator):
 
@@ -66,9 +74,9 @@ class SimpleNodeFeatureGenerator(FeatureGenerator):
         feature_id = self.add_feature("token:%s-%s" % (token, label))
         features_fired.append(feature_id)
 
-        #Tag:
-        feature_id = self.add_feature("tag:%s-%s" % (pos_tag, label))
-        features_fired.append(feature_id)
+        #POS Tag:
+        #feature_id = self.add_feature("tag:%s-%s" % (pos_tag, label))
+        #features_fired.append(feature_id)
 
         #Token:
         if '-' in token:
@@ -79,6 +87,19 @@ class SimpleNodeFeatureGenerator(FeatureGenerator):
         if re.search("\d", token):
             feature_id = self.add_feature("contains_digit:%s" % label)
             features_fired.append(feature_id)
+
+        #Suffix (max 3 length):
+        for i in xrange(3):
+            if len(token) > i+1:
+                feature_id = self.add_feature("suffix:%s-%s" % (token[-(i+1):], label))
+                features_fired.append(feature_id)
+
+        #Prefix (max 3 length):
+        for i in xrange(3):
+            if len(token) > i+1:
+                feature_id = self.add_feature("prefix:%s-%s" % (token[:i+1], label))
+                features_fired.append(feature_id)
+
 
         return features_fired
 

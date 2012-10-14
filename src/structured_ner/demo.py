@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
+import pickle
 
 from bottle import route, run, template
 import webbrowser
-from nltk import word_tokenize, pos_tag
+
+from ner import StructuredNER
+import nltk
 
 @route('/')
 def index():
@@ -23,12 +26,29 @@ def index():
 	  var t = $("textarea#input").val();
 	  $("#out").load("http://localhost:8086/ner/"+ encodeURI(t));
 	}
+
+    $(document).ready(function() {
+	//setup before functions
+	var typingTimer;                //timer identifier
+	var doneTypingInterval = 700;  //time in ms, 5 second for example
+
+	//on keyup, start the countdown
+	$('#input').keyup(function(){
+	    typingTimer = setTimeout(update, doneTypingInterval);
+	});
+
+	//on keydown, clear the countdown
+	$('#input').keydown(function(){
+	    clearTimeout(typingTimer);
+	});
+	});
+
 	</script>
 
 </head>
 
 <body>
-<textarea cols=​"60" id="input" onkeyup="javascript:update();" rows=​"4">​</textarea>​
+<textarea cols=​"60" id="input" rows=​"4">​</textarea>​
 
 <div id="out">a</div>
 
@@ -37,9 +57,16 @@ def index():
 
     """
 
+
+tokenizer = nltk.tokenize.RegexpTokenizer(r'\w+|[^\w\s]+')
+tagger = pickle.load(open("../taggers/alpino_ubt.pickle"))
+nerecognizer = StructuredNER(open("ner_model.pickle"), tokenizer, tagger)
+
+print
+
 @route('/ner/:sent')
 def ner(sent):
-    return " ".join(map("/".join, pos_tag(word_tokenize(sent))))
+    return " ".join(map("/".join, nerecognizer.recognize(sent)))
 
 
 webbrowser.open('http://localhost:8086')
