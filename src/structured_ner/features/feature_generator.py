@@ -8,7 +8,7 @@ class FeatureGenerator(object):
         self.feature_sets = feature_sets
 
         for sentence in sentences:
-            for i in xrange(sentence.size()):
+            for i in xrange(len(sentence)):
                 if i == 0:
                     last_label = '<S>'
                 else:
