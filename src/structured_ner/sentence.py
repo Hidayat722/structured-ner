@@ -13,13 +13,16 @@ def sentence_from_conll(chunked_sent):
 
     return Sentence(x, y)
 
+def load_conll(corpus):
+    return [ sentence_from_conll(sent) for sent in corpus if len(sent) > 0 ]
+
 class Sentence:
 
     def __init__(self, x, y):
         self.x = x
         self.y = y
 
-    def size(self):
+    def __len__(self):
         return len(self.x)
 
     def __str__(self):

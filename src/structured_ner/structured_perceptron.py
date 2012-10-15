@@ -8,10 +8,10 @@ import matplotlib.pyplot as plt
 
 class StructuredPerceptron(LinearClassifier):
 
-    parameters_for_epoch = []
-
     def __init__(self, labels, feature_generator, epochs=10, eta=1.):
         LinearClassifier.__init__(self, labels, feature_generator)
+
+        self.parameters_for_epoch = []
 
         self.n_epochs = epochs
         self.n_features = feature_generator.n_features()
@@ -39,7 +39,8 @@ class StructuredPerceptron(LinearClassifier):
             training_accuracy.append(accuracy)
 
             if verbose:
-                heldout_accuracy.append(self.test(heldout))
+                _, acc = self.test(heldout)
+                heldout_accuracy.append(acc)
 
             print >>sys.stderr, "Epoch %i, Accuracy: %f" % (i_epoch, accuracy)
 
@@ -68,7 +69,7 @@ class StructuredPerceptron(LinearClassifier):
 
             plt.legend(bbox_to_anchor=(1., 0.2))
 
-            codecs.open('../eval/%s_training.csv' % run_label, 'w', encoding='utf-8').write('\n'.join(map(lambda x: '\t'.join(map(str, x)) +'\n', zip(x, training_accuracy, heldout_accuracy))))
+            codecs.open('../eval/%s_training.csv' % run_label, 'w', encoding='utf-8').write('\n'.join(map(lambda x: ', '.join(map(str, x)), zip(x, training_accuracy, heldout_accuracy))))
             plt.savefig('../eval/%s_training.png' % run_label)
 
             plt.close()

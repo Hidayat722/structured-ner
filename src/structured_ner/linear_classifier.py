@@ -12,15 +12,15 @@ class LinearClassifier(object):
     def fs(self, sentence, i, last_label, current_label):
         return filter(lambda f: f != -1, self.feature_generator.generate(sentence, i, last_label, current_label))
 
-    def viterbi_decode(self, sentence):
-        alphas = np.zeros((sentence.size(), len(self.labels)), dtype=float)
+    def viterbi_decode(self, sentence, k=1):
+        alphas = np.zeros((len(sentence), len(self.labels)), dtype=float)
         path = {}
 
         for y in xrange(len(self.labels)):
             path[y] = [y]
             alphas[0][y] = np.sum(self.w[self.fs(sentence, 0, '<S>', self.labels[y])])
 
-        for i in xrange(1, sentence.size()):
+        for i in xrange(1, len(sentence)):
             new_path = {}
 
             for y in xrange(len(self.labels)):
@@ -58,10 +58,10 @@ class LinearClassifier(object):
                 elif z[i] != 'O':
                     tp_for_label[ z[i] ] += 1
 
-        print >>sys.stderr, "Test Accuracy: %f" % (1.0 - (incorrect/total))
+        out = "Test Accuracy: %f\n" % (1.0 - (incorrect/total))
 
-        print >>sys.stderr,     "Label,  Precision,  Recall"
-        print >>sys.stderr,     "--------------------------"
+        out += "Label,  Precision,  Recall\n"
+        out += "--------------------------\n"
 
         for l in self.labels:
             if l != 'O':
@@ -76,9 +76,10 @@ class LinearClassifier(object):
                 except ZeroDivisionError:
                     r = 0.
 
-                print >>sys.stderr, l, str(p), str(r)
+                out += l + ' ' + str(p) + ' ' + str(r) + "\n"
 
-        return 1.0 - (incorrect/total)
+
+        return out, 1.0 - (incorrect/total)
 
 
     def evaluate_features(self):
