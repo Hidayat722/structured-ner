@@ -55,7 +55,7 @@ class LinearClassifier(object):
                     if z[i] == 'O':
                         fn_for_label[ sentence.y[i] ] += 1
 
-                else:
+                elif z[i] != 'O':
                     tp_for_label[ z[i] ] += 1
 
         print >>sys.stderr, "Test Accuracy: %f" % (1.0 - (incorrect/total))
@@ -83,3 +83,6 @@ class LinearClassifier(object):
 
     def evaluate_features(self):
         return [ ("%s\t%.2f" % (self.feature_generator.get_feature_by_id(top_feature), self.w[top_feature])) for top_feature in reversed(np.argsort(self.w)[-100:])]
+
+    def prune(self):
+        self.feature_generator.prune(self.w)

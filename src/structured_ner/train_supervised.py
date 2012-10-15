@@ -7,12 +7,18 @@ from structured_perceptron import StructuredPerceptron
 
 def train_ner(lang, labels, data, heldout, feature_sets, verbose=False):
 
+    print >>sys.stderr, '\n' * 2
+
+    print >>sys.stderr, '-' * 60
+    print >>sys.stderr, "Training: %s (%s)" % (lang, '+'.join(map(lambda fs: fs.__class__.__name__, feature_sets)))
+    print >>sys.stderr, '-' * 60
+
     print >>sys.stderr, "Extracting features from corpus..."
     feature_generator = FeatureGenerator(data, feature_sets)
 
     #Create the Perceptron
     print >>sys.stderr, "Creating the Perceptron..."
-    perceptron = StructuredPerceptron(labels, feature_generator, epochs=2)
+    perceptron = StructuredPerceptron(labels, feature_generator, epochs=10)
 
     #Train it!
     print >>sys.stderr, "Training the Perceptron..."

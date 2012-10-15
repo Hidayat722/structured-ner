@@ -64,7 +64,7 @@ class StructuredPerceptron(LinearClassifier):
             plt.ylabel('Accuracy')
             plt.title('Training and Heldout Accuracy')
 
-            plt.ylim([0.5, 1.0])
+            plt.ylim([0.9, 1.0])
 
             plt.legend(bbox_to_anchor=(1., 0.2))
 
@@ -105,6 +105,3 @@ class StructuredPerceptron(LinearClassifier):
                 self.w[predicted_token_features] -= self.eta
 
         return total, incorrect
-
-    def prune(self):
-        self.feature_generator.prune(self.w)

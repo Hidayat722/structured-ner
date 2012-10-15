@@ -10,7 +10,7 @@ class FeatureGenerator(object):
         for sentence in sentences:
             for i in xrange(sentence.size()):
                 if i == 0:
-                    last_label = None
+                    last_label = '<S>'
                 else:
                     last_label = sentence.y[i-1]
 
