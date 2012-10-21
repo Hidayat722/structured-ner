@@ -1,0 +1,36 @@
+
+
+list1= [['ORG', 'Z'], ['ORG', 'Z'], ['ORG', 'Z'], ['N', 'Z'], ['Z', 'Z'], ['N', 'Z'], ['ORG', 'Z'],['ORG', 'ORG'], ['ORG', 'N']]  
+
+import numpy as N
+import itertools
+
+
+
+
+
+  
+Ytrue = []
+Ypred = []
+
+
+for i in list1:
+  if len(i) != 0:
+    Ytrue.append(i[1])
+    print i[1]
+
+    Ypred.append(i[2])
+  
+    print i[2]	  
+    #print Ytrue
+
+
+classes = list(set(Ytrue))
+n = len(classes)
+
+error = N.array([zip(Ytrue,Ypred).count(x) for x in itertools.product(classes,repeat=2)]).reshape(n,n)
+print error
+
+error = N.array([z.count(x) for z in [zip(Ytrue,Ypred)] for x in itertools.product(classes,repeat=2)]).reshape(n,n)
+print error
+  
