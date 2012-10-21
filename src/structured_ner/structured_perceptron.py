@@ -38,6 +38,10 @@ class StructuredPerceptron(LinearClassifier):
             accuracy = 1.0 - (incorrect/total)
             training_accuracy.append(accuracy)
 
+            #Stop if the error on the training data does not decrease
+            if training_accuracy[-1] <= training_accuracy[-2]:
+                break
+
             if verbose:
                 _, acc = self.test(heldout)
                 heldout_accuracy.append(acc)

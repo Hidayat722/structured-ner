@@ -14,7 +14,7 @@ class StructuredNER(NamedEntityRecognizer):
         self.tokenizer = tokenizer
         self.tagger = tagger
 
-    def recognize(self, text):
-        tokens = self.tokenizer.tokenize(text)
+    def recognize(self, tokens_and_tags):
+        tokens = self.tokenizer.tokenize(tokens_and_tags)
         tags = self.tagger.tag(tokens)
         return zip(tokens, self.perceptron.viterbi_decode(Sentence(tags, [])))

@@ -1,6 +1,8 @@
 from __future__ import division
 import numpy as np
 import sys
+from setuptools.command.sdist import entities
+from util import entities_from_list
 
 class LinearClassifier(object):
 
@@ -36,27 +38,30 @@ class LinearClassifier(object):
         total = 0
         incorrect = 0
 
-        tp_for_label = dict([ (l, 0) for l in self.labels ])
-        fp_for_label = dict([ (l, 0) for l in self.labels ])
-        fn_for_label = dict([ (l, 0) for l in self.labels ])
+        errors = []
+
+        gold_count_for_label      = dict([ (l, 0) for l in self.labels ])
+        predicted_count_for_label = dict([ (l, 0) for l in self.labels ])
+        correct_count_for_label   = dict([ (l, 0) for l in self.labels ])
 
         for sentence in sentences:
             z = self.viterbi_decode(sentence)
 
-            for i in xrange(len(sentence.x)):
-                total += 1.
+            for i in range(len(z)):
+                if z[i] != sentence.y[i]:
+                    errors.append( sentence.x[i][0] + ' ' + sentence.x[i][1] + ' ' + sentence.true_case[i] + ' ' + sentence.y[i] + ' ' + z[i] )
 
-                if sentence.y[i] != z[i]:
-                    incorrect += 1
+            total += len(sentence.y)
+            incorrect += len( [i for i in range(len(sentence.y)) if sentence.y[i] != z[i]])
 
-                    if sentence.y[i] == 'O':
-                        fp_for_label[ z[i] ] += 1
+            gold_entities      = entities_from_list(sentence.y)
+            predicted_entities = entities_from_list(z)
 
-                    if z[i] == 'O':
-                        fn_for_label[ sentence.y[i] ] += 1
-
-                elif z[i] != 'O':
-                    tp_for_label[ z[i] ] += 1
+            for l in self.labels:
+                if l != 'O':
+                    gold_count_for_label[l]      += len( [ e for e in gold_entities      if e[2] == l] )
+                    predicted_count_for_label[l] += len( [ e for e in predicted_entities if e[2] == l] )
+                    correct_count_for_label[l]   += len( [ e for e in gold_entities      if e[2] == l and e in predicted_entities] )
 
         out = "Test Accuracy: %f\n" % (1.0 - (incorrect/total))
 
@@ -67,17 +72,26 @@ class LinearClassifier(object):
             if l != 'O':
 
                 try:
-                    p = tp_for_label[l]/(tp_for_label[l] + fp_for_label[l])
+                    p = correct_count_for_label[l] / predicted_count_for_label[l]
                 except ZeroDivisionError:
                     p = 0.
 
                 try:
-                    r = tp_for_label[l]/(tp_for_label[l] + fn_for_label[l])
+                    r = correct_count_for_label[l] / gold_count_for_label[l]
                 except ZeroDivisionError:
                     r = 0.
 
                 out += l + ' ' + str(p) + ' ' + str(r) + "\n"
 
+        total_p = sum([ correct_count_for_label[l] for l in self.labels if l != 'O' ]) / sum([ predicted_count_for_label[l] for l in self.labels if l != 'O' ])
+        total_r = sum([ correct_count_for_label[l] for l in self.labels if l != 'O' ]) / sum([ gold_count_for_label[l] for l in self.labels if l != 'O' ])
+
+        f1 = 2 * ((total_p * total_r)/(total_p + total_r))
+        out += "F1: " + str(f1)
+
+        out += "\n"*5
+        out += "Errors:\n"
+        out += '\n'.join(errors)
 
         return out, 1.0 - (incorrect/total)
 
