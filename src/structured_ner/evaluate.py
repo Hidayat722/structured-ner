@@ -46,12 +46,14 @@ for (lang, corpus) in [
     lemmatizer = WordNetLemmatizer()
     truecaser  = MosesTrueCaser(open('/Users/jodaiber/Desktop/Groningen/structured-ner/src/structured_ner/models/truecase/truecase-model.en'))
 
-    train   = load_conll(corpus.chunked_sents('%s.train' % lang), lemmatizer, None)
-    heldout = load_conll(corpus.chunked_sents('%s.testa' % lang), lemmatizer, truecaser)
-    test    = load_conll(corpus.chunked_sents('%s.testb' % lang), lemmatizer, truecaser)
+    gazetteer = GazetteerFeatures(['data/loc_%s.txt' % lang, 'data/person_%s.txt' % lang, 'data/org_%s.txt' % lang, 'data/misc_%s.txt' % lang], truecaser)
 
-    gazetteer = GazetteerFeatures(['data/loc_%s.txt' % lang, 'data/person_%s.txt' % lang, 'data/org_%s.txt' % lang])
-    gazetteer.filter(train)
+    train   = load_conll(corpus.chunked_sents('%s.train' % lang), lemmatizer, None,      gazetteer)
+    heldout = load_conll(corpus.chunked_sents('%s.testa' % lang), lemmatizer, truecaser, gazetteer)
+    test    = load_conll(corpus.chunked_sents('%s.testb' % lang), lemmatizer, truecaser, gazetteer)
+
+
+    #gazetteer.filter(train)
 
     node_features = SimpleNodeFeatures()
 
@@ -59,6 +61,5 @@ for (lang, corpus) in [
     pickle.dump(model_gaz, open("models/%s_gaz.pickle" % lang, 'w'))
 
     model     = train_ner(lang, conll2002_labels, train, heldout, test, [node_features, LabelInteractionFeatures()])
-
     pickle.dump(model, open("models/%s.pickle" % lang, 'w'))
 

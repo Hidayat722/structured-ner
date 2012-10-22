@@ -1,66 +1,85 @@
+"""
+>>> GazetteerFeatures([[u"The New York Times", u"New York"]]).find(u"The New York Times is a newspaper in New York .".split(' '))
+['0', '0', '0', '0', 'O', 'O', 'O', 'O', '0', '0', 'O']
+
+"""
+
 from __future__ import division
 import codecs
 from collections import defaultdict
 import sys
 from feature_generator import FeatureSet
+import dawg
+import struct
 
 class GazetteerFeatures(FeatureSet):
 
-    def __init__(self, gazetteer_files):
+    def __init__(self, gazetteer_files, truecaser):
 
-        self.gazetteer_tokens = {}
+        data = []
 
-        for g_file in gazetteer_files:
-            for entry in codecs.open(g_file, encoding='utf-8', mode='r'):
-                for token in entry.strip().split(' '):
+        if type(gazetteer_files[0]) != list:
+            for i in range(len(gazetteer_files)):
+                gazetteer_files[i] = codecs.open(gazetteer_files[i], encoding='utf-8', mode='r')
 
-                    if token.startswith('('):
-                        continue
+        for i in range(len(gazetteer_files)):
+            for entry in gazetteer_files[i]:
+                e = entry.rstrip()
+                data.append( (e, bytes(i)) )
 
-                    if token not in self.gazetteer_tokens:
-                        self.gazetteer_tokens[token] = []
+                #Only store true-case versions of 2+ token entries if they are different from the original e
+                if ' ' in entry:
+                    e_true_case = u' '.join(truecaser.case(entry.rstrip().split(' '), []))
 
-                    if g_file not in self.gazetteer_tokens[token]:
-                        self.gazetteer_tokens[token].append(g_file)
+                    if e_true_case != e:
+                        data.append( (e_true_case, bytes(i)) )
+
+        self.gazetteer_dawg = dawg.BytesDAWG(data)
+
+    def find(self, tokens):
+
+        matches = []
+
+        i = 0
+        while i < len(tokens):
+
+            j = i+1
+            while j <= len(tokens) and len( self.gazetteer_dawg.keys( u' '.join(tokens[i:j]) ) ) > 0:
+                j += 1
+
+            match_found = False
+            for z in reversed(range(i, j)):
+                try:
+                    matches.append( (i, z, self.gazetteer_dawg[ u' '.join(tokens[i:z]) ] ) )
+                    match_found = True
+                    break
+                except KeyError:
+                    pass
+
+            if match_found:
+                i = matches[-1][1] + 1
+            else:
+                i += 1
+
+
+        annotations = map(lambda _: 'O', tokens)
+        for (i, j, k) in matches:
+            for p in range(i, j):
+                annotations[ p ] = str(k[0])
+
+        return annotations
 
 
     def filter(self, corpus):
-
-        print >>sys.stderr, "Filtering %d Gaz. tokens" % len(self.gazetteer_tokens)
-
-        token_NE_count = defaultdict(int)
-        token_O_count  = defaultdict(int)
-
-        for sent in corpus:
-            for (token_tag, label) in zip(sent.x, sent.y):
-                token, tag = token_tag
-                if label == 'O':
-                    token_O_count[token]  += 1
-                else:
-                    token_NE_count[token] += 1
-
-        N = len(set(token_O_count.keys() + token_NE_count.keys()))
-
-        for token in self.gazetteer_tokens.keys():
-
-            pNE = (token_NE_count[token] + 1) / (token_NE_count[token] + token_O_count[token] + N)
-            pO  = (token_O_count[token] + 1)  / (token_NE_count[token] + token_O_count[token] + N)
-
-            #if P(NE|token) < P(O|token): remove it
-            if pNE < pO:
-                del self.gazetteer_tokens[token]
-
-        print >>sys.stderr, "Tokens after filtering: %d" % len(self.gazetteer_tokens)
+        pass
 
 
     def generate_features(self, feature_storage, sequence, i, last_label, label):
         _, pos_tag = sequence.x[i]
-        token = sequence.true_case[i]
         features_fired = []
 
-        if token in self.gazetteer_tokens:
-            for g_file in self.gazetteer_tokens[token]:
-                feature_id = feature_storage.add_feature("gazetteer:%s-%s" % (g_file, label))
-                features_fired.append(feature_id)
+        if sequence.gazetteer_entries[i] != 'O':
+            feature_id = feature_storage.add_feature("gazetteer:%s-%s" % (sequence.gazetteer_entries[i], label))
+            features_fired.append(feature_id)
 
         return features_fired

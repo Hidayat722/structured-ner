@@ -1,9 +1,12 @@
 from __future__ import division
 
-def true_case_sentence(tokens, tags):
+def all_uppercase(tokens, tags):
     return sum([ (tokens[i].isupper() or (tags[i] in ['CD', '.', ',', ':'])) for i in range(len(tokens))]) / float(len(tokens)) >= 0.95
 
-def sentence_from_conll(chunked_sent, lemmatizer, truecaser):
+def headline(tokens, tags):
+    return sum([ not tokens[i].islower() for i in range(len(tokens))]) / float(len(tokens)) == 1.0 and tokens[-1] not in ('.', '?', '!') and len([ 1 for i in range(len(tokens)) if tags[i] not in ['CD', '.', ',', ':'] ]) >= 3
+
+def sentence_from_conll(chunked_sent, lemmatizer, truecaser, gazetteer):
     x = []
     y = []
 
@@ -17,25 +20,35 @@ def sentence_from_conll(chunked_sent, lemmatizer, truecaser):
                 y.append(element.node)
 
     tokens, tags = zip(*x)
-    if truecaser is not None and true_case_sentence(tokens, tags):
+    tokens, tags = list(tokens), list(tags)
+
+    if truecaser is not None and all_uppercase(tokens, tags):
+        true_case = truecaser.case(map(lambda x: x.lower(), tokens), map(lambda e: e[1], x))
+    elif truecaser is not None and headline(tokens, tags):
         true_case = truecaser.case(tokens, map(lambda e: e[1], x))
     else:
         true_case = tokens
 
+    if gazetteer:
+        gazetteer_entries = gazetteer.find( true_case )
+    else:
+        gazetteer_entries = map(lambda _: 'O', true_case)
+
     lemmas = map(lambda tc: lemmatizer.lemmatize(tc), true_case)
 
-    return Sentence(x, y, lemmas, true_case)
+    return Sentence(x, y, lemmas, true_case, gazetteer_entries)
 
-def load_conll(corpus, lemmatizer, truecaser):
-    return [ sentence_from_conll(sent, lemmatizer, truecaser) for sent in corpus if len(sent) > 0 ]
+def load_conll(corpus, lemmatizer, truecaser, gazetteer):
+    return [ sentence_from_conll(sent, lemmatizer, truecaser, gazetteer) for sent in corpus if len(sent) > 0 ]
 
 class Sentence:
 
-    def __init__(self, x, y, lemmas, true_case):
+    def __init__(self, x, y, lemmas, true_case, gazetteer_entries):
         self.x         = x
         self.y         = y
         self.lemmas    = lemmas
         self.true_case = true_case
+        self.gazetteer_entries = gazetteer_entries
 
     def __len__(self):
         return len(self.x)

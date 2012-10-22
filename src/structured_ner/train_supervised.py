@@ -23,7 +23,7 @@ def train_ner(lang, labels, data, heldout, test, feature_sets, verbose=False, ad
 
     #Create the Perceptron
     print >>sys.stderr, "Creating the Perceptron..."
-    perceptron = StructuredPerceptron(labels, feature_generator, epochs=15)
+    perceptron = StructuredPerceptron(labels, feature_generator, epochs=16)
 
     #Train it!
     print >>sys.stderr, "Training the Perceptron..."

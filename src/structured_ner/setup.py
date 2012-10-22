@@ -8,5 +8,5 @@ setup(name='Structured NER',
       #author='Joachim Daiber',
       #author_email='gward@python.net',
       url='https://github.com/jodaiber/structured-ner',
-      packages=['nltk', 'repoze.lru', 'bottle'],
+      packages=['nltk', 'repoze.lru', 'bottle', 'dawg'],
      )

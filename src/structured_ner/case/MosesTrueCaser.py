@@ -33,7 +33,7 @@ class MosesTrueCaser(TrueCaser):
         cased_tokens = copy(l_tokens)
 
         for i in range(len(tokens)):
-            word = l_tokens[i]
+            word = tokens[i]
 
             if i == 0 and word.lower() in self.best:
                 #Truecase sentence start
@@ -49,3 +49,6 @@ class MosesTrueCaser(TrueCaser):
                 cased_tokens[i] = word
 
         return cased_tokens
+
+t = MosesTrueCaser(open('/Users/jodaiber/Desktop/Groningen/structured-ner/src/structured_ner/models/truecase/truecase-model.en'))
+print t.case_pairs( nltk.pos_tag( "New York".split(' ')) )
