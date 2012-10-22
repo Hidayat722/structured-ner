@@ -1,0 +1,31 @@
+\begin{thebibliography}{1}
+
+\bibitem{strlearn}
+Xavier Carreras.
+\newblock {Learning Structured Predictors}.
+\newblock Lecture at Lisbon Machine Learning School 2012,
+  \url{http://lxmls.it.pt/strlearn.pdf}, 2012.
+
+\bibitem{Collins:2002:DTM:1118693.1118694}
+Michael Collins.
+\newblock {Discriminative training methods for hidden Markov models: theory and
+  experiments with perceptron algorithms}.
+\newblock In {\em {Proceedings of the ACL-02 conference on Empirical methods in
+  natural language processing - Volume 10}}, {EMNLP '02}, pages 1--8,
+  Stroudsburg, PA, USA, 2002. Association for Computational Linguistics.
+
+\bibitem{ner-sekine2007}
+David Nadeau and Satoshi Sekine.
+\newblock {A survey of named entity recognition and classification}.
+\newblock {\em Linguisticae Investigationes}, 30(1):3--26, January 2007.
+\newblock Publisher: John Benjamins Publishing Company.
+
+\bibitem{TjongKimSang:2003:ICS:1119176.1119195}
+Erik~F. {Tjong Kim Sang} and Fien {De Meulder}.
+\newblock {Introduction to the CoNLL-2003 shared task: language-independent
+  named entity recognition}.
+\newblock In {\em {Proceedings of the seventh conference on Natural language
+  learning at HLT-NAACL 2003 - Volume 4}}, {CONLL '03}, pages 142--147,
+  Stroudsburg, PA, USA, 2003. Association for Computational Linguistics.
+
+\end{thebibliography}
