@@ -23,7 +23,7 @@ def train_ner(lang, labels, data, heldout, test, feature_sets, verbose=False, ad
 
     #Create the Perceptron
     print >>sys.stderr, "Creating the Perceptron..."
-    perceptron = StructuredPerceptron(labels, feature_generator, epochs=16)
+    perceptron = StructuredPerceptron(labels, feature_generator, epochs=15)
 
     #Train it!
     print >>sys.stderr, "Training the Perceptron..."
@@ -34,7 +34,9 @@ def train_ner(lang, labels, data, heldout, test, feature_sets, verbose=False, ad
     test_result,comb,_ = perceptron.test(test)
     codecs.open('../eval/%s_test.txt' % run_label, 'w', encoding='utf-8').write(test_result)
     
-    matrix= confMatrix(comb)
+   
+    
+    
 
     if verbose:
         codecs.open('../eval/%s_features.csv' % run_label, 'w', encoding='utf-8').write('\n'.join(perceptron.evaluate_features()))

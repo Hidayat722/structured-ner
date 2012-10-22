@@ -1,0 +1,230 @@
+\documentclass[10pt]{beamer}
+\mode<presentation>
+% \mode<handout>
+{
+  %\usetheme{CambridgeUS}
+  \setbeamercovered{transparent}
+
+  \definecolor{rugcolor}{rgb}{0,0.3,0.6}
+
+  \beamertemplatenavigationsymbolsempty
+  \setbeamercolor{item}{fg=rugcolor!60!black}
+  \setbeamercolor{title}{rugcolor!60!black}
+  \setbeamercolor{frametitle}{rugcolor!60!black}
+
+%HEADER WITH HIGHLIGHTED SECTION NAMES (optional)
+  \useheadtemplate{%
+    \vbox{%
+        %\vskip1.2pt
+        %\pgfuseimage{logo}
+    %\vskip1.2pt
+    \tinycolouredline{rugcolor}{\color{white}{\bf
+\insertsectionnavigationhorizontal{\paperwidth}{}{\hskip0pt plus1filll
+% \pgfuseimage{logo}
+}}}
+\hskip0pt plus1filll
+\tinycolouredline{rugcolor}{\color{white}{\bf
+\insertsubsectionnavigationhorizontal{\paperwidth}{}{\hskip0pt plus1filll
+% \pgfuseimage{logo}
+}}}
+\flushright
+\vskip1.0pt
+ \pgfuseimage{logo}
+}
+}
+
+% %FOOTER WITH AUTHOR NAME(S), PAPER TITLE (ABBREVIATED IF SPECIFIED BY \title),
+% % AND PAGE COUNTER (optional)
+%   \usefoottemplate{%
+%     \vbox{%
+%     \tinycolouredline{rugcolor}%
+%         {\color{white}{{\insertshortauthor}\hfill%
+%            \insertshorttitle\hfill%
+%            \textsc{\insertframenumber/\inserttotalframenumber}
+%           }}
+%         }
+% 
+%       }
+}
+
+\pgfdeclareimage[height=0.5cm]{logo}{logo2.jpg}
+
+\usepackage[english]{babel}
+% or whatever
+
+\usepackage[latin1]{inputenc}
+% or whatever
+
+%\usepackage{times}
+%\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+
+\title[Machine Learning] % (optional, use only with long paper titles)
+{
+Structured Prediction for Named Entity Recognition}
+
+% \subtitle
+% {Week 1} % (optional)
+
+\author % (optional, use only with lots of authors)
+{Joachim Daiber \& Carmen Klaussner}
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+ \institute[University of Groningen] % (optional, but mostly needed)
+ {
+  Information Science\\
+  University of Groningen
+  }
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+\date[Short Occasion] % (optional)
+{24th. October, 2012}
+
+%\subject{Talks}
+% This is only inserted into the PDF information catalog. Can be left
+% out. 
+
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\section{}
+\begin{frame}
+\frametitle{Motivation}
+
+% Named Entity a lot of practical uses/applications
+
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents
+  % You might wish to add the option [pausesections]
+\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+\begin{frame}
+\frametitle{Named Entity Recognition (NER)}
+
+The task of \textbf{Named Entity Recognition} divides into 
+two subtasks: \\
+\begin{itemize}
+ \item Named Entity Detection 
+ \item Named Entity Classification
+\end{itemize}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\section{}
+\begin{frame}
+\frametitle{Entity Classes in NER}
+
+\begin{itemize}
+ \item Person Names: \texttt{John Bateman}
+ \item Organisations: \texttt{Lavazza}
+ \item Locations: \texttt{France, Bristol}
+ \item Time Expressions: \texttt{26 May, 2009}	
+ \item Monetary Values: \texttt{\$ 500}	
+ \item Percentages and Addresses: \texttt{69\%/www.uni-bremen.de}
+
+\end{itemize}	
+ \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\section{}
+\begin{frame}
+\frametitle{Approaches to NER}
+
+\begin{enumerate}
+ \item linguistic grammar-based techniques
+ \item statistical models
+\end{enumerate}
+
+1. $\Rightarrow$  hand-crafted rules may obtain slightly better precision, at cost of low recall
+and extensive work by computational linguists\\
+
+2. $\Rightarrow$ Statistical NER systems require large amount of manually annotated training data
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%			
+
+
+%\section{}
+\begin{frame}
+\frametitle{}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+%\section{}
+\begin{frame}
+\frametitle{Issues for NER}
+
+Ambiguity
+
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+
+%\section{}
+\begin{frame}
+\frametitle{}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+
+
+
+%% Template
+
+% \section{}
+% \begin{frame}
+% \frametitle{}
+% \end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}[allowframebreaks]
+        \frametitle{References}
+        \nocite{*}
+        \bibliographystyle{plain}
+        \bibliography{ML}
+\end{frame}
+
+
+
+\end{document}
