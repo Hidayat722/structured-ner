@@ -196,16 +196,22 @@ $\Rightarrow$ supervised methods most prominent
 \begin{frame}
 \frametitle{Issues for NER}
 
+
 \begin{itemize}
- \item Ambiguity: \texttt{Location} vs. \texttt{Person} \\
+ \item Ambiguity
+
+
+\begin{itemize}
+ \item \textbf{Polysemy:} \texttt{Location} vs. \texttt{Person} \\
  
  \emph{Paris (France) - Paris (Hilton)}\\
  
- \item Metonymy (part-whole):
+ \item \textbf{Metonymy:}  (part-whole):
  
  ``\textbf{Paris} has decided to introduce an increase in tax...'' \\
  
  $\Rightarrow$ (the \textbf{government} not the \textbf{city})  
+\end{itemize}
 
  \item mainly domain-specific systems - not readily portable to different domain/genre % drop in performance for every system (some 20% to 40% of precision and recall).
  
