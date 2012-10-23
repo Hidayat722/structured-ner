@@ -57,7 +57,7 @@ for (lang, corpus) in [
 
     node_features = SimpleNodeFeatures()
 
-    model_gaz = train_ner(lang, conll2002_labels, train, heldout, test, [node_features, LabelInteractionFeatures(), gazetteer])
+    model_gaz = train_ner(lang, conll2002_labels, train, heldout, test, [node_features, LabelInteractionFeatures(), gazetteer], verbose=True)
     pickle.dump(model_gaz, open("models/%s_gaz.pickle" % lang, 'w'))
 
     model     = train_ner(lang, conll2002_labels, train, heldout, test, [node_features, LabelInteractionFeatures()])

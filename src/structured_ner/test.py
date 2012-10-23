@@ -16,11 +16,6 @@ gazetteer = m.feature_generator.feature_sets[-1]
 corpus = LazyCorpusLoader('conll2003', ConllChunkCorpusReader, '.*\.(test|train).*', ('LOC', 'PER', 'ORG', 'MISC'), encoding='utf-8')
 test    = load_conll(corpus.chunked_sents('eng.testa'), lemmatizer, truecaser, gazetteer=gazetteer)
 
-for s in test:
-    print s.true_case
-    print s.gazetteer_entries
-    print
-
 out, acc = m.test(test)
 
 codecs.open('test.txt', 'w', encoding='utf-8').write(out)

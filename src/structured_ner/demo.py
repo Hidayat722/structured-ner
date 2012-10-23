@@ -3,9 +3,11 @@ import pickle
 
 from bottle import route, run, template
 import webbrowser
+from nltk.stem.wordnet import WordNetLemmatizer
 
 from ner import StructuredNER
 import nltk
+from case.MosesTrueCaser import MosesTrueCaser
 
 @route('/')
 def index():
@@ -24,10 +26,13 @@ def index():
     <title>NER Demo</title>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
     <script type="text/javascript" charset="utf-8">
     function update() {
       var t = $("textarea#input").val();
-      $("#out").load("http://localhost:8086/ner/"+ encodeURI(t));
+      $("#out").load("http://localhost:8086/ner/"+ encodeURI(t), function() {
+        $("[rel=tooltip]").tooltip({html: true, placement: 'bottom'});
+      });
     }
 
     $(document).ready(function() {
@@ -48,7 +53,11 @@ def index():
 
     </script>
 
-    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css" type="text/css" charset="utf-8">
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://raw.github.com/drewwilson/TipTip/master/tipTip.css" type="text/css" charset="utf-8">
 
     <style type="text/css" media="screen">
     body {
@@ -59,14 +68,19 @@ def index():
         text-align: center;
     }
     #out {
-
+        display: block;
     }
     #input, #out {
         outline: none;
         padding: 10px;
-        display: inline-block;
+        display: block;
+        margin-left: -200px;
+
+        position: relative;
+        left: 50%;
         width: 400px;
         height: 100px;
+
         background: white;
         border: 0;
         border-radius: 7px;
@@ -76,8 +90,69 @@ def index():
     }
     #out {
         margin-top: 1em;
-        background: #fff;
-        border: 3px solid #f0f0f0;
+
+        line-height: 2em;
+
+        position: relative;
+        left: 50%;
+        width: 700px;
+        margin-left: -350px;
+
+        height: auto;
+    }
+    .NE {
+        border-radius: 3px;
+        display: inline-block;
+        background: #f0f0f0;
+        margin-right: 3px;
+        margin-bottom: 0.5em;
+        padding: 2px;
+    }
+
+    .O {
+        background: none;
+    }
+
+    .PER {
+
+    }
+
+    .MISC {
+
+    }
+
+    .LOC {
+
+    }
+
+    .ORG {
+
+    }
+
+
+
+    .ne_label {
+        width: 100%;
+        font-size: 80%;
+        font-weight: bold;
+        color: #666;
+        text-align: center;
+        clear: both;
+        background: none;
+        display: inline-block;
+    }
+
+    .features {
+        display: none;
+        position: absolute;
+        bottom: 200px;
+        left: 50%;
+        margin-left: 100px;
+        width: 100px;
+    }
+
+    .NE:hover .features {
+        display: block;
     }
     </style>
 
@@ -87,7 +162,7 @@ def index():
 <div id="container">
     <h1>Named Entity Recognition Demo.</h1>
 
-    <textarea cols=​"60" id="input" rows=​"4">​</textarea>​
+    <textarea cols=​"60" id="input" rows=​"4">...​</textarea>​
 
     <div id="out"></div>
 </div>
@@ -100,12 +175,31 @@ def index():
 
 
 tokenizer = nltk.tokenize.RegexpTokenizer(r'\w+|[^\w\s]+')
-tagger = nltk.data.load('taggers/maxent_treebank_pos_tagger/english.pickle') #pickle.load(open("../taggers/alpino_ubt.pickle"))
-nerecognizer = StructuredNER(open("/Users/jodaiber/Desktop/Groningen/structured-ner/src/structured_ner/models/eng_gaz.pickle"), tokenizer, tagger)
+tagger = nltk.data.load('taggers/maxent_treebank_pos_tagger/english.pickle')
+truecaser = MosesTrueCaser(open('models/truecase/truecase-model.en'))
+nerecognizer = StructuredNER(open("models/eng_gaz.pickle"), tokenizer, tagger, WordNetLemmatizer(), truecaser)
 
 @route('/ner/:sent')
 def ner(sent):
-    return " ".join(map("/".join, nerecognizer.recognize(sent)))
+    s = ""
+
+    for token, label, features in nerecognizer.recognize(sent):
+        s += "<span class='NE %s'>" % label
+        s += token
+
+        f = ""
+        for ft in features:
+            f += ft.replace("<", "-").replace(">", "-") + "<br />"
+
+        s += "<span class='ne_label' rel='tooltip' title='%s'>%s</span>" % (f, label)
+        #s += "<div class='features'><strong>Features:</strong><br />"
+
+
+        #s += "</div>"
+
+        s += "</span>"
+
+    return s
 
 
 webbrowser.open('http://localhost:8086')
