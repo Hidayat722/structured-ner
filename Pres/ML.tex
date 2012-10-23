@@ -5,12 +5,21 @@
   %\usetheme{CambridgeUS}
   \setbeamercovered{transparent}
 
-  \definecolor{rugcolor}{rgb}{0,0.3,0.6}
+  \definecolor{rugcolor}{rgb}{0.611, 0.188, 0.133}
+  \definecolor{f1}{rgb}{1.0,1.0,1.0}
+  \definecolor{f2}{rgb}{0.8, 0.0, 0.0039}
+  \definecolor{b}{rgb}{0.0, 0.0, 0.0}
+
+
 
   \beamertemplatenavigationsymbolsempty
   \setbeamercolor{item}{fg=rugcolor!60!black}
-  \setbeamercolor{title}{rugcolor!60!black}
-  \setbeamercolor{frametitle}{rugcolor!60!black}
+  \setbeamercolor{structure}{fg=black}
+  \setbeamercolor{title}{black}
+  \setbeamercolor{item}{black}
+  \setbeamercolor{frametitle}{black}
+
+
 
 %HEADER WITH HIGHLIGHTED SECTION NAMES (optional)
   \useheadtemplate{%
@@ -18,12 +27,12 @@
         %\vskip1.2pt
         %\pgfuseimage{logo}
     %\vskip1.2pt
-    \tinycolouredline{rugcolor}{\color{white}{\bf
+    \tinycolouredline{f1}{\color{white}{\bf
 \insertsectionnavigationhorizontal{\paperwidth}{}{\hskip0pt plus1filll
 % \pgfuseimage{logo}
 }}}
 \hskip0pt plus1filll
-\tinycolouredline{rugcolor}{\color{white}{\bf
+\tinycolouredline{f2}{\color{white}{\bf
 \insertsubsectionnavigationhorizontal{\paperwidth}{}{\hskip0pt plus1filll
 % \pgfuseimage{logo}
 }}}
@@ -63,7 +72,7 @@
 
 \title[Machine Learning] % (optional, use only with long paper titles)
 {
-Structured Prediction for Named Entity Recognition}
+Structured Prediction\\ for Named Entity Recognition}
 
 % \subtitle
 % {Week 1} % (optional)
@@ -82,7 +91,7 @@ Structured Prediction for Named Entity Recognition}
 % - Keep it simple, no one is interested in your street address.
 
 \date[Short Occasion] % (optional)
-{24th. October, 2012}
+{October 24th, 2012}
 
 %\subject{Talks}
 % This is only inserted into the PDF information catalog. Can be left
@@ -100,12 +109,12 @@ Structured Prediction for Named Entity Recognition}
 
 
 %\section{}
-\begin{frame}
-\frametitle{Motivation}
-
-% Named Entity a lot of practical uses/applications
-
-\end{frame}
+%\begin{frame}
+%\frametitle{Motivation}
+%
+%% Named Entity a lot of practical uses/applications
+%
+%\end{frame}
 
 
 
@@ -114,11 +123,11 @@ Structured Prediction for Named Entity Recognition}
 
 
 
-\begin{frame}
-  \frametitle{Outline}
-  \tableofcontents
-  % You might wish to add the option [pausesections]
-\end{frame}
+%\begin{frame}
+%  \frametitle{Outline}
+%  \tableofcontents
+%  % You might wish to add the option [pausesections]
+%\end{frame}
 
 
 
@@ -126,15 +135,20 @@ Structured Prediction for Named Entity Recognition}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Introduction}
+
+
+% subsection test (end)
 \begin{frame}
 \frametitle{Named Entity Recognition (NER)}
 
-The task of \textbf{Named Entity Recognition} divides into 
-two subtasks: \\
-\begin{itemize}
- \item Named Entity Detection 
- \item Named Entity Classification
-\end{itemize}
+\begin{figure}[htbp]
+        \centering
+                \includegraphics[scale=0.5]{figures/bsp1.png}
+        \label{fig:figures_bsp1}
+\end{figure}
+
+
+
 \end{frame}
 
 
@@ -162,10 +176,28 @@ two subtasks: \\
  \item timex (Date \& Time Expressions)
  
 \item numex Monetary Values \& Percent
-\end{itemize}	
+\end{itemize}        
 
 $\Rightarrow$ only specific entities; \emph{in June}/ \emph{the prof} (undefined year/person) % deictic reference to sth. in previous text 
  \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Labeled data}
+\begin{frame}
+\frametitle{Labeled data}
+
+
+\begin{itemize}
+        \item organized challenges
+        \begin{itemize}
+         \item CoNLL 2002/2003 
+         \item Languages: English, German, Spanish \& Dutch
+         \item news data 
+        \end{itemize}
+    \item labels: ORG / LOC/  PER/ MISC 
+\end{itemize}
+\end{frame}
 
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -191,7 +223,7 @@ $\Rightarrow$ supervised methods most prominent
 \end{frame}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%					
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                        
 %\section{}
 \begin{frame}
 \frametitle{Issues for NER}
@@ -219,51 +251,159 @@ $\Rightarrow$ supervised methods most prominent
 
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-
-\section{Our Structured Perceptron}
+\section{Structured Prediction}
 \begin{frame}
-\frametitle{Training and Test Data}
+\frametitle{Structured Prediction}
 
 \begin{itemize}
- \item CoNLL 2002/2003 
- \item Languages: English, German, Spanish \& Dutch
+        \item Learning the predictor $\mathbf{x} \rightarrow \mathbf{y}$
+        \item Non-structured prediction: $\mathbf{y}$ is atomic
+        \item Structured prediction: $\mathbf{y}$ is structured (e.g.\ tree, sequence, etc.)
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[t]
+\frametitle{Structured Prediction}
+
+\begin{columns}[t]
+	
+	\begin{column}{.3\textwidth}
+
+	\begin{figure}[t]
+		\centering
+			\includegraphics[height=1.6cm, page=1]{figures/local.pdf}
+	\end{figure}
+	
+	Local classifiers
+	\small
+	\vspace{0.35cm}
+	\begin{itemize}
+		\item features 
+		\item no label interactions
+	\end{itemize}
+\end{column}
+
+\begin{column}{.3\textwidth}
+
+
+	\begin{figure}[t]
+		\centering
+			\includegraphics[height=1.6cm, page=2]{figures/local.pdf}
+	\end{figure}
+
+	HMM
+	
+	\small
+	\begin{itemize}
+		\item MLE over tokens 
+		\item label interaction
+	\end{itemize}
+\end{column}
+
+
+\begin{column}{.3\textwidth}
+	\begin{figure}[t]
+		\centering
+			\includegraphics[height=1.56cm, page=3]{figures/local.pdf}
+	\end{figure}
+
+	Structured Prediction
+	
+	\small
+	\begin{itemize}
+		\item features
+		\item label interactions
+	\end{itemize}
+\end{column}
+
+
+\end{columns}
+
+
+
+
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                
+
+\section{Implementation}
+\begin{frame}
+\frametitle{Our Implementation}
+
+\begin{itemize}
+ \item \textbf{Structure:} Labels of the full sentence (O if none)
+ \item \textbf{Learning:} ~Structured Perceptron with Averaging
+ \item \textbf{Decoding:} Viterbi algorithm (Markov assumption, only 1 prev. label)
 \end{itemize}
 \end{frame}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
 
-
-%\section{Our Structured Perceptron}
 \begin{frame}
-\frametitle{}
+\frametitle{Features}
+
+\begin{itemize}
+ \item \textbf{Node features}: 
+\begin{itemize}
+	\item token, suffixes and prefixes (2-4)
+	\item number patterns, contains '-', etc. 
+	\item Capitalized?, UPPERCASE?
+	\item lemma, POS tag
+\end{itemize}
+
+ \item \textbf{Label interaction}: 
+
+\begin{itemize}
+	\item current and prev. label
+	\item current token and last label for prepositions or possessive 's 
+\end{itemize}
+
+ \item \textbf{Gazetteer}: 
+
+\begin{itemize}
+	\item Mark entities from lists of known names. \emph{Reliability} of each list is learnt by the Perceptron.
+	\item Lists are automatically created using a SPARQL query over DBpedia. 
+\end{itemize} 
+\end{itemize} 
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%            
 
 
-%\section{}
 \begin{frame}
-\frametitle{}
+\frametitle{Some Challenges}
+
+\begin{itemize}
+	\item \textbf{Marking gazetteer entries:}\\
+	\begin{itemize}
+		\item Directed Acyclic Word Graph (Q: Do I know \texttt{New York .*} ?)
+		\item starting at each token, mark longest known entry
+	\end{itemize}
+
+ \item \textbf{Headlines and irregular case:}\\\vspace{0.2cm}
+\texttt{SOCCER - \underline{BELARUS} BEAT \underline{ESTONIA} IN \underline{WORLD CUP} QUALIFIER .}\vspace{0.1cm}
+	\begin{itemize}
+		\item useful case information missing
+		\item restore most likely case before classification (\emph{truecasing})
+	\end{itemize} 
+	
+\end{itemize} 
 \end{frame}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
 
-
-
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                
 
 %% Template
 
