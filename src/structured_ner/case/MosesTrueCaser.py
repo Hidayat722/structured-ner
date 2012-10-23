@@ -49,6 +49,3 @@ class MosesTrueCaser(TrueCaser):
                 cased_tokens[i] = word
 
         return cased_tokens
-
-t = MosesTrueCaser(open('/Users/jodaiber/Desktop/Groningen/structured-ner/src/structured_ner/models/truecase/truecase-model.en'))
-print t.case_pairs( nltk.pos_tag( "New York".split(' ')) )
