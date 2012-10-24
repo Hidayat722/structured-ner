@@ -170,7 +170,6 @@ Structured Prediction\\ for Named Entity Recognition}
  \item Miscellaneous (CoNLL)
  \begin{itemize}
   \item  proper names outside the classic \emph{enamex}
-  \item the type \emph{product}
  \end{itemize}
 
  \item timex (Date \& Time Expressions)
@@ -189,13 +188,14 @@ $\Rightarrow$ only specific entities; \emph{in June}/ \emph{the prof} (undefined
 
 
 \begin{itemize}
-        \item organized challenges
+        \item CoNLL organized challenges
         \begin{itemize}
-         \item CoNLL 2002/2003 
+         \item CoNLL 2002/2003:  NER task
          \item Languages: English, German, Spanish \& Dutch
          \item news data 
         \end{itemize}
-    \item labels: ORG / LOC/  PER/ MISC 
+        \item POS-tagged/tokenized/NE-tagged
+    \item NE-labels: ORG/ LOC/ PER/ MISC 
 \end{itemize}
 \end{frame}
 
@@ -215,7 +215,7 @@ $\Rightarrow$ only specific entities; \emph{in June}/ \emph{the prof} (undefined
 1. hand-crafted rules may obtain a high precision, but at cost of low recall
 and extensive work by computational linguists\\
 
-2. Statistical NER systems require large amount of manually annotated training data
+2. Statistical NER systems usually require large amount of manually annotated training data
 
 $\Rightarrow$ supervised methods most prominent
 
