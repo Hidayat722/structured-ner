@@ -253,21 +253,11 @@ $\Rightarrow$ supervised methods most prominent
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                
 
-\section{Structured Prediction}
-\begin{frame}
-\frametitle{Structured Prediction}
-
-\begin{itemize}
-        \item Learning the predictor $\mathbf{x} \rightarrow \mathbf{y}$
-        \item Non-structured prediction: $\mathbf{y}$ is atomic
-        \item Structured prediction: $\mathbf{y}$ is structured (e.g.\ tree, sequence, etc.)
-\end{itemize}
-
-\end{frame}
-
-
 \begin{frame}[t]
 \frametitle{Structured Prediction}
+
+general framework for prediction $\mathbf{x} \rightarrow \mathbf{y}$ where $\mathbf{y}$ is structured (tree, sequence, etc.)
+
 
 \begin{columns}[t]
 	
@@ -337,9 +327,14 @@ $\Rightarrow$ supervised methods most prominent
 \frametitle{Our Implementation}
 
 \begin{itemize}
- \item \textbf{Structure:} Labels of the full sentence (O if none)
- \item \textbf{Learning:} ~Structured Perceptron with Averaging
+ \item \textbf{Predicted structure:} NE label for each token in the sentence (O if none)
+ \item \textbf{Learning:} ~Structured Perceptron with Averaging\\\vspace{0.3cm}\hspace{0.6cm}
+	$\displaystyle \mathbf{w} = \frac{\sum_{i = 1...T}{\mathbf{w}^{i}}}{T}$\\ \hspace{0.6cm}where $\mathbf{w}^{i}$ are the weights of epoch $i$
+\vspace{0.2cm}
+
+
  \item \textbf{Decoding:} Viterbi algorithm (Markov assumption, only 1 prev. label)
+ \item implemented in Python using the NumPy package
 \end{itemize}
 \end{frame}
 
@@ -400,10 +395,74 @@ $\Rightarrow$ supervised methods most prominent
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%            
+
+
+\begin{frame}
+\frametitle{Evaluation}
+\begin{itemize}
+	\item \textbf{Training:} error on tokens
+	\item \textbf{Evaluation:} Precision and Recall over full Named Entities
+	\begin{itemize}
+%		\item let $\mathcal{G}$ be the set of gold entities
+%		\item let $\mathcal{Y}$ be the set of predicted entities
+%		\item $precision = \frac{ | \mathcal{G} \cap \mathcal{Y} | }{ | \mathcal{Y} | }$ 
+%		\item $recall = \frac{ | \mathcal{G} \cap \mathcal{Y} | }{ | \mathcal{G} | }$ 
+
+
+
+		\item \vspace{0.3cm} $\displaystyle precision =  \frac{  |\,gold\,\cap\,predicted\,| }{ |\,predicted\,| }$ 
+		\item \vspace{0.3cm} $\displaystyle recall = \frac{ |\,gold\,\cap\,predicted\,| }{ |\,gold\,| }$ 
+		\item \vspace{0.3cm} $\displaystyle F_{1} = \frac{ 2 * precision*recall }{precision + recall} $ 
+ 
+
+	\end{itemize}
+
+\end{itemize}
+\end{frame}
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                
+
+\begin{frame}
+\frametitle{Results and Conclusion}
+\begin{itemize}
+\item \textbf{Results (English only)}\\
+\begin{tabular}{l c c}
+System                & testa & testb\\
+\hline
+EN (full)             & 0.8109 & 0.7556 \\
+EN (no gazetteer)     & 0.7985 & 0.7156\\
+\end{tabular} 
+\vspace{0.3cm}
+\item handling noisy input data important in NER
+\item SP is suitable and simple model for NER 
+\item reasonable amount of work produces good results 
+
+
+\end{itemize}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                
+
+\section*{} % (fold)
+
+\begin{frame}{}
+  \begin{center}
+\Large    
+Thank You!\\
+
+\vspace{0.3cm}
+\large
+Questions?
+  \end{center}
+\end{frame}
+
+
+
+
 
 %% Template
 
