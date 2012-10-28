@@ -38,13 +38,13 @@ class StructuredPerceptron(LinearClassifier):
             accuracy = 1.0 - (incorrect/total)
             training_accuracy.append(accuracy)
 
-            #Stop if the error on the training data does not decrease
-            if training_accuracy[-1] <= training_accuracy[-2]:
-                break
-
             if verbose:
                 _, acc = self.test(heldout)
                 heldout_accuracy.append(acc)
+
+            #Stop if the error on the training data does not decrease
+            if training_accuracy[-1] <= training_accuracy[-2]:
+                break
 
             print >>sys.stderr, "Epoch %i, Accuracy: %f" % (i_epoch, accuracy)
 
@@ -61,7 +61,7 @@ class StructuredPerceptron(LinearClassifier):
 
         #Export training info in verbose mode:
         if verbose:
-            x = np.arange(0, self.n_epochs+1, 1.0)
+            x = np.arange(0, len(training_accuracy), 1.0)
             plt.plot(x, training_accuracy, marker='o', linestyle='--', color='r', label='Training')
             plt.plot(x, heldout_accuracy,  marker='o', linestyle='--', color='b', label='Heldout')
 

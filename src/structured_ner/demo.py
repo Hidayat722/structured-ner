@@ -174,9 +174,9 @@ def index():
     """
 
 
-tokenizer = nltk.tokenize.RegexpTokenizer(r'\w+|[^\w\s]+')
-tagger = nltk.data.load('taggers/maxent_treebank_pos_tagger/english.pickle')
-truecaser = MosesTrueCaser(open('models/truecase/truecase-model.en'))
+tokenizer    = nltk.tokenize.RegexpTokenizer(r'\w+|[^\w\s]+')
+tagger       = nltk.data.load('taggers/maxent_treebank_pos_tagger/english.pickle')
+truecaser    = MosesTrueCaser(open('models/truecase/truecase-model.en'))
 nerecognizer = StructuredNER(open("models/eng_gaz.pickle"), tokenizer, tagger, WordNetLemmatizer(), truecaser)
 
 @route('/ner/:sent')
@@ -192,10 +192,6 @@ def ner(sent):
             f += ft.replace("<", "-").replace(">", "-") + "<br />"
 
         s += "<span class='ne_label' rel='tooltip' title='%s'>%s</span>" % (f, label)
-        #s += "<div class='features'><strong>Features:</strong><br />"
-
-
-        #s += "</div>"
 
         s += "</span>"
 

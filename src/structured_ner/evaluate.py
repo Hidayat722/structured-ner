@@ -2,6 +2,7 @@ import pickle
 from nltk.corpus import conll2002
 from nltk.corpus.reader.conll import ConllChunkCorpusReader
 from nltk.corpus.util import LazyCorpusLoader
+from nltk.stem.snowball import SnowballStemmer
 from sentence import load_conll
 from nltk.stem.wordnet import WordNetLemmatizer
 from features.features_labels import LabelInteractionFeatures
@@ -17,34 +18,35 @@ conll2003 = LazyCorpusLoader('conll2003', ConllChunkCorpusReader, '.*\.(test|tra
 # Feature sets and Gazetteers for Dutch
 ########################################
 
-#nl_gazetteer = GazetteerFeatures(['data/loc_nl.txt', 'data/person_nl.txt', 'data/org_nl.txt'])
+lemmatizer = SnowballStemmer("dutch")
+truecaser  = MosesTrueCaser(open("models/truecase/nl"))
+nl_gazetteer = GazetteerFeatures(['data/loc_nl.txt', 'data/person_nl.txt', 'data/org_nl.txt'], truecaser)
 
-#dutch_train     = load_conll(conll2002.chunked_sents('ned.train'))[:6000]
-#dutch_heldout   = load_conll(conll2002.chunked_sents('ned.testa'))[:1000]
-#dutch_test      = load_conll(conll2002.chunked_sents('ned.testb'))
+dutch_train     = load_conll(conll2002.chunked_sents('ned.train'), lemmatizer, None, nl_gazetteer )
+dutch_heldout   = load_conll(conll2002.chunked_sents('ned.testa'), lemmatizer, truecaser, nl_gazetteer)
+dutch_test      = load_conll(conll2002.chunked_sents('ned.testb'), lemmatizer, truecaser, nl_gazetteer)
 
-#dutch_ner        = train_ner('nl', conll2002_labels, dutch_train, dutch_heldout, dutch_test, [SimpleNodeFeatures(), LabelInteractionFeatures(), nl_gazetteer], verbose=True)
-#pickle.dump(dutch_ner, open("models/%s.pickle" % 'nl', 'w'))
+dutch_ner        = train_ner('nl', conll2002_labels, dutch_train, dutch_heldout, dutch_test, [SimpleNodeFeatures(), LabelInteractionFeatures(), nl_gazetteer], verbose=True)
+pickle.dump(dutch_ner, open("models/%s.pickle" % 'nl', 'w'))
 
-#dutch_ner2       = train_ner('nl', conll2002_labels, dutch_train, dutch_heldout, dutch_test, [SimpleNodeFeatures(), LabelInteractionFeatures()], verbose=True)
-#dutch_ner1       = train_ner('nl', conll2002_labels, dutch_train, dutch_heldout, dutch_test, [SimpleNodeFeatures()], verbose=True)
+dutch_ner2       = train_ner('nl', conll2002_labels, dutch_train, dutch_heldout, dutch_test, [SimpleNodeFeatures(), LabelInteractionFeatures()], verbose=True)
+dutch_ner1       = train_ner('nl', conll2002_labels, dutch_train, dutch_heldout, dutch_test, [SimpleNodeFeatures()], verbose=True)
 
-#nlen_gazetteer   = GazetteerFeatures(['data/loc_nl.txt', 'data/person_nl.txt', 'data/org_nl.txt', 'data/loc_eng.txt', 'data/person_eng.txt', 'data/org_eng.txt'])
-#dutch_ner_gaz_en = train_ner('nl', conll2002_labels, dutch_train, dutch_heldout, dutch_test, [SimpleNodeFeatures(), LabelInteractionFeatures(), nlen_gazetteer], verbose=True, additional_run_label='EnglishGazetteerEntries')
+nlen_gazetteer   = GazetteerFeatures(['data/loc_nl.txt', 'data/person_nl.txt', 'data/org_nl.txt', 'data/loc_eng.txt', 'data/person_eng.txt', 'data/org_eng.txt'])
+dutch_ner_gaz_en = train_ner('nl', conll2002_labels, dutch_train, dutch_heldout, dutch_test, [SimpleNodeFeatures(), LabelInteractionFeatures(), nlen_gazetteer], verbose=True, additional_run_label='EnglishGazetteerEntries')
 
 
 ########################################
 # Other languages
 ########################################
 
-for (lang, corpus) in [
-    ('eng', conll2003),
-    #('deu', conll2003),
-    #('esp', conll2002)
+for (lang, corpus, lemmatizer, tc_model) in [
+    ('eng', conll2003, SnowballStemmer("english"), "models/truecase/en"),
+    ('deu', conll2003, SnowballStemmer("german"),  "models/truecase/de"),
+    ('esp', conll2002, SnowballStemmer("spanish"), "models/truecase/es")
     ]:
 
-    lemmatizer = WordNetLemmatizer()
-    truecaser  = MosesTrueCaser(open('/Users/jodaiber/Desktop/Groningen/structured-ner/src/structured_ner/models/truecase/truecase-model.en'))
+    truecaser  = MosesTrueCaser(open(tc_model))
 
     gazetteer = GazetteerFeatures(['data/loc_%s.txt' % lang, 'data/person_%s.txt' % lang, 'data/org_%s.txt' % lang, 'data/misc_%s.txt' % lang], truecaser)
 

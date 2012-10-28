@@ -31,10 +31,8 @@ def train_ner(lang, labels, data, heldout, test, feature_sets, verbose=False, ad
 
     perceptron.train(data, heldout, verbose=verbose, run_label=run_label)
 
-    test_result,comb,_ = perceptron.test(test)
+    test_result, _ = perceptron.test(test)
     codecs.open('../eval/%s_test.txt' % run_label, 'w', encoding='utf-8').write(test_result)
-    
-    matrix= confMatrix(comb)
 
     if verbose:
         codecs.open('../eval/%s_features.csv' % run_label, 'w', encoding='utf-8').write('\n'.join(perceptron.evaluate_features()))

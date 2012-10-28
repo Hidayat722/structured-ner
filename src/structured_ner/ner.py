@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import pickle
-from traits.trait_types import self
 from sentence import Sentence
 from sentence import all_uppercase, headline
 
