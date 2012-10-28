@@ -10,10 +10,10 @@ models/truecase_:
 	popd
 	
 	cd case/moses; \
-	perl tokenizer.perl nl < /tmp/europarl-v7.nl-en.nl > /tmp/nl.tok; \
-	perl tokenizer.perl en < /tmp/europarl-v7.nl-en.en > /tmp/en.tok; \
-	perl tokenizer.perl es < /tmp/europarl-v7.nl-en.es > /tmp/es.tok; \
-	perl tokenizer.perl de < /tmp/europarl-v7.nl-en.de > /tmp/de.tok; \
+	perl tokenizer.perl -l nl < /tmp/europarl-v7.nl-en.nl > /tmp/nl.tok; \
+	perl tokenizer.perl -l en < /tmp/europarl-v7.nl-en.en > /tmp/en.tok; \
+	perl tokenizer.perl -l es < /tmp/europarl-v7.nl-en.es > /tmp/es.tok; \
+	perl tokenizer.perl -l de < /tmp/europarl-v7.nl-en.de > /tmp/de.tok; \
 	perl train-truecaser.perl --model ../../models/truecase/en --corpus /tmp/en.tok; \
 	perl train-truecaser.perl --model ../../models/truecase/nl --corpus /tmp/nl.tok; \
 	perl train-truecaser.perl --model ../../models/truecase/es --corpus /tmp/es.tok; \
