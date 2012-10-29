@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.9.6)  29 OCT 2012 19:32
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.9.6)  29 OCT 2012 21:07
 entering extended mode
  %&-line parsing enabled.
 **paper.tex
@@ -8,8 +8,8 @@ Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
 yphenation, loaded.
 (/usr/share/texmf-texlive/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/share/texmf-texlive/tex/latex/base/size10.clo
-File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+(/usr/share/texmf-texlive/tex/latex/base/size11.clo
+File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@section=\count80
@@ -22,8 +22,10 @@ File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
-)
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+) (./acl2011.sty
+Conference Style for ACL 2005 -- released Octobe 11, 2004
+\titlebox=\skip43
+) (/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
 Package: inputenc 2008/03/30 v1.1d Input encoding file
 \inpenc@prehook=\toks14
 \inpenc@posthook=\toks15
@@ -252,27 +254,27 @@ Package: xspace 2006/05/08 v1.12 Space after command names (DPC,MH)
 \wordtwo=\box30
 \wordthree=\box31
 \gline=\box32
-\glossglue=\skip43
+\glossglue=\skip44
 )
 \c@ExNo=\count87
 \c@SubExNo=\count88
 \c@SubSubExNo=\count89
 \c@FnExNo=\count90
 \c@ABC=\count91
-\currentlabel=\skip44
-\lessthanten=\skip45
-\lessthanhundred=\skip46
-\lessthanthousand=\skip47
-\@Exleftmargin=\skip48
-\Exlabelwidth=\skip49
-\Extopsep=\skip50
-\Exindent=\skip51
-\SubExleftmargin=\skip52
-\SubSubExleftmargin=\skip53
-\Exlabelsep=\skip54
-\alignSubExnegindent=\skip55
-\digitwidth=\skip56
-\mindigitwidth=\skip57
+\currentlabel=\skip45
+\lessthanten=\skip46
+\lessthanhundred=\skip47
+\lessthanthousand=\skip48
+\@Exleftmargin=\skip49
+\Exlabelwidth=\skip50
+\Extopsep=\skip51
+\Exindent=\skip52
+\SubExleftmargin=\skip53
+\SubSubExleftmargin=\skip54
+\Exlabelsep=\skip55
+\alignSubExnegindent=\skip56
+\digitwidth=\skip57
+\mindigitwidth=\skip58
 \c@ExDepth=\count92
 \c@TempExDepth=\count93
 \CollectTokens=\toks16
@@ -326,17 +328,17 @@ Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \col@sep=\dimen106
 \extrarowheight=\dimen107
 \NC@list=\toks20
-\extratabsurround=\skip58
-\backup@length=\skip59
+\extratabsurround=\skip59
+\backup@length=\skip60
 )
 (/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.sty
 Package: subfigure 2002/03/15 v2.1.5 subfigure package
-\subfigtopskip=\skip60
-\subfigcapskip=\skip61
+\subfigtopskip=\skip61
+\subfigcapskip=\skip62
 \subfigcaptopadj=\dimen108
-\subfigbottomskip=\skip62
+\subfigbottomskip=\skip63
 \subfigcapmargin=\dimen109
-\subfiglabelskip=\skip63
+\subfiglabelskip=\skip64
 \c@subfigure=\count96
 \c@lofdepth=\count97
 \c@subtable=\count98
@@ -346,8 +348,8 @@ Package: subfigure 2002/03/15 v2.1.5 subfigure package
 * Local config file subfigure.cfg used *
 ****************************************
 (/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.cfg)
-\subfig@top=\skip64
-\subfig@bottom=\skip65
+\subfig@top=\skip65
+\subfig@bottom=\skip66
 )
 (/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2009/10/09 v6.79a Hypertext links for LaTeX
@@ -465,7 +467,7 @@ File: hpdftex.def 2009/10/09 v6.79a Hyperref driver for pdfTeX
 )
 (/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2000/07/18 v2.13 AMS math features
-\@mathmargin=\skip66
+\@mathmargin=\skip67
 
 For additional information on amsmath, use the `?' option.
 (/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
@@ -515,47 +517,28 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
 \totwidth@=\dimen120
 \lineht@=\dimen121
 \@envbody=\toks25
-\multlinegap=\skip67
-\multlinetaggap=\skip68
+\multlinegap=\skip68
+\multlinetaggap=\skip69
 \mathdisplay@stack=\toks26
 LaTeX Info: Redefining \[ on input line 2666.
 LaTeX Info: Redefining \] on input line 2667.
-)
-(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
-Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
-
-(/etc/texmf/tex/latex/config/color.cfg
-File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
-)
-Package xcolor Info: Driver file: pdftex.def on input line 225.
-Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
-Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
-Package xcolor Info: Model `RGB' extended on input line 1353.
-Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
-Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
-Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
-Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
-Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
-Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
-)
-Package hyperref Info: Option `colorlinks' set `true' on input line 27.
- (./paper.aux)
+) (./paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
 
 (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -570,7 +553,7 @@ LaTeX Font Info:    ... okay on input line 31.
 \MPnumerator=\count123
 \everyMPtoPDFconversion=\toks28
 )
-Package hyperref Info: Link coloring ON on input line 31.
+Package hyperref Info: Link coloring OFF on input line 36.
  (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
 
@@ -579,54 +562,95 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
 \c@section@level=\count124
 )
-LaTeX Info: Redefining \ref on input line 31.
-LaTeX Info: Redefining \pageref on input line 31.
+LaTeX Info: Redefining \ref on input line 36.
+LaTeX Info: Redefining \pageref on input line 36.
  (./paper.out)
 (./paper.out)
 \@outlinefile=\write3
 \openout3 = `paper.out'.
 
 \AtBeginShipoutBox=\box36
-LaTeX Font Info:    Try loading font information for U+lasy on input line 33.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 38.
  (/usr/share/texmf-texlive/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-Underfull \hbox (badness 10000) in paragraph at lines 35--43
+
+LaTeX Warning: No \author given.
+
+
+LaTeX Warning: Reference `NETypes' on page 1 undefined on input line 45.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 67--70
 
  []
 
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
-Overfull \hbox (11.29219pt too wide) in paragraph at lines 62--62
-[]\OT1/cmr/bx/it/10 London \OT1/cmr/m/it/10 de-cided to in-crease the 1200 mil-
-i-tary per-son-nel in-volved in Olympic
- []
 
-[1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}pdfTeX warning (ext4): desti
-nation with the same identifier (name{ExDepth.1}) has been already used, duplic
-ate ignored
+
+pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
+as been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.68 
+l.97 
      pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.
 1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.68 
+l.97 
      ]
+Underfull \hbox (badness 10000) in paragraph at lines 98--100
+[]\OT1/cmr/m/n/10.95 In re-gard to sta-tis-ti-cal ap-proaches,
+ []
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+Underfull \hbox (badness 10000) in paragraph at lines 98--100
+\OT1/cmr/m/n/10.95 supervised-learning is the most com-mon
+ []
+
+
+Underfull \hbox (badness 2970) in paragraph at lines 110--114
+\OT1/cmr/m/n/10.95 Structured Pre-dic-tion ([]0[]) is a supervised-
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
+as been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.121 
+      pdfTeX warning (ext4): destination with the same identifier (name{ExDepth
+.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.126 
+      
+Underfull \hbox (badness 5302) in paragraph at lines 126--126
+[]\OT1/cmr/m/n/10.95 x The mo-tor com-pany 'Ford' was
+ []
+
+
+Underfull \hbox (badness 5091) in paragraph at lines 138--140
+ \OT1/cmr/bx/n/10.95 De-cod-ing \OT1/cmr/m/n/10.95 Viterbi al-go-rithm (Markov 
+as-
+ []
+
+
+Underfull \hbox (badness 4859) in paragraph at lines 174--176
+ \OT1/cmr/bx/n/10.95 Gazetteer Fea-tures \OT1/cmr/m/n/10.95 In or-der to cre-at
+e
+ []
 
 [2]pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}
 ) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.151 
+l.189 
       
-Underfull \hbox (badness 10000) in paragraph at lines 151--151
+Underfull \hbox (badness 10000) in paragraph at lines 189--189
 
  []
 
@@ -634,9 +658,9 @@ pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.154 
+l.192 
       
-Underfull \hbox (badness 10000) in paragraph at lines 154--154
+Underfull \hbox (badness 10000) in paragraph at lines 192--192
 
  []
 
@@ -644,9 +668,9 @@ pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.157 
+l.195 
       
-Underfull \hbox (badness 10000) in paragraph at lines 157--157
+Underfull \hbox (badness 10000) in paragraph at lines 195--195
 
  []
 
@@ -654,40 +678,85 @@ pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.159 
+l.197 
       
-Underfull \hbox (badness 10000) in paragraph at lines 159--159
+Underfull \hbox (badness 10000) in paragraph at lines 197--197
 
  []
 
-(./paper.bbl [3]) [4] (./paper.aux) ) 
+(./paper.bbl
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.3 \bibitem{strlearn}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.3 \bibitem{strlearn}
+                      
+I'm forgetting what you said and using zero instead.
+
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.9 \bibitem{ner-sekine2007}
+                            
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.9 \bibitem{ner-sekine2007}
+                            
+I'm forgetting what you said and using zero instead.
+
+
+Underfull \hbox (badness 1552) in paragraph at lines 10--14
+[]\OT1/cmr/m/n/10 David Nadeau and Satoshi Sekine.  A sur-vey
+ []
+
+) [3
+
+] (./paper.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 5899 strings out of 495061
- 80406 string characters out of 1182622
- 161079 words of memory out of 3000000
- 8925 multiletter control sequences out of 15000+50000
- 12287 words of font info for 49 fonts, out of 3000000 for 9000
+ 5477 strings out of 495061
+ 75690 string characters out of 1182622
+ 155680 words of memory out of 3000000
+ 8511 multiletter control sequences out of 15000+50000
+ 12302 words of font info for 49 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 38i,8n,38p,270b,452s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-texlive/fonts/type1/publ
-ic/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
-/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbxti1
-0.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><
-/usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/
-texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texliv
-e/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type
-1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
-fonts/cm/cmr5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7
-.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/sh
-are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-t
-exlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/fonts
-/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/publ
-ic/amsfonts/cm/cmti9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
-cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt9.pf
-b>
-Output written on paper.pdf (4 pages, 222127 bytes).
+ 38i,9n,38p,270b,328s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
+re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-te
+xlive/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-texlive/fonts/
+type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-texlive/fonts/type1/pub
+lic/amsfonts/cmextra/cmex8.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
+fonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cm
+mi8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
+r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf
+-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/font
+s/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/pub
+lic/amsfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
+/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt10.
+pfb>
+Output written on paper.pdf (3 pages, 197429 bytes).
 PDF statistics:
- 158 PDF objects out of 1000 (max. 8388607)
- 35 named destinations out of 1000 (max. 500000)
+ 148 PDF objects out of 1000 (max. 8388607)
+ 37 named destinations out of 1000 (max. 500000)
  49 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,12 +1,7 @@
-\documentclass[a4paper,10pt]{article}
-%\documentclass[a4paper,10pt]{scrartcl}
 
 
-
-\title{Named Entity Recognition using Structured Prediction}
-\author{}
-\date{}
-
+\documentclass[11pt]{article}
+\usepackage{acl2011}
 \usepackage[utf8]{inputenc}
 \usepackage{linguex}
 \usepackage{latexsym}  
@@ -17,16 +12,26 @@
 \usepackage{subfigure}
 \usepackage{hyperref}
 \usepackage{amsmath}
-\usepackage{xcolor}
-\definecolor{dark-red}{rgb}{0.4,0.15,0.15}
-\definecolor{dark-blue}{rgb}{0.15,0.15,0.4}
-\definecolor{medium-blue}{rgb}{0,0,0.5}
-\hypersetup{
-    colorlinks, linkcolor={dark-red},
-    citecolor={dark-blue}, urlcolor={medium-blue}
-}
+% \usepackage{xcolor}
+% \definecolor{dark-red}{rgb}{0.4,0.15,0.15}
+% \definecolor{dark-blue}{rgb}{0.15,0.15,0.4}
+% \definecolor{medium-blue}{rgb}{0,0,0.5}
+% \hypersetup{
+%     colorlinks, linkcolor={dark-red},
+%     citecolor={dark-blue}, urlcolor={medium-blue}}
+\title{Named Entity Recognition using Structured Prediction}
 
-
+% \author{Joachim Daiber \\
+%   %Affiliation / Address line 1 \\
+%  
+%   {\tt email@domain} \\\And
+%   Carmen Klaussner \\
+%   %Affiliation / Address line 1 \\
+% 
+%   {\tt carmen@wordsmith.de} \\
+%   }
+% 
+% \date{today}
 
 \begin{document}
 \maketitle
@@ -35,8 +40,30 @@
 Named Entity Recognition (NER) is an information extraction task and has first been introduced as part of the 6th MUC (Sixth Message Understanding Conference)
 that was focusing on the extraction of structured information from unstructured text, such as company names from newspaper articles \cite{ner-sekine2007}.
 The most prominent types are generally known under the name of \emph{enamex} types, which are comprised of \texttt{Person Names}, \texttt{Organisations} and \texttt{Locations}. 
-An additional type \texttt{Miscellaneous} captures person names outside the classic \emph{enamax} type. % table of entites examples
-Apart from these there is \emph{timex}, which covers date \& time expressions and \emph{numex} which is for monetary values \& percent.
+An additional type \texttt{Miscellaneous} captures person names outside the classic \emph{enamax} type.
+Apart from these there is \emph{timex}, which covers date \& time expressions and \emph{numex} which is for monetary values \& percent. 
+Table \ref{NETypes} gives an overview of the different NE types.
+
+\begin{table}[h!]
+\scriptsize
+\begin{tabular}{l|l}
+\hline
+\bf Named Entity Type & \bf Example \\
+\hline
+Person Names & Greta Garbo, John, Mary \\
+Organisations& Benetton, Coca-Cola Gmbh\\
+Locations&  Paris, Australia, Bristol\\
+Miscellaneous& World Cup\\
+ Date Expression& 01-02-2012, January, 6th, 1998 \\
+Time Expression & 10 p.m.\\
+Monetary Value &  \$15, 100 Euro   \\
+Percent 30\%&   \\
+\end{tabular}
+\caption{NE Examples}
+\label{table:NETypes}
+\end{table}
+
+
 In considering named entities, it is important to distinguish between mention of entities that are non - specific as 
 time expressions, such as \emph{In June}, referring to any possible year or \emph{the prof} as a person name , which itself is not a specific entity, but a deictic reference
 , which may point back to the mention of a real \emph{NE}, as in the following coreference chain: \\
@@ -46,7 +73,8 @@ time expressions, such as \emph{In June}, referring to any possible year or \emp
 
 
 \subsection*{Issues in Named Entity Recognition}
-Among the most common problems for NER is the issue of ambiguity, that is in particular \emph{Polysemy} \cite{ner-sekine2007}, the property of some lexical representation having
+Among the most common problems for NER is the issue of ambiguity, that is in particular \emph{Polysemy} \cite{ner-sekine2007}, 
+the property of some lexical representation having
 more than one possible meaning, and \emph{Metonymy}, which refers to the concept of the part-whole/whole-part relation between two expressions. 
 \emph{Polysemy} could become an issue for NER when the lexical representation of an item could point to two different \emph{NE} types.
 This is quite frequent with \texttt{Person Names} and \texttt{Locations}, since many people are named after cities, such as \emph{Paris} or \emph{Georgia}. 
@@ -63,7 +91,8 @@ for the \textbf{Goverment in London}.
 \subsection*{Methods employed for NER}
 For \emph{NER}, there exist both rule-based and statisical approaches. 
 Rule-based methods make use of the underlying rules governing languages to extract named entities. 
-However, this approach is quite time-consuming and requires extensive work of computational linguists \cite{ner-sekine2007} and although the results are 
+However, this approach is quite time-consuming and requires extensive work of computational linguists \cite{ner-sekine2007}
+and although the results are 
 often high in precision, lacks considerably in recall.
 
 In regard to statistical approaches, supervised-learning is the most common method applied in \emph{NER}. Although, there are unsupervised approaches, 
@@ -78,13 +107,22 @@ Prominent algorithms in NER include maximum entropy
 
 
 \section{Structured Prediction}
-Structured Prediction \cite{strlearn} is a supervised-learning approach and sets itself apart from Non-structured Prediction through the form of its output. 
-Prediction maps an input x to an output y: $ x \rightarrow y $. 
+Structured Prediction \cite{strlearn} 
+is a supervised-learning approach and sets itself apart from Non-structured Prediction through the form of its output. 
+Prediction maps an input x to an output y: \\
+$ x \rightarrow y $. 
+
 Non-structured output is atomic, thus it is binary prediction for a two-class problem and may corresponds to more than one of more than 2 possible labels for a 
 multiclass problem. 
-The output of Structured Prediction is a structured and gives back a sequence/tree. 
-%through the combination of features and the use of label interactions.
+The output of Structured Prediction is structured and gives back a sequence/tree. 
+Thus, the output could be the complete sentence with its corresponding labels. 
 
+\ex. \emph{The motor company 'Ford' was founded and incorporated  by Henry Ford on June, 16th 1903.} \label{PredEx1a}
+
+would trigger the labels: 
+\ex. x The motor company 'Ford' was founded and incorporated  by Henry Ford on June, 16th 1903. \label{PredEx1b} % include labels 
+     %y 
+Furthermore, Structured Prediction is different from similar approaches such as HMM through the combination of features and the use of label interactions.
 
 
 \section{Our structured Perceptron}
@@ -167,12 +205,9 @@ use the harmonic mean as shown in \ref{F1}.
 
 
 
-
-
-{\small
-\bibliographystyle{plain}
+\bibliographystyle{acl}
 \bibliography{ML}
-}
+
 
 
 \end{document}
