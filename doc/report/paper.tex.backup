@@ -143,19 +143,16 @@ In the following section we present our experiments and the evalution of our sys
 
 
 \subsection*{Evaluation}
-For the evaluation of the system we used \emph{Precision} and \emph{Recall} as shown in \ref{Precision} and \ref{Recall} respectively.
-The general formula for the \emph{F-Score} is shown in \ref{Fscore}. Since we rate both \emph{Precision} and \emph{Recall} evenly, we 
-use the harmonic mean as shown in \ref{F1}.
+For the evaluation of the system we used \emph{Precision} and \emph{Recall}.\\
 
-\ex. \emph{Precision} = $ \frac{gold\; tag \bigcap predicted}{predicted}$ \label{Precision}\\
+\emph{Precision} = $ \frac{gold tag \bigcap predicted}{predicted}$ \\
 
 
-\ex. \emph{Recall} = $ \frac{gold \;tag \bigcap predicted}{gold\; tag}$ \label{Recall}\\
+\emph{Recall} = $ \frac{gold tag \bigcap predicted}{gold tag}$ \\
 
 
-\ex. $F_{\beta}$ = $ (1+\beta^2)*\frac{precision *recall}{\beta^2* precision + recall}$ \label{Fscore}\\
+$F_{\beta}$- Score = $ (1+\beta^2)*\frac{precision *recall}{\beta^2* precision + recall}$ \\
 
-\ex. $F_1$ = $ 2*\frac{precision *recall}{precision + recall}$ \label{F1}\\
 
 \section{Discussion of Results}
 

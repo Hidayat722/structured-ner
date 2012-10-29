@@ -1,0 +1,15 @@
+\begin{thebibliography}{1}
+
+\bibitem{strlearn}
+Xavier Carreras.
+\newblock {Learning Structured Predictors}.
+\newblock Lecture at Lisbon Machine Learning School 2012,
+  \url{http://lxmls.it.pt/strlearn.pdf}, 2012.
+
+\bibitem{ner-sekine2007}
+David Nadeau and Satoshi Sekine.
+\newblock {A survey of named entity recognition and classification}.
+\newblock {\em Linguisticae Investigationes}, 30(1):3--26, January 2007.
+\newblock Publisher: John Benjamins Publishing Company.
+
+\end{thebibliography}
