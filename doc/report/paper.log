@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.9.6)  29 OCT 2012 21:07
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.9.6)  3 NOV 2012 11:04
 entering extended mode
  %&-line parsing enabled.
 **paper.tex
@@ -525,20 +525,20 @@ LaTeX Info: Redefining \] on input line 2667.
 ) (./paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
 
 (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -553,7 +553,7 @@ LaTeX Font Info:    ... okay on input line 36.
 \MPnumerator=\count123
 \everyMPtoPDFconversion=\toks28
 )
-Package hyperref Info: Link coloring OFF on input line 36.
+Package hyperref Info: Link coloring OFF on input line 50.
  (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
 
@@ -562,26 +562,19 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
 \c@section@level=\count124
 )
-LaTeX Info: Redefining \ref on input line 36.
-LaTeX Info: Redefining \pageref on input line 36.
+LaTeX Info: Redefining \ref on input line 50.
+LaTeX Info: Redefining \pageref on input line 50.
  (./paper.out)
 (./paper.out)
 \@outlinefile=\write3
 \openout3 = `paper.out'.
 
 \AtBeginShipoutBox=\box36
-LaTeX Font Info:    Try loading font information for U+lasy on input line 38.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 52.
  (/usr/share/texmf-texlive/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-
-LaTeX Warning: No \author given.
-
-
-LaTeX Warning: Reference `NETypes' on page 1 undefined on input line 45.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 67--70
+Underfull \hbox (badness 10000) in paragraph at lines 81--84
 
  []
 
@@ -595,62 +588,71 @@ as been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.97 
-     pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.
-1}) has been already used, duplicate ignored
+l.111 
+      pdfTeX warning (ext4): destination with the same identifier (name{ExDepth
+.1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.97 
-     ]
-Underfull \hbox (badness 10000) in paragraph at lines 98--100
+l.111 
+      ]
+Underfull \hbox (badness 10000) in paragraph at lines 112--114
 []\OT1/cmr/m/n/10.95 In re-gard to sta-tis-ti-cal ap-proaches,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 98--100
+Underfull \hbox (badness 10000) in paragraph at lines 112--114
 \OT1/cmr/m/n/10.95 supervised-learning is the most com-mon
  []
 
 
-Underfull \hbox (badness 2970) in paragraph at lines 110--114
-\OT1/cmr/m/n/10.95 Structured Pre-dic-tion ([]0[]) is a supervised-
+LaTeX Warning: Citation `tksintro2002conll' on page 2 undefined on input line 1
+24.
+
+
+Underfull \hbox (badness 1137) in paragraph at lines 160--164
+\OT1/cmr/m/n/10.95 Structured Pre-dic-tion ([]Car-reras, 2012[]) is a
+ []
+
+
+Underfull \hbox (badness 1817) in paragraph at lines 160--164
+\OT1/cmr/m/n/10.95 supervised-learning ap-proach and sets it-self
  []
 
 pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.121 
+l.171 
       pdfTeX warning (ext4): destination with the same identifier (name{ExDepth
 .1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.126 
+l.176 
       
-Underfull \hbox (badness 5302) in paragraph at lines 126--126
+Underfull \hbox (badness 5302) in paragraph at lines 176--176
 []\OT1/cmr/m/n/10.95 x The mo-tor com-pany 'Ford' was
  []
 
 
-Underfull \hbox (badness 5091) in paragraph at lines 138--140
+Underfull \hbox (badness 5091) in paragraph at lines 188--190
  \OT1/cmr/bx/n/10.95 De-cod-ing \OT1/cmr/m/n/10.95 Viterbi al-go-rithm (Markov 
 as-
  []
 
-
-Underfull \hbox (badness 4859) in paragraph at lines 174--176
+[2]
+Underfull \hbox (badness 4859) in paragraph at lines 224--226
  \OT1/cmr/bx/n/10.95 Gazetteer Fea-tures \OT1/cmr/m/n/10.95 In or-der to cre-at
 e
  []
 
-[2]pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}
-) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
+as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.189 
+l.240 
       
-Underfull \hbox (badness 10000) in paragraph at lines 189--189
+Underfull \hbox (badness 10000) in paragraph at lines 240--240
 
  []
 
@@ -658,9 +660,9 @@ pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.192 
+l.243 
       
-Underfull \hbox (badness 10000) in paragraph at lines 192--192
+Underfull \hbox (badness 10000) in paragraph at lines 243--243
 
  []
 
@@ -668,9 +670,9 @@ pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.195 
+l.246 
       
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
+Underfull \hbox (badness 10000) in paragraph at lines 246--246
 
  []
 
@@ -678,85 +680,58 @@ pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.197 
+l.248 
       
-Underfull \hbox (badness 10000) in paragraph at lines 197--197
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
 
+ []
+
+
+Overfull \hbox (165.42789pt too wide) in paragraph at lines 253--262
+[][] 
  []
 
 (./paper.bbl
-! Undefined control sequence.
-<argument> \@listctr 
-                     
-l.3 \bibitem{strlearn}
-                      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! You can't use `\relax' after \the.
-<recently read> \c@ 
-                    
-l.3 \bibitem{strlearn}
-                      
-I'm forgetting what you said and using zero instead.
-
-! Undefined control sequence.
-<argument> \@listctr 
-                     
-l.9 \bibitem{ner-sekine2007}
-                            
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! You can't use `\relax' after \the.
-<recently read> \c@ 
-                    
-l.9 \bibitem{ner-sekine2007}
-                            
-I'm forgetting what you said and using zero instead.
+Underfull \vbox (badness 1838) has occurred while \output is active []
 
 
-Underfull \hbox (badness 1552) in paragraph at lines 10--14
-[]\OT1/cmr/m/n/10 David Nadeau and Satoshi Sekine.  A sur-vey
+Underfull \hbox (badness 10000) in paragraph at lines 18--25
+[]\OT1/cmr/m/n/10 Erik F.
  []
 
-) [3
 
-] (./paper.aux)
+Underfull \hbox (badness 2547) in paragraph at lines 18--25
+\OT1/cmr/m/n/10 In \OT1/cmr/m/it/10 Pro-ceed-ings of the sev-enth con-fer-ence 
+on
+ []
 
-LaTeX Warning: There were undefined references.
-
- ) 
+) [3] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 5477 strings out of 495061
- 75690 string characters out of 1182622
- 155680 words of memory out of 3000000
- 8511 multiletter control sequences out of 15000+50000
- 12302 words of font info for 49 fonts, out of 3000000 for 9000
+ 5485 strings out of 495061
+ 75856 string characters out of 1182622
+ 157026 words of memory out of 3000000
+ 8514 multiletter control sequences out of 15000+50000
+ 12471 words of font info for 50 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 38i,9n,38p,270b,328s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-te
-xlive/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-texlive/fonts/
-type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-texlive/fonts/type1/pub
-lic/amsfonts/cmextra/cmex8.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
-fonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cm
-mi8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
-r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf
--texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/font
-s/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/pub
-lic/amsfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
-/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt10.
-pfb>
-Output written on paper.pdf (3 pages, 197429 bytes).
+ 38i,9n,38p,270b,326s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
+mbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
+/usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/t
+exmf-texlive/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-texl
+ive/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texmf-texlive/fon
+ts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/pu
+blic/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
+s/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.p
+fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/shar
+e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texli
+ve/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/ty
+pe1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/public/a
+msfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
+cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+
+Output written on paper.pdf (3 pages, 222639 bytes).
 PDF statistics:
- 148 PDF objects out of 1000 (max. 8388607)
- 37 named destinations out of 1000 (max. 500000)
+ 164 PDF objects out of 1000 (max. 8388607)
+ 41 named destinations out of 1000 (max. 500000)
  49 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -33,16 +33,30 @@
 % 
 % \date{today}
 
+
+\author{Joachim Daiber \\
+  University of Groningen \\
+  %Affiliation / Address line 2 \\
+  %Affiliation / Address line 3 \\
+  {\tt jodaiber@gmx.de} \\\And
+  Carmen Klaussner \\
+  University of Groningen \\
+  %Affiliation / Address line 2 \\
+  %Affiliation / Address line 3 \\
+  {\tt Carmen@wordsmith.de} \\}
+
+\date{}
+
 \begin{document}
 \maketitle
 
 \section{Introduction}
 Named Entity Recognition (NER) is an information extraction task and has first been introduced as part of the 6th MUC (Sixth Message Understanding Conference)
-that was focusing on the extraction of structured information from unstructured text, such as company names from newspaper articles \cite{ner-sekine2007}.
+that was focusing on the extraction of structured information from unstructured text, such as company names from newspaper articles \cite{nadeau2007survey}.
 The most prominent types are generally known under the name of \emph{enamex} types, which are comprised of \texttt{Person Names}, \texttt{Organisations} and \texttt{Locations}. 
 An additional type \texttt{Miscellaneous} captures person names outside the classic \emph{enamax} type.
 Apart from these there is \emph{timex}, which covers date \& time expressions and \emph{numex} which is for monetary values \& percent. 
-Table \ref{NETypes} gives an overview of the different NE types.
+Table \ref{table:NETypes} gives an overview of the different NE types.
 
 \begin{table}[h!]
 \scriptsize
@@ -57,7 +71,7 @@ Miscellaneous& World Cup\\
  Date Expression& 01-02-2012, January, 6th, 1998 \\
 Time Expression & 10 p.m.\\
 Monetary Value &  \$15, 100 Euro   \\
-Percent 30\%&   \\
+Percent &   30\%
 \end{tabular}
 \caption{NE Examples}
 \label{table:NETypes}
@@ -73,7 +87,7 @@ time expressions, such as \emph{In June}, referring to any possible year or \emp
 
 
 \subsection*{Issues in Named Entity Recognition}
-Among the most common problems for NER is the issue of ambiguity, that is in particular \emph{Polysemy} \cite{ner-sekine2007}, 
+Among the most common problems for NER is the issue of ambiguity, that is in particular \emph{Polysemy} \cite{nadeau2007survey}, 
 the property of some lexical representation having
 more than one possible meaning, and \emph{Metonymy}, which refers to the concept of the part-whole/whole-part relation between two expressions. 
 \emph{Polysemy} could become an issue for NER when the lexical representation of an item could point to two different \emph{NE} types.
@@ -91,20 +105,56 @@ for the \textbf{Goverment in London}.
 \subsection*{Methods employed for NER}
 For \emph{NER}, there exist both rule-based and statisical approaches. 
 Rule-based methods make use of the underlying rules governing languages to extract named entities. 
-However, this approach is quite time-consuming and requires extensive work of computational linguists \cite{ner-sekine2007}
+However, this approach is high maintenance, quite time-consuming and requires extensive work of computational linguists \cite{nadeau2007survey}
 and although the results are 
 often high in precision, lacks considerably in recall.
 
 In regard to statistical approaches, supervised-learning is the most common method applied in \emph{NER}. Although, there are unsupervised approaches, 
-their performance is not as high as for SL applications.
+their performance is not as high as for SL applications yet.
 
 Prominent algorithms in NER include maximum entropy
 % Overview algorithms /methods used 
 % machine learning/neural networks/rule-based 
 % maximum entropy MM
 % 
-% Base line for NER
 
+
+
+\subsection*{CoNLL data set \& baseline}
+The training and test dataset was taken from the \emph{CoNLL Shared Task 2002} \cite{TjongKimSang:2003:ICS:1119176.1119195} and the \emph{CoNLL Shared Task 2003} \cite{tksintro2002conll}
+for Spanish \& Dutch and English \& German respectively.
+
+% A baseline rate was computed for the English and the
+% German test sets. It was produced by a system which
+% only identified entities which had a unique class in
+% the training data. If a phrase was part of more than
+% one entity, the system would select the longest one.
+% All systems that participated in the shared task have
+% outperformed the baseline system.
+% For all the Fβ=1 rates we have estimated sig-
+% nificance boundaries by using bootstrap resampling
+% (Noreen, 1989). From each output file of a system,
+% 250 random samples of sentences have been chosen
+% and the distribution of the Fβ=1 rates in these sam-
+% ples is assumed to be the distribution of the perfor-
+% mance of the system. We assume that performance
+% A is significantly different from performance B if A
+% is not within the center 90% of the distribution of B.
+
+The baseline for \emph{Named Entity Recognition} in the four different languages is visualised in table \
+\begin{table}[h!]
+\scriptsize
+\begin{tabular}{l|l|l|l}
+\hline
+\bf Language & \bf Precision & \bf Recall & \bf $F_1$-measure \\ \hline
+Spanish &             26.27 \% & 56.48 \% & 35.86  \%        \\
+Dutch  &             64.38 \%  &45.19   \%    & 53.10 \%  \\
+English &              71.91\%& 50.90 \%  & 59.61 $\pm$ 1.2 \%\\
+German &      31.86 \%  & 28.89 \% & 30.30  $\pm$ \%1.3 \\
+\end{tabular}
+\caption{NER Baseline}
+\label{table:Base}
+\end{table}
 
 \section{Structured Prediction}
 Structured Prediction \cite{strlearn} 
@@ -120,7 +170,7 @@ Thus, the output could be the complete sentence with its corresponding labels.
 \ex. \emph{The motor company 'Ford' was founded and incorporated  by Henry Ford on June, 16th 1903.} \label{PredEx1a}
 
 would trigger the labels: 
-\ex. x The motor company 'Ford' was founded and incorporated  by Henry Ford on June, 16th 1903. \label{PredEx1b} \\% include labels 
+\ex. x The motor company 'Ford' was founded and incorporated  by Henry Ford on June, 16th 1903. \label{PredEx1b} % include labels 
      %y 
 Furthermore, Structured Prediction is different from similar approaches such as HMM through the combination of features and the use of label interactions.
 
@@ -185,6 +235,7 @@ For the evaluation of the system we used \emph{Precision} and \emph{Recall} as s
 The general formula for the \emph{F-Score} is shown in \ref{Fscore}. Since we rate both \emph{Precision} and \emph{Recall} evenly, we 
 use the harmonic mean as shown in \ref{F1}.
 
+
 \ex. \emph{Precision} = $ \frac{gold\; tag \bigcap predicted}{predicted}$ \label{Precision}\\
 
 
@@ -194,6 +245,23 @@ use the harmonic mean as shown in \ref{F1}.
 \ex. $F_{\beta}$ = $ (1+\beta^2)*\frac{precision *recall}{\beta^2* precision + recall}$ \label{Fscore}\\
 
 \ex. $F_1$ = $ 2*\frac{precision *recall}{precision + recall}$ \label{F1}\\
+
+
+
+
+\begin{table}[h!]
+\begin{tabular}{l |l| l| l| l| l| l}
+ \hline 
+\bf Language & \multicolumn{3}{c|}{ \bf testA}&\multicolumn{3}{c|}{ \bf testB}\\\hline 
+             & Precision & Recall & $F_1$-measure & Precision & Recall & $F_1$-measure \\ \hline
+Spanish &       &          &     &          &               & \\
+Dutch  &         &          &     &          &               &   \\
+English &        &          &     &          &               &       \\
+German &      &          &       &          &             & \\
+\end{tabular}
+\caption{NER Structured Prediction Results }
+\label{table:Results}
+\end{table}
 
 \section{Discussion of Results}
 
@@ -206,8 +274,6 @@ use the harmonic mean as shown in \ref{F1}.
 
 
 \bibliographystyle{acl}
-\bibliography{ML}
-
-
+\bibliography{paper}
 
 \end{document}
