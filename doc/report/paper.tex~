@@ -12,6 +12,8 @@
 \usepackage{subfigure}
 \usepackage{hyperref}
 \usepackage{amsmath}
+\usepackage{qtree}
+
 % \usepackage{xcolor}
 % \definecolor{dark-red}{rgb}{0.4,0.15,0.15}
 % \definecolor{dark-blue}{rgb}{0.15,0.15,0.4}
@@ -47,6 +49,8 @@
 
 \date{}
 
+\DeclareMathOperator*{\argmax}{arg\,max}
+
 \begin{document}
 \maketitle
 
@@ -78,12 +82,53 @@ Percent &   30\%
 \end{table}
 
 
-In considering named entities, it is important to distinguish between mention of entities that are non - specific as 
-time expressions, such as \emph{In June}, referring to any possible year or \emph{the prof} as a person name , which itself is not a specific entity, but a deictic reference
-, which may point back to the mention of a real \emph{NE}, as in the following coreference chain: \\
+In considering named entities, it is important to distinguish between mention of entities that are non-specific as 
+time expressions, such as \emph{In June}, referring to any possible year or \emph{the prof} as a person name, which itself is not a specific entity, 
+but a deictic reference, which may point back to the mention of a real \emph{NE}, as in the following coreference chain: \\
 
 
-\ex. $ Prof.\; Bateman \Rightarrow he \Rightarrow the \; prof$
+\ex. $ Prof.\; Bateman \Rightarrow he \Rightarrow the \; prof$ \\
+
+Named Entities can consist of more than one syntactic type. The usual overall type for a named entity is noun phrase, which can be both simple and complex. 
+An example for a simple heterogenous entity is displayed in syntactic tree represenation in ~\ref{tree1}.
+ \Tree
+    [.NP [.N' John ]  ] \label{tree1}
+
+Most languages allow for a recursive definition of, for instance, a noun phrase that in theory can grow infinitely big. 
+An \textbf{NP} can consist of a determiner, such as \emph{the} and a common noun or simply a propernoun. \textbf{PP} stands
+for prepositional phrase and consists of a preposition and a noun phrase. 
+The syntactic rules for PP-attachment are displayed in \ref{PP}.
+\begin{figure}
+$ NP \rightarrow NP PP$ \\
+$ PP \rightarrow P NP$ 
+\caption{Recursive Noun Phrase}
+\label{PP}
+\end{figure}   
+These rules allow for constructions such as in sentence~\ref{PPrec}. 
+
+\ex. The princess of Scotland is in the castle in England with the brown bricks on its roof... \label{PPrec}
+
+We distinguish between PP-complements and PP-modifiers, where modifiers simply add to the description of the noun phrase, maybe
+to set it apart and complements are more inherent to the meaning of the entity. 
+The PP-attachment \emph{of Scotland} is semantically defining for the noun \emph{princess}, whereas \emph{with the brown bricks on its roof} 
+just adds to the description of \emph{the castle in England}.
+Regarding named entities, one wants to differentiate between a PP-attachment that defines the entity an one that is irrelevant. 
+
+\begin{figure}
+\Tree
+    [.vP DP [.v' [ [v^0. is ] [.XP X ] ] ] ]
+\Tree
+    [.NP [ [.DT the ] [.N\1 [.N\1 Princess ] [.PP [.P of ] [.NP England ] ] ] ] ]
+
+    \Tree [.NP [.DT the ] [.N\1 [.N\1 Princess ] [.PP [P. of ] [NP. England ] ]   ]  ]
+\begin{enumerate}
+\item \parbox[t]{2.4in}{ (a)~\Tree 
+   [.NP [ [.DT the ] [.N\1 [.N\1 Princess ] [.PP [.P of ] [.NP England ] ] ] ] ]}
+\parbox[t]{2in}{ (b)~\Tree 
+   [.NP  [.DT the ] [.N\1 [.N\1 Princess ] ] [.PP [.P from ] [.NP England ] ]  ] ]  }
+\end{enumerate}
+    
+ \end{figure}
 
 
 \subsection*{Issues in Named Entity Recognition}
@@ -106,24 +151,24 @@ for the \textbf{Goverment in London}.
 For \emph{NER}, there exist both rule-based and statisical approaches. 
 Rule-based methods make use of the underlying rules governing languages to extract named entities. 
 However, this approach is high maintenance, quite time-consuming and requires extensive work of computational linguists \cite{nadeau2007survey}
-and although the results are 
-often high in precision, lacks considerably in recall.
+and although the results are often high in precision, lacks considerably in recall.
 
 In regard to statistical approaches, supervised-learning is the most common method applied in \emph{NER}. Although, there are unsupervised approaches, 
 their performance is not as high as for SL applications yet.
 
-Prominent algorithms in NER include maximum entropy
-% Overview algorithms /methods used 
-% machine learning/neural networks/rule-based 
-% maximum entropy MM
-% 
+Prominent algorithms in NER include maximum entropy models, 
+
+neural network
 
 
 
-\subsection*{CoNLL data set \& baseline}
-The training and test dataset was taken from the \emph{CoNLL Shared Task 2002} \cite{TjongKimSang:2003:ICS:1119176.1119195} and the \emph{CoNLL Shared Task 2003} \cite{tksintro2002conll}
-for Spanish \& Dutch and English \& German respectively.
-
+\subsection*{CoNLL Data Set \& Baseline Performance}
+The training and test dataset was taken from the \emph{CoNLL Shared Task 2002} \cite{tksintro2002conll} and the \emph{CoNLL Shared Task 2003} \cite{TjongKimSang:2003:ICS:1119176.1119195}.
+for Spanish \& Dutch and English \& German respectively. The ConNLL shared tasks are organised challenges, where the organiser propose a task and provide the
+training and test data. For 2002/2003 it was Named Entity Recognition. Also we base our system on the approach that won the challenge for English and German in 2003. 
+The baseline rate for all languages was produced by a system, that had a unique class in the training data. In case that a phrase was part of more than one entity, 
+the system would choose the longest one \cite{TjongKimSang:2003:ICS:1119176.1119195}. 
+The data is annotated with POS-tags and NE-tags, as well as Bio-tags that indicate the position in the Named Entity. 
 % A baseline rate was computed for the English and the
 % German test sets. It was produced by a system which
 % only identified entities which had a unique class in
@@ -157,36 +202,59 @@ German &      31.86 \%  & 28.89 \% & 30.30  $\pm$ \%1.3 \\
 \end{table}
 
 \section{Structured Prediction}
-Structured Prediction \cite{strlearn} 
-is a supervised-learning approach and sets itself apart from Non-structured Prediction through the form of its output. 
-Prediction maps an input x to an output y: \\
-$ x \rightarrow y $. 
+Structured Prediction \cite{strlearn} is a supervised-learning approach that maps an input \textbf{x} to an output \textbf{y}: \\
 
-Non-structured output is atomic, thus it is binary prediction for a two-class problem and may corresponds to more than one of more than 2 possible labels for a 
+$ x \rightarrow y $. \\
+
+Structured and  Non-structured prediction differ in the form of their output. 
+Non-structured output is atomic; it is binary prediction for a two-class problem and may corresponds to more than one of more than two possible labels for a 
 multiclass problem. 
-The output of Structured Prediction is structured and gives back a sequence/tree. 
-Thus, the output could be the complete sentence with its corresponding labels. 
+Structured Prediction gives back the prediction for the whole sequence. 
+For the sentence in \ref{PredEx1a}, it would return the corresponding labels combination in example~\ref{PredEx1b}. 
 
-\ex. \emph{The motor company 'Ford' was founded and incorporated  by Henry Ford on June, 16th 1903.} \label{PredEx1a}
+\ex. \emph{The motor company 'Ford' was founded and incorporated  by Henry Ford.} \label{PredEx1a}
+%The motor company 'Ford' was founded and incorporated  by Henry Ford on June, 16th 1903.
+ 
+\ex. \textbf{x:} The motor company 'Ford' was founded and incorporated by Henry Ford.\\ \textbf{y:} 0  0  ORG  0  0 0 0 0 PER PER.  \label{PredEx1b} 
+     
+Also, Structured Prediction is different from similar approaches through its combination of features and label interactions instead
+of concentrating mainly on label interactions like HMM or a rich set of features like local classifiers. 
 
-would trigger the labels: 
-\ex. x The motor company 'Ford' was founded and incorporated  by Henry Ford on June, 16th 1903. \label{PredEx1b} % include labels 
-     %y 
-Furthermore, Structured Prediction is different from similar approaches such as HMM through the combination of features and the use of label interactions.
-
-
-\section{Our structured Perceptron}
-Our NER structured perceptron for the languages English, German, Dutch and Spanish is trained and tested on the \emph{CoNLL 2003} and \emph{CoNLL 2002} data sets
+\section{Our Implementation}
+% problem external data / use Dbpedia - gazetteer
+Our NER system for the languages English, German, Dutch and Spanish is trained and tested on the \emph{CoNLL 2003} and \emph{CoNLL 2002} data sets
 respectively. 
 
 \paragraph*{Learning}
 Labels of the whole sentence (0) for zero entity
+
+
 \paragraph*{Structure}
 Structured Perceptron with Averaging
 
 \paragraph*{Decoding}
-Viterbi algorithm (Markov assumption, only 1 prev.
-label)
+In this system we are using viterbi decoding, thus we are looking for the prediction $\hat{y}$, which is the sequence with the highest overall score:
+
+\[
+\hat{y} = \argmax_{\mathbf{y} \in \mathcal{Y}^{n}} \mathbf{w} \cdot \boldsymbol{f}(\mathbf{x}, i, y_{i-1}, y_{i})
+\]
+
+This sequence can be computed efficiently in $ O( N^2 |\mathbf{x}| ) $ using the Viterbi algorithm. 
+As a first step, the trellis has to be constructed, then we have to find the $ a \in \mathcal{Y}$ in the 
+last column of the trellis with maximal score $\delta_n(a)$. From this, the sequence can be recovered via back-tracking trough the trellis. 
+The score of the best sequence ending in $a$ is:
+
+\[
+\delta_i(a) = \max_{\mathbf{y} \in \mathcal{Y}^{n}, y_n = a} \sum_{j=1}^{n}{\mathbf{w} \cdot \boldsymbol{f}(\mathbf{x}, j, y_{j-1}, y_{j})}
+\]
+
+\noindent And $\delta_i(a)$ can be calculated recursively:
+
+\begin{align*}
+\delta_1(a) &= \mathbf{w} \cdot \boldsymbol{f}(\mathbf{x}, 1, \emptyset, a) \\
+\delta_i(a) &= \max_{b \in \mathcal{Y}} \delta_{i-1}(b) + \mathbf{w} \cdot \boldsymbol{f}(\mathbf{x}, i, b, a) \\
+\end{align*}
+
 
 \subsection*{Features}
 The features employed in the system can be divided into three categories: node, label and gazetteer features. 
@@ -202,14 +270,14 @@ Table \ref{table:node} shows the various node features with an example respectiv
 \hline
 \bf Feature & \bf Example \\
 \hline
-Token &  \\
+Token &  \textbf{``Amsterdam''}\\
 Suffix& Amster\textbf{dam}\\
 Prefix&  \textbf{San} Sebastian\\
 Captitalized& \textbf{B}enetton\\
 Number Pattern & \\
 UPPERCASE &  \textbf{BENETTON}\\
 POS-tag &  Benetton \textbf{NNP}   \\
-Lemma &   \\
+Lemma &  produced $Rightarrow$ produce \\
 \end{tabular}
 \caption{Node Features}
 \label{table:node}
@@ -217,8 +285,15 @@ Lemma &   \\
 
 \paragraph*{Label Interaction Features}
 These features register which label has been assigned to the previous token and takes into account the most likely sequence. 
+Thus, for the sequence: ``Jack London went to New York'' the NE tag combination of \emph{PER} and \emph{PER} in example~\ref{seq1}is more likely 
+than\emph{PER} and \emph{LOC} as presented in \ref{seq2}.
+.
 %current token and last label for prepositions or possessive ’s
 
+\ex. Jack London went to New York. \\ PER   PER  0  0  LOC   LOC. \label{seq1}
+
+\ex. Jack London went to New York. \\ PER   LOC  0  0  LOC   LOC. \label{seq2}
+    
 
 \paragraph*{Gazetteer Features}
 In order to create gazetteer lists for the more common named entities, we designed a \emph{SPARQL} query, that would retrieve entries from \emph{DBPedia} for all
@@ -250,10 +325,11 @@ use the harmonic mean as shown in \ref{F1}.
 
 
 \begin{table}[h!]
+\scriptsize
 \begin{tabular}{l |l| l| l| l| l| l}
- \hline 
-\bf Language & \multicolumn{3}{c|}{ \bf testA}&\multicolumn{3}{c|}{ \bf testB}\\\hline 
-             & Precision & Recall & $F_1$-measure & Precision & Recall & $F_1$-measure \\ \hline
+ 
+\bf Language & \multicolumn{3}{c|}{ \bf testA}&\multicolumn{3}{c}{ \bf testB}\\\hline 
+             & Precision & Recall & $F_1$ & Precision & Recall & $F_1$ \\ \hline
 Spanish &       &          &     &          &               & \\
 Dutch  &         &          &     &          &               &   \\
 English &        &          &     &          &               &       \\

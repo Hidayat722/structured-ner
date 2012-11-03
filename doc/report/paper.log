@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.9.6)  3 NOV 2012 11:04
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.9.6)  3 NOV 2012 23:03
 entering extended mode
  %&-line parsing enabled.
 **paper.tex
@@ -522,59 +522,189 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
 \mathdisplay@stack=\toks26
 LaTeX Info: Redefining \[ on input line 2666.
 LaTeX Info: Redefining \] on input line 2667.
+)
+(/usr/share/texmf-texlive/tex/latex/qtree/qtree.sty
+Package: 2008/12/12 v.3.1bQtree: tree-drawing for linguistics
+Package: qtree 2008/12/12 v.3.1bQtree: tree-drawing for linguistics
+(/usr/share/texmf-texlive/tex/latex/pict2e/pict2e.sty
+Package: pict2e 2009/08/05 v0.2x Improved picture commands (HjG,RN,JT)
+
+(/etc/texmf/tex/latex/pict2e/pict2e.cfg
+File: pict2e.cfg 2009/08/05 v0.1s pict2e configuration for teTeX/TeXLive
+)
+Package pict2e Info: Driver file: pdftex.def on input line 101.
+Package pict2e Info: Driver file for pict2e: p2e-pdftex.def on input line 103.
+
+(/usr/share/texmf-texlive/tex/latex/pict2e/p2e-pdftex.def
+File: p2e-pdftex.def 2009/08/05 v0.1s Driver-dependant file (RN,HjG,JT)
+)
+\pIIe@GRAPH=\toks27
+\@arclen=\dimen122
+\@arcrad=\dimen123
+\@tempdimd=\dimen124
+)
+\c@treecount=\count119
+\c@branchcount=\count120
+\parentbox=\box35
+\treebox=\box36
+\treeboxone=\box37
+\treeboxtwo=\box38
+\treeboxthree=\box39
+\treeboxfour=\box40
+\treeboxfive=\box41
+\treeboxsix=\box42
+\treeboxseven=\box43
+\treeboxeight=\box44
+\treeboxnine=\box45
+\treeboxten=\box46
+\treeboxeleven=\box47
+\treeboxtwelve=\box48
+\treeboxthirteen=\box49
+\treeboxfourteen=\box50
+\treeboxfifteen=\box51
+\treeboxsixteen=\box52
+\treeboxseventeen=\box53
+\treeboxeighteen=\box54
+\treeboxnineteen=\box55
+\treeboxtwenty=\box56
+\treeoffsetone=\skip70
+\treeoffsettwo=\skip71
+\treeoffsetthree=\skip72
+\treeoffsetfour=\skip73
+\treeoffsetfive=\skip74
+\treeoffsetsix=\skip75
+\treeoffsetseven=\skip76
+\treeoffseteight=\skip77
+\treeoffsetnine=\skip78
+\treeoffsetten=\skip79
+\treeoffseteleven=\skip80
+\treeoffsettwelve=\skip81
+\treeoffsetthirteen=\skip82
+\treeoffsetfourteen=\skip83
+\treeoffsetfifteen=\skip84
+\treeoffsetsixteen=\skip85
+\treeoffsetseventeen=\skip86
+\treeoffseteighteen=\skip87
+\treeoffsetnineteen=\skip88
+\treeoffsettwenty=\skip89
+\treeshiftone=\skip90
+\treeshifttwo=\skip91
+\treeshiftthree=\skip92
+\treeshiftfour=\skip93
+\treeshiftfive=\skip94
+\treeshiftsix=\skip95
+\treeshiftseven=\skip96
+\treeshifteight=\skip97
+\treeshiftnine=\skip98
+\treeshiftten=\skip99
+\treeshifteleven=\skip100
+\treeshifttwelve=\skip101
+\treeshiftthirteen=\skip102
+\treeshiftfourteen=\skip103
+\treeshiftfifteen=\skip104
+\treeshiftsixteen=\skip105
+\treeshiftseventeen=\skip106
+\treeshifteighteen=\skip107
+\treeshiftnineteen=\skip108
+\treeshifttwenty=\skip109
+\treewidthone=\skip110
+\treewidthtwo=\skip111
+\treewidththree=\skip112
+\treewidthfour=\skip113
+\treewidthfive=\skip114
+\treewidthsix=\skip115
+\treewidthseven=\skip116
+\treewidtheight=\skip117
+\treewidthnine=\skip118
+\treewidthten=\skip119
+\treewidtheleven=\skip120
+\treewidthtwelve=\skip121
+\treewidththirteen=\skip122
+\treewidthfourteen=\skip123
+\treewidthfifteen=\skip124
+\treewidthsixteen=\skip125
+\treewidthseventeen=\skip126
+\treewidtheighteen=\skip127
+\treewidthnineteen=\skip128
+\treewidthtwenty=\skip129
+\daughteroffsetone=\skip130
+\daughteroffsettwo=\skip131
+\daughteroffsetthree=\skip132
+\daughteroffsetfour=\skip133
+\branchwidthone=\skip134
+\branchwidthtwo=\skip135
+\branchwidththree=\skip136
+\branchwidthfour=\skip137
+\parentoffset=\skip138
+\treeoffset=\skip139
+\daughteroffset=\skip140
+\branchwidth=\skip141
+\parentwidth=\skip142
+\treewidth=\skip143
+\qta=\toks28
+\qtb=\toks29
+\nbranches=\count121
+\qroofx=\count122
+\qroofy=\count123
+\@qrscratchbox=\box57
 ) (./paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
 
 (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count119
-\scratchdimen=\dimen122
-\scratchbox=\box35
-\nofMPsegments=\count120
-\nofMParguments=\count121
-\everyMPshowfont=\toks27
-\MPscratchCnt=\count122
-\MPscratchDim=\dimen123
-\MPnumerator=\count123
-\everyMPtoPDFconversion=\toks28
+\scratchcounter=\count124
+\scratchdimen=\dimen125
+\scratchbox=\box58
+\nofMPsegments=\count125
+\nofMParguments=\count126
+\everyMPshowfont=\toks30
+\MPscratchCnt=\count127
+\MPscratchDim=\dimen126
+\MPnumerator=\count128
+\everyMPtoPDFconversion=\toks31
 )
-Package hyperref Info: Link coloring OFF on input line 50.
+Package hyperref Info: Link coloring OFF on input line 54.
  (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
 
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty
 Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
-\c@section@level=\count124
+\c@section@level=\count129
 )
-LaTeX Info: Redefining \ref on input line 50.
-LaTeX Info: Redefining \pageref on input line 50.
+LaTeX Info: Redefining \ref on input line 54.
+LaTeX Info: Redefining \pageref on input line 54.
  (./paper.out)
 (./paper.out)
 \@outlinefile=\write3
 \openout3 = `paper.out'.
 
-\AtBeginShipoutBox=\box36
-LaTeX Font Info:    Try loading font information for U+lasy on input line 52.
+\AtBeginShipoutBox=\box59
+LaTeX Font Info:    Try loading font information for U+lasy on input line 56.
  (/usr/share/texmf-texlive/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-Underfull \hbox (badness 10000) in paragraph at lines 81--84
+Underfull \hbox (badness 10000) in paragraph at lines 85--88
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 91--91
 
  []
 
@@ -588,60 +718,105 @@ as been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.111 
-      pdfTeX warning (ext4): destination with the same identifier (name{ExDepth
-.1}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.111 
+l.116 
       ]
-Underfull \hbox (badness 10000) in paragraph at lines 112--114
-[]\OT1/cmr/m/n/10.95 In re-gard to sta-tis-ti-cal ap-proaches,
+Overfull \hbox (53.43689pt too wide) in paragraph at lines 122--122
+[]\OT1/cmr/m/n/10.95 (b)  []] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 112--114
-\OT1/cmr/m/n/10.95 supervised-learning is the most com-mon
- []
-
-
-LaTeX Warning: Citation `tksintro2002conll' on page 2 undefined on input line 1
-24.
-
-
-Underfull \hbox (badness 1137) in paragraph at lines 160--164
-\OT1/cmr/m/n/10.95 Structured Pre-dic-tion ([]Car-reras, 2012[]) is a
- []
-
-
-Underfull \hbox (badness 1817) in paragraph at lines 160--164
-\OT1/cmr/m/n/10.95 supervised-learning ap-proach and sets it-self
+Underfull \hbox (badness 10000) in paragraph at lines 120--123
+[][]
  []
 
 pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.171 
+l.137 
       pdfTeX warning (ext4): destination with the same identifier (name{ExDepth
 .1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.176 
+l.143 
       
-Underfull \hbox (badness 5302) in paragraph at lines 176--176
-[]\OT1/cmr/m/n/10.95 x The mo-tor com-pany 'Ford' was
+Underfull \hbox (badness 10000) in paragraph at lines 150--152
+[]\OT1/cmr/m/n/10.95 In re-gard to sta-tis-ti-cal ap-proaches,
  []
 
 
-Underfull \hbox (badness 5091) in paragraph at lines 188--190
- \OT1/cmr/bx/n/10.95 De-cod-ing \OT1/cmr/m/n/10.95 Viterbi al-go-rithm (Markov 
-as-
+Underfull \hbox (badness 10000) in paragraph at lines 150--152
+\OT1/cmr/m/n/10.95 supervised-learning is the most com-mon
  []
+
+
+LaTeX Warning: Citation `tksintro2002conll' on page 2 undefined on input line 1
+60.
 
 [2]
-Underfull \hbox (badness 4859) in paragraph at lines 224--226
+Underfull \hbox (badness 1137) in paragraph at lines 199--200
+\OT1/cmr/m/n/10.95 Structured Pre-dic-tion ([]Car-reras, 2012[]) is a
+ []
+
+
+Underfull \hbox (badness 2326) in paragraph at lines 199--200
+\OT1/cmr/m/n/10.95 supervised-learning ap-proach that maps an
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 199--200
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 201--202
+
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
+as been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.211 
+      pdfTeX warning (ext4): destination with the same identifier (name{ExDepth
+.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.213 
+      
+Underfull \hbox (badness 1796) in paragraph at lines 213--213
+[]\OT1/cmr/bx/n/10.95 x: \OT1/cmr/m/n/10.95 The mo-tor com-pany 'Ford' was
+ []
+
+
+Underfull \hbox (badness 2846) in paragraph at lines 213--213
+\OT1/cmr/m/n/10.95 founded and in-cor-po-rated by Henry
+ []
+
+LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 233.
+LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 233.
+
+Overfull \hbox (22.69174pt too wide) in paragraph at lines 263--276
+[][] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
+as been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.288 
+       [3]pdfTeX warning (ext4): destination with the same identifier (name{ExD
+epth.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.290 
+      
+Underfull \hbox (badness 4859) in paragraph at lines 293--295
  \OT1/cmr/bx/n/10.95 Gazetteer Fea-tures \OT1/cmr/m/n/10.95 In or-der to cre-at
 e
  []
@@ -650,9 +825,9 @@ pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.240 
+l.309 
       
-Underfull \hbox (badness 10000) in paragraph at lines 240--240
+Underfull \hbox (badness 10000) in paragraph at lines 309--309
 
  []
 
@@ -660,9 +835,9 @@ pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.243 
+l.312 
       
-Underfull \hbox (badness 10000) in paragraph at lines 243--243
+Underfull \hbox (badness 10000) in paragraph at lines 312--312
 
  []
 
@@ -670,9 +845,9 @@ pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.246 
+l.315 
       
-Underfull \hbox (badness 10000) in paragraph at lines 246--246
+Underfull \hbox (badness 10000) in paragraph at lines 315--315
 
  []
 
@@ -680,21 +855,21 @@ pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.248 
+l.317 
       
-Underfull \hbox (badness 10000) in paragraph at lines 248--248
+Underfull \hbox (badness 10000) in paragraph at lines 317--317
 
  []
 
 
-Overfull \hbox (165.42789pt too wide) in paragraph at lines 253--262
+Overfull \hbox (31.37921pt too wide) in paragraph at lines 323--332
 [][] 
  []
 
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 (./paper.bbl
-Underfull \vbox (badness 1838) has occurred while \output is active []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 18--25
 []\OT1/cmr/m/n/10 Erik F.
  []
@@ -705,33 +880,35 @@ Underfull \hbox (badness 2547) in paragraph at lines 18--25
 on
  []
 
-) [3] (./paper.aux) ) 
+) [4] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 5485 strings out of 495061
- 75856 string characters out of 1182622
- 157026 words of memory out of 3000000
- 8514 multiletter control sequences out of 15000+50000
- 12471 words of font info for 50 fonts, out of 3000000 for 9000
+ 5851 strings out of 495061
+ 80388 string characters out of 1182622
+ 180458 words of memory out of 3000000
+ 8850 multiletter control sequences out of 15000+50000
+ 15657 words of font info for 61 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 38i,9n,38p,270b,326s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,12n,38p,270b,383s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
 mbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
 /usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/t
 exmf-texlive/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-texl
-ive/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texmf-texlive/fon
-ts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/pu
-blic/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.p
-fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/shar
-e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texli
-ve/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/ty
-pe1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/public/a
-msfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
-cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-
-Output written on paper.pdf (3 pages, 222639 bytes).
+ive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/t
+ype1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texmf-texlive/fonts/type1/pu
+blic/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfon
+ts/cm/cmmi6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi8.
+pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/
+share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-
+texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/font
+s/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1/publi
+c/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
+/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share
+/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texl
+ive/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on paper.pdf (4 pages, 259385 bytes).
 PDF statistics:
- 164 PDF objects out of 1000 (max. 8388607)
- 41 named destinations out of 1000 (max. 500000)
+ 195 PDF objects out of 1000 (max. 8388607)
+ 47 named destinations out of 1000 (max. 500000)
  49 words of extra memory for PDF output out of 10000 (max. 10000000)
 
