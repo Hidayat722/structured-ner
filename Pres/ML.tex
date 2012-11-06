@@ -20,6 +20,7 @@
   \setbeamercolor{frametitle}{black}
 
 
+\DeclareMathOperator*{\argmax}{arg\,max}
 
 %HEADER WITH HIGHLIGHTED SECTION NAMES (optional)
   \useheadtemplate{%
@@ -154,6 +155,7 @@ Structured Prediction\\ for Named Entity Recognition}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{NER}
 
 %\section{}
 \begin{frame}
@@ -177,14 +179,14 @@ Structured Prediction\\ for Named Entity Recognition}
 \item numex Monetary Values \& Percent
 \end{itemize}        
 
-$\Rightarrow$ only specific entities; \emph{in June}/ \emph{the prof} (undefined year/person) % deictic reference to sth. in previous text 
+$\Rightarrow$ only specific entities; \emph{in June} / \emph{the prof} (undefined year/person) % deictic reference to sth. in previous text 
  \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Labeled data}
+\section{Training data}
 \begin{frame}
-\frametitle{Labeled data}
+\frametitle{Training data}
 
 
 \begin{itemize}
@@ -193,9 +195,10 @@ $\Rightarrow$ only specific entities; \emph{in June}/ \emph{the prof} (undefined
          \item CoNLL 2002/2003:  NER task
          \item Languages: English, German, Spanish \& Dutch
          \item news data 
+         \item data division: train, testA, testB
         \end{itemize}
-        \item POS-tagged/tokenized/NE-tagged
-    \item NE-labels: ORG/ LOC/ PER/ MISC 
+        \item POS-tagged, tokenized, NE-tagged (B-I-O)
+    \item NE-labels: ORG, LOC, PER, MISC 
 \end{itemize}
 \end{frame}
 
@@ -209,13 +212,16 @@ $\Rightarrow$ only specific entities; \emph{in June}/ \emph{the prof} (undefined
 
 \begin{enumerate}
  \item linguistic grammar-based techniques
+\begin{itemize}
+	\item hand-crafted rules may obtain a high precision, but at cost of low recall
+	and extensive work by computational linguists
+\end{itemize}
+
  \item statistical models
+\begin{itemize}
+	\item Statistical NER systems usually require large amount of manually annotated training data
+\end{itemize}
 \end{enumerate}
-
-1. hand-crafted rules may obtain a high precision, but at cost of low recall
-and extensive work by computational linguists\\
-
-2. Statistical NER systems usually require large amount of manually annotated training data
 
 $\Rightarrow$ supervised methods most prominent
 
@@ -226,7 +232,7 @@ $\Rightarrow$ supervised methods most prominent
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                        
 %\section{}
 \begin{frame}
-\frametitle{Issues for NER}
+\frametitle{Issues in NER}
 
 
 \begin{itemize}
@@ -397,8 +403,10 @@ general framework for prediction $\mathbf{x} \rightarrow \mathbf{y}$ where $\mat
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%            
 
-
 \begin{frame}
+	
+\section{Evaluation} % (fold)
+
 \frametitle{Evaluation}
 \begin{itemize}
 	\item \textbf{Training:} error on tokens
@@ -430,7 +438,7 @@ general framework for prediction $\mathbf{x} \rightarrow \mathbf{y}$ where $\mat
 \begin{itemize}
 \item \textbf{Results (English only)}\\
 \begin{tabular}{l c c}
-System                & testa & testb\\
+System                & testA & testB\\
 \hline
 EN (full)             & 0.8109 & 0.7556 \\
 EN (no gazetteer)     & 0.7985 & 0.7156\\
@@ -480,6 +488,29 @@ Questions?
         \nocite{*}
         \bibliographystyle{plain}
         \bibliography{ML}
+\end{frame}
+
+\begin{frame}[plain, t]
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Structured Perceptron}
+\begin{itemize}
+
+\item similar to vanilla Perceptron but different update rule:\\
+
+\vspace{0.3cm}
+
+$ \mathbf{z} = \argmax_{\mathbf{z}} \sum_{i=1}^{n}{\mathbf{f}(\mathbf{x}, i, \mathbf{z}_{i-1}, \mathbf{z}_{i})} $
+
+\vspace{0.3cm} if $\mathbf{z} \neq \mathbf{y}$:\\
+
+\vspace{0.2cm}\hspace{0.5cm}$ \mathbf{w} \leftarrow \mathbf{w} + \sum_{i}{\mathbf{f}(\mathbf{x}, i, \mathbf{y}_{i-1}, \mathbf{y}_{i})} - \sum_{i}{\mathbf{f}(\mathbf{x}, i, \mathbf{z}_{i-1}, \mathbf{z}_{i})} $
+
+\end{itemize}
 \end{frame}
 
 
