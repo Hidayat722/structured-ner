@@ -13,6 +13,10 @@
 \usepackage{hyperref}
 \usepackage{amsmath}
 \usepackage{qtree}
+%\usepackage{gb4e}
+
+%\usepackage{gb4e}
+
 
 % \usepackage{xcolor}
 % \definecolor{dark-red}{rgb}{0.4,0.15,0.15}
@@ -21,7 +25,7 @@
 % \hypersetup{
 %     colorlinks, linkcolor={dark-red},
 %     citecolor={dark-blue}, urlcolor={medium-blue}}
-\title{Named Entity Recognition using Structured Prediction}
+\title{Named Entity Recognition with Structured Prediction}
 
 % \author{Joachim Daiber \\
 %   %Affiliation / Address line 1 \\
@@ -62,13 +66,14 @@
 Named Entity Recognition (NER) is an information extraction task and has first been introduced as part of the 6th MUC (Sixth Message Understanding Conference)
 that was focusing on the extraction of structured information from unstructured text, such as company names from newspaper articles \cite{nadeau2007survey}.
 The most prominent types are generally known under the name of \emph{enamex} types, which are comprised of \texttt{Person Names}, \texttt{Organisations} and \texttt{Locations}. 
-An additional type \texttt{Miscellaneous} captures person names outside the classic \emph{enamax} type.
+An additional type \texttt{Miscellaneous} captures names outside the classic \emph{enamax} type.
 Apart from these there is \emph{timex}, which covers date \& time expressions and \emph{numex} which is for monetary values \& percent. 
 Table \ref{table:NETypes} gives an overview of the different NE types.
 
 \begin{table}[h!]
 \scriptsize
-\begin{tabular}{l l}
+\begin{tabular}{| l | l |}
+\hline
 \bf Named Entity Type & \bf Example \\
 \hline
 Person Names & Greta Garbo, John, Mary \\
@@ -79,6 +84,7 @@ Miscellaneous& World Cup\\
 Time Expression & 10 p.m.\\
 Monetary Value &  \$15, 100 Euro   \\
 Percent &   30\% \\
+\hline
 \end{tabular}
 \caption{NE Examples}
 \label{table:NETypes}
@@ -213,7 +219,8 @@ For the sentence in \ref{PredEx1a}, it would return the corresponding labels com
 \ex. \emph{The motor company 'Ford' was founded and incorporated  by Henry Ford.} \label{PredEx1a}
 %The motor company 'Ford' was founded and incorporated  by Henry Ford on June, 16th 1903.
  
-\ex. \textbf{x:} The motor company 'Ford' was founded and incorporated by Henry Ford.\\ \textbf{y:} O  O  ORG  O  O O O O PER PER.  \label{PredEx1b} 
+\exg. \textbf{x:} The motor company ' Ford ' was founded and incorporated by Henry Ford .\\
+      \textbf{y:} O O O O ORG  O  O O O O O PER PER O  \label{PredEx1b} \\
      
 Also, Structured Prediction is different from similar approaches through its combination of features and label interactions instead
 of concentrating mainly on label interactions like HMM or a rich set of features like local classifiers. 
@@ -227,7 +234,7 @@ Our implementation for the languages English, German, Dutch and Spanish is train
 
 As the predicted structure, we use the labels for every token in the full sentence. If a token is not a \namedentity, it is assigned the label \Oo.
 
-Learning is implemented with a Structured Perceptron. To avoid overfitting, we average the parameters after the last iteration. For finding the best sequence of labels, we use a modified version of the Viterbi algorithm. The algorithm finds the sequence $\hat{y}$, such that:
+Learning is implemented using the Structured Perceptron algorithm. To avoid overfitting, we average the parameters after the last iteration \cite{collins2002discriminative}. For finding the best sequence of labels, we use a modified version of the Viterbi algorithm. The algorithm finds the sequence $\hat{y}$, such that:
 
 \[
 \hat{y} = \argmax_{\mathbf{y} \in \mathcal{Y}^{n}} \sum_{i=1}^{n}\mathbf{w} \cdot \boldsymbol{f}(\mathbf{x}, i, y_{i-1}, y_{i})
@@ -255,12 +262,12 @@ The features employed in the system can be divided into three categories: node, 
 We describe each of the three groups in the following.
 
 \paragraph*{Node features}
-These are only present on the word in question: the \emph{Token}, suffix and prefix, capitalisation.
+Node features are features that only depend on the current token (node): the \emph{Token}, suffix and prefix, capitalisation.
 
 Table \ref{table:node} shows the various node features with an example respectively.
 
 \begin{table}[h!]
-\begin{tabular}{l|l}
+\begin{tabular}{| l | l |}
 \hline
 \bf Feature & \bf Example \\
 \hline
@@ -271,7 +278,8 @@ Captitalized& \textbf{B}enetton\\
 Number Pattern & \\
 UPPERCASE &  \textbf{BENETTON}\\
 POS-tag &  Benetton \textbf{NNP}   \\
-Lemma &  produced $Rightarrow$ produce \\
+Lemma &  produced $\Rightarrow$ produce \\
+\hline
 \end{tabular}
 \caption{Node Features}
 \label{table:node}
@@ -284,9 +292,11 @@ than\emph{PER} and \emph{LOC} as presented in \ref{seq2}.
 .
 %current token and last label for prepositions or possessive ’s
 
-\ex. Jack London went to New York. \\ PER   PER  0  0  LOC   LOC. \label{seq1}
+\exg. Jack London went to New York .\\
+      PER   PER   O    O  LOC LOC  O \\\label{seq1}
 
-\ex. Jack London went to New York. \\ PER   LOC  0  0  LOC   LOC. \label{seq2}
+\exg. Jack London went to New York . \\ 
+      PER  LOC    O    O  LOC LOC O \\\label{seq2}
     
 
 \paragraph*{Gazetteer Features}
