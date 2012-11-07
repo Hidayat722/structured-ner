@@ -13,6 +13,7 @@
 \usepackage{hyperref}
 \usepackage{amsmath}
 \usepackage{qtree}
+
 %\usepackage{gb4e}
 
 %\usepackage{gb4e}
@@ -216,12 +217,17 @@ multiclass problem.
 Structured Prediction gives back the prediction for the whole sequence. 
 For the sentence in \ref{PredEx1a}, it would return the corresponding labels combination in example~\ref{PredEx1b}. 
 
+\begin{figure*}[ht]
+
 \ex. \emph{The motor company 'Ford' was founded and incorporated  by Henry Ford.} \label{PredEx1a}
 %The motor company 'Ford' was founded and incorporated  by Henry Ford on June, 16th 1903.
  
 \exg. \textbf{x:} The motor company ' Ford ' was founded and incorporated by Henry Ford .\\
       \textbf{y:} O O O O ORG  O  O O O O O PER PER O  \label{PredEx1b} \\
-     
+\caption{Input and predicted structure for the Named Entity task.}
+
+\end{figure*}
+
 Also, Structured Prediction is different from similar approaches through its combination of features and label interactions instead
 of concentrating mainly on label interactions like HMM or a rich set of features like local classifiers. 
 
@@ -234,7 +240,7 @@ Our implementation for the languages English, German, Dutch and Spanish is train
 
 As the predicted structure, we use the labels for every token in the full sentence. If a token is not a \namedentity, it is assigned the label \Oo.
 
-Learning is implemented using the Structured Perceptron algorithm. To avoid overfitting, we average the parameters after the last iteration \cite{collins2002discriminative}. For finding the best sequence of labels, we use a modified version of the Viterbi algorithm. The algorithm finds the sequence $\hat{y}$, such that:
+Learning is implemented using the Structured Perceptron algorithm. To avoid overfitting, we average the parameters after the last iteration \cite{collins2002discriminative}. For finding the best sequence of labels for a sentence, we use a modified version of the Viterbi algorithm. The algorithm finds the sequence $\hat{y}$, such that:
 
 \[
 \hat{y} = \argmax_{\mathbf{y} \in \mathcal{Y}^{n}} \sum_{i=1}^{n}\mathbf{w} \cdot \boldsymbol{f}(\mathbf{x}, i, y_{i-1}, y_{i})
@@ -264,7 +270,7 @@ We describe each of the three groups in the following.
 \paragraph*{Node features}
 Node features are features that only depend on the current token (node): the \emph{Token}, suffix and prefix, capitalisation.
 
-Table \ref{table:node} shows the various node features with an example respectively.
+Table~\ref{table:node} shows the various node features with an example respectively.
 
 \begin{table}[h!]
 \begin{tabular}{| l | l |}
@@ -304,7 +310,7 @@ In order to create gazetteer lists for the more common named entities, we design
 languages. The reliability of the respective list is learnt be the perceptron. 
 
 
-\section{Experiments/ Evaluation}
+\section{Experiments and Evaluation}
 In the following section we present our experiments and the evalution of our system.
 \subsection*{Experiments}
 
@@ -330,14 +336,16 @@ use the harmonic mean as shown in \ref{F1}.
 
 \begin{table}[h!]
 \scriptsize
-\begin{tabular}{l |l| l| l| l| l| l}
- 
-\bf Language & \multicolumn{3}{c|}{ \bf testA}&\multicolumn{3}{c}{ \bf testB}\\\hline 
+\begin{tabular}{| l | l l l| l l l |}
+
+\hline
+\bf Language & \multicolumn{3}{c|}{ \bf Test A}&\multicolumn{3}{c|}{ \bf Test B}\\
              & Precision & Recall & $F_1$ & Precision & Recall & $F_1$ \\ \hline
 Spanish &       &          &     &          &               & \\
 Dutch  &         &          &     &          &               &   \\
 English &        &          &     &          &               &       \\
 German &      &          &       &          &             & \\
+\hline
 \end{tabular}
 \caption{NER Structured Prediction Results }
 \label{table:Results}
