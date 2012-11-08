@@ -1,9 +1,3 @@
-"""
->>> GazetteerFeatures([[u"The New York Times", u"New York"]]).find(u"The New York Times is a newspaper in New York .".split(' '))
-['0', '0', '0', '0', 'O', 'O', 'O', 'O', '0', '0', 'O']
-
-"""
-
 from __future__ import division
 import codecs
 from collections import defaultdict
@@ -13,6 +7,14 @@ import dawg
 import struct
 
 class GazetteerFeatures(FeatureSet):
+
+    """
+    A set of features for integrating external information sources (lists of names).
+
+    >>> GazetteerFeatures([[u"The New York Times", u"New York"]]).find(u"The New York Times is a newspaper in New York .".split(' '))
+    ['0', '0', '0', '0', 'O', 'O', 'O', 'O', '0', '0', 'O']
+
+    """
 
     def __init__(self, gazetteer_files, truecaser):
 

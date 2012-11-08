@@ -3,10 +3,14 @@ from repoze.lru import lru_cache
 from feature_generator import FeatureSet
 
 class SimpleNodeFeatures(FeatureSet):
+    """A set of features that take information only from the current and previous nodes/tokens."""
+
 
     initial_pattern = re.compile(r"[A-Z]\.")
-    digit_pattern_2 = re.compile(r"[0-9]{2}")
-    digit_pattern_4 = re.compile(r"[0-9]{4}")
+
+    digit_pattern_1 = re.compile(r"^[0-9]$")
+    digit_pattern_2 = re.compile(r"^[0-9]{2}$")
+    digit_pattern_4 = re.compile(r"^[0-9]{4}$")
 
 
     def __init__(self):
@@ -34,13 +38,19 @@ class SimpleNodeFeatures(FeatureSet):
             features_fired.append(feature_id)
 
         #Numbers?
+        if self.digit_pattern_1.match(token):
+            feature_id = feature_storage.add_feature("1_digit_number-%s" % label)
+            features_fired.append(feature_id)
+
         if self.digit_pattern_2.match(token):
             feature_id = feature_storage.add_feature("2_digit_number-%s" % label)
             features_fired.append(feature_id)
 
         if self.digit_pattern_4.match(token):
-            feature_id = feature_storage.add_feature("2_digit_number-%s" % label)
+            feature_id = feature_storage.add_feature("4_digit_number-%s" % label)
             features_fired.append(feature_id)
+
+
 
 
         #Initial of name?
