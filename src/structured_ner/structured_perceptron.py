@@ -23,7 +23,7 @@ class StructuredPerceptron(LinearClassifier):
         self.w = np.zeros(self.n_features, dtype=float)
 
         training_accuracy = [0.0]
-        heldout_accuracy = [0.0]
+        heldout_accuracy  = [0.0]
 
         for i_epoch in xrange(self.n_epochs):
 
@@ -39,7 +39,7 @@ class StructuredPerceptron(LinearClassifier):
             training_accuracy.append(accuracy)
 
             if verbose:
-                _, acc = self.test(heldout)
+                _, _, acc = self.test(heldout)
                 heldout_accuracy.append(acc)
 
             #Stop if the error on the training data does not decrease

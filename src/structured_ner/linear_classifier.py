@@ -39,6 +39,7 @@ class LinearClassifier(object):
         incorrect = 0
 
         errors = []
+        true_and_predicted = []
 
         gold_count_for_label      = dict([ (l, 0) for l in self.labels ])
         predicted_count_for_label = dict([ (l, 0) for l in self.labels ])
@@ -50,6 +51,8 @@ class LinearClassifier(object):
             for i in range(len(z)):
                 if z[i] != sentence.y[i]:
                     errors.append( sentence.x[i][0] + ' ' + sentence.x[i][1] + ' ' + sentence.true_case[i] + ' ' + sentence.y[i] + ' ' + z[i] )
+
+                true_and_predicted.append([sentence.x[i][0], sentence.y[i], z[i]])
 
             total += len(sentence.y)
             incorrect += len( [i for i in range(len(sentence.y)) if sentence.y[i] != z[i]])
@@ -93,7 +96,7 @@ class LinearClassifier(object):
         out += "Errors:\n"
         out += '\n'.join(errors)
 
-        return out, 1.0 - (incorrect/total)
+        return out, true_and_predicted, 1.0 - (incorrect/total)
 
 
     def evaluate_features(self):

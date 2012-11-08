@@ -1,4 +1,5 @@
 from __future__ import division
+from nltk.stem.api import StemmerI
 
 def all_uppercase(tokens, tags):
     return sum([ (tokens[i].isupper() or (tags[i] in ['CD', '.', ',', ':'])) for i in range(len(tokens))]) / float(len(tokens)) >= 0.95
@@ -34,7 +35,10 @@ def sentence_from_conll(chunked_sent, lemmatizer, truecaser, gazetteer):
     else:
         gazetteer_entries = map(lambda _: 'O', true_case)
 
-    lemmas = map(lambda tc: lemmatizer.lemmatize(tc), true_case)
+    if isinstance(lemmatizer, StemmerI):
+        lemmas = map(lambda tc: lemmatizer.stem(tc), true_case)
+    else:
+        lemmas = map(lambda tc: lemmatizer.lemmatize(tc), true_case)
 
     return Sentence(x, y, lemmas, true_case, gazetteer_entries)
 

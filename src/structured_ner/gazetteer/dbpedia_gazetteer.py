@@ -4,23 +4,25 @@ import sys
 
 class GazetteerExtractor():
 
+    """
+    A GazetteerExtractor automatically retrieves lists of names from a public LOD endpoint.
+    Currently the lists are for the classes Person, Organization, Location and SportsEvent.
+    The list can easily be extended, since the mapping to labels is done automatically by
+    the Perceptron learning algorithm.
+    """
+
+    dbp_classes = ['Person', 'Organisation', 'Place', 'SportsEvent']
+
     def __init__(self, lang):
 
-        persons          = self.getGazetteerEntries(lang, 'Person')
-        print >>sys.stderr, "Retrieved %d person names." % len(persons)
-        codecs.open("data/person_%s.txt" % lang, encoding='utf-8', mode='w').write('\n'.join(persons))
+        for dbp_class in GazetteerExtractor.dbp_classes:
+            list = self.retrieve_name_list(lang, dbp_class)
+            print >>sys.stderr, "Retrieved %d names: %s" % (len(list), dbp_class)
 
-        organizations    = self.getGazetteerEntries(lang, 'Organisation')
-        print >>sys.stderr, "Retrieved %d organization names." % len(organizations)
-        codecs.open("data/org_%s.txt" % lang, encoding='utf-8', mode='w').write('\n'.join(organizations))
-
-        locations        = self.getGazetteerEntries(lang, 'Place')
-        print >>sys.stderr, "Retrieved %d location names." % len(locations)
-        codecs.open("data/loc_%s.txt" % lang, encoding='utf-8', mode='w').write('\n'.join(locations))
+            codecs.open("../data/%s_%s.txt" % (dbp_class, lang), encoding='utf-8', mode='w').write('\n'.join(list))
 
 
-
-    def getGazetteerEntries(self, lang, dbp_class):
+    def retrieve_name_list(self, lang, dbp_class):
 
         repeat  = True
         entries = []
@@ -56,9 +58,9 @@ class GazetteerExtractor():
 
         return entries
 
-
-GazetteerExtractor('en')
-GazetteerExtractor('nl')
-GazetteerExtractor('es')
-GazetteerExtractor('de')
+if __name__ == '__main__':
+    GazetteerExtractor('en')
+    GazetteerExtractor('nl')
+    GazetteerExtractor('es')
+    GazetteerExtractor('de')
 
