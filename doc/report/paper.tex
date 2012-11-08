@@ -106,41 +106,55 @@ mere mentions of entites, these can refer to multiple events, such as the time e
 Also, there could be a reference to a person, as in: \emph{the prof}, which in itself is not a specific entity.
 However, it would be a deictic reference and point back to the mention of a real \emph{NE}, as in the following coreference chain: \\
 
-
 \ex. $ Prof.\; Bateman \Rightarrow he \Rightarrow the \; prof$ \label{cor}\\
 
-Named Entities can consist of more than one syntactic type. The usual overall type for a named entity is noun phrase, which can be both simple and complex. 
-An example for a simple heterogenous entity is displayed in syntactic tree represenation in ~\ref{tree1}.
- \Tree
-    [.NP [.N' John ]  ] \label{tree1}
+Named Entities can consist of more than one syntactic type. Syntactic types feature in syntactic rules that define, how sentences can be build.
+Typical rules are: \\
+$S \rightarrow NP VP $ \footnote{ A sentence S breaks down into a noun phrase NP and a verb phrase VP} \\
+$ VP \rightarrow V (NP)$ \footnote{ A verb phrase VP consists of a verb followed by an optional NP} \\
 
+The usual overall type for a named entity is noun phrase, which can be both simple and complex, meaning it can consist of a only a noun or 
+also additional other syntactic types.
+An example for a simple homogenous entity is displayed in syntactic tree representation in ~\ref{tree1}.
+
+\begin{enumerate}
+ \item \Tree
+    [.NP [.N' John ]  ] \label{tree1}
+\end{enumerate}
+
+
+\emph{N'} signals an intermediate state in the syntactic tree where adjuncts can be joined to the noun phrase. 
+The closer the entity is joined to a tree, the more it usually contributes to the meaning. 
 Most languages allow for a recursive definition of, for instance, a noun phrase that in theory can grow infinitely big. 
-An \textbf{NP} can consist of a determiner, such as \emph{the} and a common noun or simply a propernoun. \textbf{PP} stands
-for prepositional phrase and consists of a preposition and a noun phrase. 
-The syntactic rules for PP-attachment are displayed in \ref{PP}.
+A \textbf{NP} can consist of a determiner, such as \emph{the} and a common noun or simply a propernoun. \textbf{PP} stands
+for prepositional phrase (PP) and consists of a preposition and a noun phrase. 
+The syntactic rules for PPs are displayed in \ref{PP}.
 \begin{figure}
-$ NP \rightarrow NP PP$ \\
-$ PP \rightarrow P NP$ 
+$ NP \rightarrow NP \;PP$ \\
+$ PP \rightarrow P \;NP$ \\
 \caption{Recursive Noun Phrase}
 \label{PP}
 \end{figure}   
 These rules allow for constructions such as in sentence~\ref{PPrec}. 
 
-\ex. The princess of Scotland is in the castle in England with the brown bricks on its roof... \label{PPrec}
+\ex. The Bank of Scotland is in the brown building with the brown bricks on its roof... \label{PPrec}
 
-We distinguish between PP-complements and PP-modifiers, where modifiers simply add to the description of the noun phrase, maybe
-to set it apart and complements are more inherent to the meaning of the entity. 
-The PP-attachment \emph{of Scotland} is semantically defining for the noun \emph{princess}, whereas \emph{with the brown bricks on its roof} 
-just adds to the description of \emph{the castle in England}.
-Regarding named entities, one wants to differentiate between a PP-attachment that defines the entity an one that is irrelevant. 
+We distinguish between PP-complements and PP-modifiers, where modifiers simply add to the description of the noun phrase, and complements are more inherent to the meaning of the entity. 
+The PP \emph{of Scotland} is semantically defining for the noun \emph{bank}, whereas \emph{with the brown bricks on its roof} 
+just adds to the description of \emph{brown building}.
+Regarding named entities, one wants to differentiate between a PP that defines the entity an one that is not inherent to its meaning. 
+The phrases in \ref{bos} and \ref{Nirvana} give examples of how a syntactic tree defines semantic connection.
+In \emph{Bank of Scotland}, the PP \emph{of Scotland} is attached directly, whereas in \ref{Nirvana} both \emph{Kurt Cobain} and \emph{Nirvana} constitute own 
+concepts and are joined at a later level to express this distance.
+Thus, in connection with Named Enitites, we want to be able to capture types of the first example as a NE, but not of the second. 
 
 
 \begin{enumerate}
-\item \parbox[t]{2.4in}{ (a)~\Tree 
-   [.NP [ [.DT the ] [.N\1 [.N\1 Princess ] [.PP [.P of ] [.NP England ] ] ] ] ]}
+\item \parbox[t]{2.4in}{ (a)~\Tree  \label{bos}
+   [.NP [ [.DT the ] [.N\1 [.N Bank ] [.PP [.P of ] [.NP Scotland ] ] ] ] ]}
 \parbox[t]{2in}{ (b)~\Tree 
-   [.NP  [.DT the ] [.N\1 [.N\1 Princess ] ] [.PP [.P from ] [.NP England ] ]  ] ]  }
-\end{enumerate}
+   [.NP  [.N\1 [.N\1  \qroof{Kurt Cobain}.N  ]  [.PP [.P of ] [.N\1 [.N\1 [.N Nirvana ] ] ] ] ] ]  } \label{Nirvana}
+\end{enumerate} 
     
 
 
