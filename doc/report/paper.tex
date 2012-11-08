@@ -13,6 +13,7 @@
 \usepackage{hyperref}
 \usepackage{amsmath}
 \usepackage{qtree}
+\usepackage{textcomp}
 
 %\usepackage{gb4e}
 
@@ -72,9 +73,10 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 
 Named Entity Recognition (NER) is an information extraction task and has first been introduced as part of the 6th MUC (Sixth Message Understanding Conference)
 that was focusing on the extraction of structured information from unstructured text, such as company names from newspaper articles \cite{nadeau2007survey}.
-The most prominent types are generally known under the name of \emph{enamex} types, which are comprised of \texttt{Person Names}, \texttt{Organisations} and \texttt{Locations}. 
+The most prominent types are generally known under the name of \emph{enamex} types, which are comprised of \texttt{Person Names}, 
+\texttt{Organisations} and \texttt{Locations}. 
 An additional type \texttt{Miscellaneous} captures names outside the classic \emph{enamax} type.
-Apart from these there is \emph{timex}, which covers date \& time expressions and \emph{numex} which is for monetary values \& percent. 
+Apart from the above, there is the \emph{timex} type, which covers date \& time expressions and \emph{numex} which is for monetary values \& percent. 
 Table \ref{table:NETypes} gives an overview of the different NE types.
 
 \begin{table}[h!]
@@ -86,10 +88,10 @@ Table \ref{table:NETypes} gives an overview of the different NE types.
 Person Names & Greta Garbo, John, Mary \\
 Organisations& Benetton, Coca-Cola Gmbh\\
 Locations&  Paris, Australia, Bristol\\
-Miscellaneous& World Cup\\
+Miscellaneous& World Cup 2014\\
  Date Expression& 01-02-2012, January, 6th, 1998 \\
 Time Expression & 10 p.m.\\
-Monetary Value &  \$15, 100 Euro   \\
+Monetary Value &  \$15, \textsterling 100    \\
 Percent &   30\% \\
 \hline
 \end{tabular}
@@ -98,12 +100,14 @@ Percent &   30\% \\
 \end{table}
 
 
-In considering named entities, it is important to distinguish between mention of entities that are non-specific as 
-time expressions, such as \emph{In June}, referring to any possible year or \emph{the prof} as a person name, which itself is not a specific entity, 
-but a deictic reference, which may point back to the mention of a real \emph{NE}, as in the following coreference chain: \\
+In considering named entities, it is important to distinguish between named entities and the mention of entities that are in fact non-specific. % reformulate
+The difference lies in the reference of the entity. A named entity refers to a specific, unique person/time/location, whereas in 
+mere mentions of entites, these can refer to multiple events, such as the time expression: \emph{In June}, referring to any possible year.
+Also, there could be a reference to a person, as in: \emph{the prof}, which in itself is not a specific entity.
+However, it would be a deictic reference and point back to the mention of a real \emph{NE}, as in the following coreference chain: \\
 
 
-\ex. $ Prof.\; Bateman \Rightarrow he \Rightarrow the \; prof$ \\
+\ex. $ Prof.\; Bateman \Rightarrow he \Rightarrow the \; prof$ \label{cor}\\
 
 Named Entities can consist of more than one syntactic type. The usual overall type for a named entity is noun phrase, which can be both simple and complex. 
 An example for a simple heterogenous entity is displayed in syntactic tree represenation in ~\ref{tree1}.
