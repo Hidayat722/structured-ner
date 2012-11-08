@@ -26,7 +26,7 @@
 % \hypersetup{
 %     colorlinks, linkcolor={dark-red},
 %     citecolor={dark-blue}, urlcolor={medium-blue}}
-\title{Named Entity Recognition with Structured Prediction}
+\title{Named Entity Recognition as Structured Prediction}
 
 % \author{Joachim Daiber \\
 %   %Affiliation / Address line 1 \\
@@ -43,12 +43,12 @@
 
 \author{Joachim Daiber \\
   University of Groningen \\
-  %Affiliation / Address line 2 \\
+  2397331\\
   %Affiliation / Address line 3 \\
   {\tt jodaiber@gmx.de} \\\And
   Carmen Klaussner \\
   University of Groningen \\
-  %Affiliation / Address line 2 \\
+  2401541\\
   %Affiliation / Address line 3 \\
   {\tt Carmen@wordsmith.de} \\}
 
@@ -63,7 +63,13 @@
 \begin{document}
 \maketitle
 
-\section{Introduction}
+\begin{abstract}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\end{abstract}
+
+
+\section{Application: Named Entity Recognition}
+
 Named Entity Recognition (NER) is an information extraction task and has first been introduced as part of the 6th MUC (Sixth Message Understanding Conference)
 that was focusing on the extraction of structured information from unstructured text, such as company names from newspaper articles \cite{nadeau2007survey}.
 The most prominent types are generally known under the name of \emph{enamex} types, which are comprised of \texttt{Person Names}, \texttt{Organisations} and \texttt{Locations}. 
@@ -135,7 +141,7 @@ Regarding named entities, one wants to differentiate between a PP-attachment tha
 
 
 
-\subsection*{Issues in Named Entity Recognition}
+\subsection{Issues in Named Entity Recognition}
 Among the most common problems for NER is the issue of ambiguity, that is in particular \emph{Polysemy} \cite{nadeau2007survey}, 
 the property of some lexical representation having
 more than one possible meaning, and \emph{Metonymy}, which refers to the concept of the part-whole/whole-part relation between two expressions. 
@@ -151,7 +157,7 @@ for the \textbf{Goverment in London}.
 
 \ex. \emph{\textbf{London} decided to increase the 1200 military personnel involved in Olympic security.} \label{ex:Lon}
 
-\subsection*{Methods employed for NER}
+\subsection{Methods employed for NER}
 For \emph{NER}, there exist both rule-based and statisical approaches. 
 Rule-based methods make use of the underlying rules governing languages to extract named entities. 
 However, this approach is high maintenance, quite time-consuming and requires extensive work of computational linguists \cite{nadeau2007survey}
@@ -166,7 +172,7 @@ neural network
 
 
 
-\subsection*{CoNLL Data and Baseline Performance}
+\subsection{CoNLL Data and Baseline Performance}
 The training and test dataset was taken from the \emph{CoNLL Shared Task 2002} \cite{tksintro2002conll} and the \emph{CoNLL Shared Task 2003} \cite{TjongKimSang:2003:ICS:1119176.1119195}.
 for Spanish \& Dutch and English \& German respectively. The ConNLL shared tasks are organised challenges, where the organiser propose a task and provide the
 training and test data. For 2002/2003 it was Named Entity Recognition. Also we base our system on the approach that won the challenge for English and German in 2003. 
