@@ -65,7 +65,9 @@
 \maketitle
 
 \begin{abstract}
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+This paper describes an approach to \namedentity Recognition using Structured Prediction. The System was applied to four different languages: Spanish, Dutch, English and
+German. Various sets of features were employed among them a Gazetteer feature that obtained a look-up list from the database DBPedia and which proved very useful.
+The results were...
 \end{abstract}
 
 
@@ -76,8 +78,8 @@ that was focusing on the extraction of structured information from unstructured 
 The most prominent types are generally known under the name of \emph{enamex} types, which are comprised of \texttt{Person Names}, 
 \texttt{Organisations} and \texttt{Locations}. 
 An additional type \texttt{Miscellaneous} captures names outside the classic \emph{enamax} type.
-Apart from the above, there is the \emph{timex} type, which covers date \& time expressions and \emph{numex} which is for monetary values \& percent. 
-Table \ref{table:NETypes} gives an overview of the different NE types.
+Apart from the above, there is also the \emph{timex} type, which covers date and time expressions and \emph{numex} for monetary values and percentages. 
+Table \ref{table:NETypes} gives an overview of the different \namedentity (NE) types.
 
 \begin{table}[h!]
 \scriptsize
@@ -100,90 +102,93 @@ Percent &   30\% \\
 \end{table}
 
 
-In considering named entities, it is important to distinguish between named entities and the mention of entities that are in fact non-specific. % reformulate
-The difference lies in the reference of the entity. A named entity refers to a specific, unique person/time/location, whereas in 
-mere mentions of entites, these can refer to multiple events, such as the time expression: \emph{In June}, referring to any possible year.
-Also, there could be a reference to a person, as in: \emph{the prof}, which in itself is not a specific entity.
-However, it would be a deictic reference and point back to the mention of a real \emph{NE}, as in the following coreference chain: \\
+In considering \namedentity, it is important not to confuse them with non-specific entities. % reformulate
+The difference lies in the reference of the entity. A \namedentity refers to a specific, unique person/time/location, whereas
+mere mentions of entites can refer to multiple events, such as the time expression: \emph{In June}, which could refer to any year.
+Also, there could be a reference to a person, as in: \emph{the prof}, which in itself is not a \namedentity.
+However, it would be a deictic reference and point back to the mention of a real \namedentity, as in the following coreference chain: \\
 
 \ex. $ Prof.\; Bateman \Rightarrow he \Rightarrow the \; prof$ \label{cor}\\
 
-Named Entities can consist of more than one syntactic type. Syntactic types feature in syntactic rules that define, how sentences can be build.
-Typical rules are: \\
-$S \rightarrow NP VP $ \footnote{ A sentence S breaks down into a noun phrase NP and a verb phrase VP} \\
-$ VP \rightarrow V (NP)$ \footnote{ A verb phrase VP consists of a verb followed by an optional NP} \\
+A \namedentity  can consist of more than one syntactic type. Syntactic types feature in syntactic rules that define how sentences can be build.
+Typical high-level rules include: \\
+$s \rightarrow np\quad vp $ \footnote{ A sentence s breaks down into a noun phrase np and a verb phrase vp} \\
+$ vp \rightarrow v\quad (np)$ \footnote{ A verb phrase vp consists of a verb followed by an optional np} \\
 
-The usual overall type for a named entity is noun phrase, which can be both simple and complex, meaning it can consist of a only a noun or 
-also additional other syntactic types.
-An example for a simple homogenous entity is displayed in syntactic tree representation in ~\ref{tree1}.
+Thus, sentences are often represented as syntactic trees that model the dependencies among the types.
+The overall type for a \namedentity is usually a noun phrase (np), which can be both simple and complex, meaning it can consist of a only a noun phrase or 
+also additional other syntactic types, such as prepositional phrases (pp), that consist of a preposition and a noun phrase. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% - can be left out if not enough space/too detailed
+It is therefore a recursive definition and in theory, noun phrases can grow infinitely big, as shown by the following recursive rules:  % 
 
-\begin{enumerate}
- \item \Tree
-    [.NP [.N' John ]  ] \label{tree1}
-\end{enumerate}
+\ex. $ np \rightarrow np \quad pp$ \\
+     $ pp \rightarrow p \quad np$ 
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+We distinguish between pp-complements and pp-modifiers; where complements are non-optional elements of the noun phrase as they are
+inherent to the meaning of the entity and modifiers simply add to the description and are optional. 
+The syntactic trees in \ref{fig:bos} and \ref{fig:nirvana}  show two examples for a complex noun phrase containing a \namedentity.
+\emph{N'} signals an intermediate state in the syntactic tree where modifiers can be joined.
+In \ref{fig:bos}, (\emph{Bank of Scotland}), the pp \emph{of Scotland} is attached directly; it is central to the meaning, 
+whereas in \ref{fig:nirvana} both \emph{Kurt Cobain} and \emph{Nirvana} constitute own concepts and are joined at a later level to express this distance.
+Thus, in connection with Named Entities, we want to be able to capture types of the first example as a \namedentity, but not of the second more distantly joined 
+relation.
+% \begin{figure}
+% \begin{enumerate}
+% \item \parbox[t]{2.4in}{~\Tree  
+%    [.NP [ [.DT the ] [.N\1 [.N Bank ] [.PP [.P of ] [.NP Scotland ] ] ] ] ] } \label{bos}
+% \item \parbox[t]{2in}{~\Tree 
+%    [.NP  [.N\1 [.N\1  \qroof{Kurt Cobain}.N  ]  [.PP [.P of ] [.N\1 [.N\1 [.N Nirvana ] ] ] ] ] ]  } \label{Nirvana}
+% \end{enumerate} \label{Tree}
+% \end{figure}
 
-
-\emph{N'} signals an intermediate state in the syntactic tree where adjuncts can be joined to the noun phrase. 
-The closer the entity is joined to a tree, the more it usually contributes to the meaning. 
-Most languages allow for a recursive definition of, for instance, a noun phrase that in theory can grow infinitely big. 
-A \textbf{NP} can consist of a determiner, such as \emph{the} and a common noun or simply a propernoun. \textbf{PP} stands
-for prepositional phrase (PP) and consists of a preposition and a noun phrase. 
-The syntactic rules for PPs are displayed in \ref{PP}.
 \begin{figure}
-$ NP \rightarrow NP \;PP$ \\
-$ PP \rightarrow P \;NP$ \\
-\caption{Recursive Noun Phrase}
-\label{PP}
-\end{figure}   
-These rules allow for constructions such as in sentence~\ref{PPrec}. 
-
-\ex. The Bank of Scotland is in the brown building with the brown bricks on its roof... \label{PPrec}
-
-We distinguish between PP-complements and PP-modifiers, where modifiers simply add to the description of the noun phrase, and complements are more inherent to the meaning of the entity. 
-The PP \emph{of Scotland} is semantically defining for the noun \emph{bank}, whereas \emph{with the brown bricks on its roof} 
-just adds to the description of \emph{brown building}.
-Regarding named entities, one wants to differentiate between a PP that defines the entity an one that is not inherent to its meaning. 
-The phrases in \ref{bos} and \ref{Nirvana} give examples of how a syntactic tree defines semantic connection.
-In \emph{Bank of Scotland}, the PP \emph{of Scotland} is attached directly, whereas in \ref{Nirvana} both \emph{Kurt Cobain} and \emph{Nirvana} constitute own 
-concepts and are joined at a later level to express this distance.
-Thus, in connection with Named Enitites, we want to be able to capture types of the first example as a NE, but not of the second. 
+\parbox[t]{2.4in}{~\Tree  
+   [.NP [ [.DT the ] [.N\1 [.N Bank ] [.PP [.P of ] [.NP Scotland ] ] ] ] ] }
+\label{fig:bos}
+\caption{\namedentity: Complement Meaning}
+\end{figure}
 
 
-\begin{enumerate}
-\item \parbox[t]{2.4in}{ (a)~\Tree  
-   [.NP [ [.DT the ] [.N\1 [.N Bank ] [.PP [.P of ] [.NP Scotland ] ] ] ] ] } \label{bos}
-\parbox[t]{2in}{ (b)~\Tree 
-   [.NP  [.N\1 [.N\1  \qroof{Kurt Cobain}.N  ]  [.PP [.P of ] [.N\1 [.N\1 [.N Nirvana ] ] ] ] ] ]  } \label{Nirvana}
-\end{enumerate} 
-    
+\begin{figure}
+\parbox[t]{2in}{~\Tree 
+   [.NP  [.N\1 [.N\1  \qroof{Kurt Cobain}.N  ]  [.PP [.P of ] [.N\1 [.N\1 [.N Nirvana ] ] ] ] ] ]  }
+\label{fig:nirvana}
+\caption{\namedentity: Reference Meaning}
+\end{figure}
+
+% \ex. The Bank of Scotland is in the brown building with the brown bricks on its roof... \label{PPrec}
+% 
+% The PP \emph{of Scotland} is semantically defining for the noun \emph{bank}, whereas \emph{with the brown bricks on its roof} 
+% just adds to the description of \emph{brown building}.
 
 \subsection{Issues in Named Entity Recognition}
-Among the most common problems for NER is the issue of ambiguity, that is in particular \emph{Polysemy} \cite{nadeau2007survey}, 
-the property of some lexical representation having
-more than one possible meaning, and \emph{Metonymy}, which refers to the concept of the part-whole/whole-part relation between two expressions. 
-\emph{Polysemy} could become an issue for NER when the lexical representation of an item could point to two different \emph{NE} types.
+Among the most common challenges for NER is the issue of ambiguity, in particular \emph{Polysemy} and \emph{Metonymy} \cite{nadeau2007survey}.
+Polysemy refers to the property of a word that is a lexical representation having more than one possible meaning.
+\emph{Polysemy} could become an issue for NER when this lexical representation points to two different \namedentity types.
 This is quite frequent with \texttt{Person Names} and \texttt{Locations}, since many people are named after cities, such as \emph{Paris} or \emph{Georgia}. 
-Often the context will not be disambiguating as in \ref{ex:Paris}.
+Often the context will not be disambiguating as in example~\ref{ex:Georgia}.
 
-\ex. \emph{Paris is beautiful.} \label{ex:Paris}
+\ex. \emph{Georgia is beautiful.} \label{ex:Georgia}
 
-\emph{Metonymy} is frequently an issue in literary texts and news data (which is often used in NER), where two items that are in a part-whole
-relationship, are substituted for each other respectively. Example \ref{ex:Lon} shows an instance of \emph{whole-part}, 
-where \emph{London} is supposedly substituted for the \textbf{Goverment in London}. 
+\emph{Metonymy} is the relationship of a part-whole relation between two items.
+It is frequently employed in literary texts and news data (which is often used in NER), where one item is substituted for another. 
+Example \ref{ex:Lon} shows an instance of a \emph{whole-part}, where \emph{London} probably stands for the smaller 'item': \textbf{Goverment in London}. 
 
 \ex. \emph{\textbf{London} decided to increase the 1200 military personnel involved in Olympic security.} \label{ex:Lon}
 
 \subsection{Methods employed for NER}
-For \emph{NER}, there exist two general approaches: one is rule-based and the other statistical. 
-Rule-based methods make use of the underlying rules governing a language to extract the named entities. 
-This approach, however, is rather high maintenance and requires extensive work by experts such as computational linguists \cite{nadeau2007survey}.
-The results are often quite high in precision, but lack considerably in recall. % rules are partly language-dependent
+For NER, there exist two general approaches: one is rule-based and the other statistical. 
+Rule-based methods make use of the underlying rules governing a language to extract \namedentity. 
+This approach, however, is rather high maintenance and requires extensive work by experts, such as computational linguists \cite{nadeau2007survey}.
+The results can be quite high in precision, but lack considerably in recall. % rules are partly language-dependent
 
-For statistical approaches, supervised-learning is the most commonly method applied in \emph{NER}. 
+For statistical approaches, supervised-learning is the most common method applied in NER. 
 There are unsupervised methods, but they cannot compete with SL applications yet.
-Among the most prominent algorithms in NER are maximum entropy models. For CoNLL 2003, five of the sixteen systems
-used this statistical learning method; three of them in isolation and they seem to be a very suitable choice for this task, since the three highest results in 
-English and the two highest results in German were obtained by systems that employed this approach \cite{TjongKimSang:2003:ICS:1119176.1119195}.
+Among the most prominent algorithms in NER are maximum entropy models. 
+For CoNLL 2003, five of the sixteen systems used this statistical learning method and three of of those used maximum entropy models in isolation.
+Maximum entropy models seem a very suitable choice for the NER task, since systems using this approach were ranked among the three highest results in 
+English and the two highest results in German \cite{TjongKimSang:2003:ICS:1119176.1119195}.
 The best system in both German and English \cite{Florian:2003:NER:1119176.1119201} used a combination of classifiers: a robust linear classifier, a maximum entropy, a transformation-based learning, and a hidden Markov model which are connected through a linear interpolation of the classifiers’ % combination scheme
 class probability distribution. Particular importance is also assigned to creating a rich feature space, also including a gazetteer feature. 
 This system gains a precision of 88.99\% on the English test set and  83.87\% on the German one. 
@@ -192,8 +197,8 @@ neural network
 
 
 \subsection{CoNLL Data and Baseline Performance}
-The training and test data for Spanish \& Dutch was taken from the \emph{CoNLL Shared Task 2002} \cite{tksintro} and 
-the \emph{CoNLL Shared Task 2003} \cite{TjongKimSang:2003:ICS:1119176.1119195} provided the one for English \& German.
+The training and test data for Spanish \& Dutch was taken from the CoNLL Shared Task 2002 \cite{tksintro} and 
+the CoNLL Shared Task 2003 \cite{TjongKimSang:2003:ICS:1119176.1119195} provided the one for English \& German.
 The ConNLL shared tasks are organised challenges, where the organisers propose a task and provide the participants with the
 training and test data. 
 In 2002 and 2003, the task was Named Entity Recognition. 
@@ -254,7 +259,7 @@ For the sentence in \ref{PredEx1a}, it would return the corresponding labels com
  
 \exg. \textbf{x:} The motor company ' Ford ' was founded and incorporated by Henry Ford .\\
       \textbf{y:}  O   O      O     0 ORG  O  O     O     O       O        O PER   PER  O  \label{PredEx1b} \\
-\caption{Input and predicted structure for the Named Entity task.}
+\caption{Input and predicted structure for the \namedentity task.}
 
 \end{figure*}
 
@@ -391,7 +396,7 @@ German &      &          &       &          &             & \\
 
 \section{Future Work \& Conclusion}
 
-
+This paper presented a system for \namedentity Recognition using Structured Prediction. 
 
 
 \bibliographystyle{acl}
