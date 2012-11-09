@@ -3,23 +3,32 @@
 \bibitem[\protect\citename{Carreras}2012]{strlearn}
 Xavier Carreras.
 \newblock 2012.
-\newblock Learning structured predictors.
+\newblock {Learning Structured Predictors}.
 \newblock Lecture at Lisbon Machine Learning School 2012,
   \url{http://lxmls.it.pt/strlearn.pdf}.
 
 \bibitem[\protect\citename{Collins}2002]{collins2002discriminative}
 M.~Collins.
 \newblock 2002.
-\newblock Discriminative training methods for hidden markov models: Theory and
-  experiments with perceptron algorithms.
-\newblock In {\em Proceedings of the ACL-02 conference on Empirical methods in
-  natural language processing-Volume 10}, pages 1--8. Association for
+\newblock {Discriminative training methods for hidden markov models: Theory and
+  experiments with perceptron algorithms}.
+\newblock In {\em {Proceedings of the ACL-02 conference on Empirical methods in
+  natural language processing-Volume 10}}, pages 1--8. Association for
   Computational Linguistics.
+
+\bibitem[\protect\citename{Florian \bgroup et al.\egroup
+  }2003]{Florian:2003:NER:1119176.1119201}
+Radu Florian, Abe Ittycheriah, Hongyan Jing, and Tong Zhang.
+\newblock 2003.
+\newblock {Named entity recognition through classifier combination}.
+\newblock In {\em {Proceedings of the seventh conference on Natural language
+  learning at HLT-NAACL 2003 - Volume 4}}, {CONLL '03}, pages 168--171,
+  Stroudsburg, PA, USA. Association for Computational Linguistics.
 
 \bibitem[\protect\citename{Nadeau and Sekine}2007]{nadeau2007survey}
 D.~Nadeau and S.~Sekine.
 \newblock 2007.
-\newblock A survey of named entity recognition and classification.
+\newblock {A survey of named entity recognition and classification}.
 \newblock {\em Lingvisticae Investigationes}, 30(1):3--26.
 
 \bibitem[\protect\citename{{Tjong Kim Sang} and {De
@@ -31,5 +40,12 @@ Erik~F. {Tjong Kim Sang} and Fien {De Meulder}.
 \newblock In {\em {Proceedings of the seventh conference on Natural language
   learning at HLT-NAACL 2003 - Volume 4}}, {CONLL '03}, pages 142--147,
   Stroudsburg, PA, USA. Association for Computational Linguistics.
+
+\bibitem[\protect\citename{{Tjong Kim Sang}}2002]{tksintro}
+Erik~F. {Tjong Kim Sang}.
+\newblock 2002.
+\newblock {Introduction to the CoNLL-2002 Shared Task: Language-Independent
+  Named Entity Recognition}.
+\newblock In {\em {Proceedings of CoNLL-2002}}, pages 155--158. Taipei, Taiwan.
 
 \end{thebibliography}

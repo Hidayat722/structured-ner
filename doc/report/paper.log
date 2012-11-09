@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.9.6)  9 NOV 2012 11:53
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.9.6)  9 NOV 2012 16:17
 entering extended mode
  %&-line parsing enabled.
 **paper.tex
@@ -904,42 +904,52 @@ pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.171 
+l.169 
        [2]pdfTeX warning (ext4): destination with the same identifier (name{ExD
 epth.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.177 
+l.175 
       
-Underfull \hbox (badness 10000) in paragraph at lines 184--186
-[]\OT1/cmr/m/n/10.95 In re-gard to sta-tis-ti-cal ap-proaches,
+Underfull \hbox (badness 10000) in paragraph at lines 182--191
+[]\OT1/cmr/m/n/10.95 For sta-tis-ti-cal ap-proaches, supervised-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 184--186
-\OT1/cmr/m/n/10.95 supervised-learning is the most com-mon
+Underfull \hbox (badness 2020) in paragraph at lines 182--191
+\OT1/cmr/m/n/10.95 they can-not com-pete with SL ap-pli-ca-tions
  []
 
 
-LaTeX Warning: Citation `tksintro' on page 3 undefined on input line 194.
+Underfull \hbox (badness 2856) in paragraph at lines 182--191
+\OT1/cmr/m/n/10.95 CoNLL 2003, five of the six-teen sys-tems
+ []
 
 
-Underfull \hbox (badness 1137) in paragraph at lines 239--240
+Underfull \hbox (badness 1052) in paragraph at lines 182--191
+\OT1/cmr/m/n/10.95 used this sta-tis-ti-cal learn-ing method; three
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 1137) in paragraph at lines 240--241
 \OT1/cmr/m/n/10.95 Structured Pre-dic-tion ([]Car-reras, 2012[]) is a
  []
 
 
-Underfull \hbox (badness 2326) in paragraph at lines 239--240
+Underfull \hbox (badness 2326) in paragraph at lines 240--241
 \OT1/cmr/m/n/10.95 supervised-learning ap-proach that maps an
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 239--240
+Underfull \hbox (badness 10000) in paragraph at lines 240--241
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 241--242
+Underfull \hbox (badness 10000) in paragraph at lines 242--243
 
  []
 
@@ -947,54 +957,40 @@ pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.253 
+l.254 
       pdfTeX warning (ext4): destination with the same identifier (name{ExDepth
 .1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.257 
+l.258 
        [3]
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 275.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 276.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 275.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 276.
 pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.332 
+l.333 
       pdfTeX warning (ext4): destination with the same identifier (name{ExDepth
 .1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.335 
+l.336 
       
-Underfull \hbox (badness 4859) in paragraph at lines 338--340
+Underfull \hbox (badness 4859) in paragraph at lines 339--341
  \OT1/cmr/bx/n/10.95 Gazetteer Fea-tures \OT1/cmr/m/n/10.95 In or-der to cre-at
 e
- []
-
-pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
-as been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.354 
-      
-Underfull \hbox (badness 10000) in paragraph at lines 354--354
-
  []
 
 [4]pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}
 ) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.357 
+l.358 
       
-Underfull \hbox (badness 10000) in paragraph at lines 357--357
+Underfull \hbox (badness 10000) in paragraph at lines 358--358
 
  []
 
@@ -1002,9 +998,9 @@ pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.360 
+l.361 
       
-Underfull \hbox (badness 10000) in paragraph at lines 360--360
+Underfull \hbox (badness 10000) in paragraph at lines 361--361
 
  []
 
@@ -1012,61 +1008,88 @@ pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.362 
+l.364 
       
-Underfull \hbox (badness 10000) in paragraph at lines 362--362
+Underfull \hbox (badness 10000) in paragraph at lines 364--364
+
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
+as been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.366 
+      
+Underfull \hbox (badness 10000) in paragraph at lines 366--366
 
  []
 
 
-Overfull \hbox (30.57922pt too wide) in paragraph at lines 368--379
+Overfull \hbox (30.57922pt too wide) in paragraph at lines 372--383
 [][] 
  []
 
 (./paper.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 27--34
+Underfull \vbox (badness 3547) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 36--43
 []\OT1/cmr/m/n/10 Erik F.
  []
 
 
-Underfull \hbox (badness 2547) in paragraph at lines 27--34
+Underfull \hbox (badness 2547) in paragraph at lines 36--43
 \OT1/cmr/m/n/10 In \OT1/cmr/m/it/10 Pro-ceed-ings of the sev-enth con-fer-ence 
 on
  []
 
-) [5
 
-] (./paper.aux) ) 
+Underfull \hbox (badness 2521) in paragraph at lines 45--50
+[]\OT1/cmr/m/n/10 Erik F. Tjong Kim Sang.
+ []
+
+
+Underfull \hbox (badness 4913) in paragraph at lines 45--50
+\OT1/cmr/m/n/10 Task: Language-Independent Named En-tity
+ []
+
+
+Underfull \hbox (badness 1005) in paragraph at lines 45--50
+\OT1/cmr/m/n/10 Recog-ni-tion.  In \OT1/cmr/m/it/10 Pro-ceed-ings of CoNLL-2002
+\OT1/cmr/m/n/10 ,
+ []
+
+) [5] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 6354 strings out of 495061
- 87722 string characters out of 1182622
- 186409 words of memory out of 3000000
- 9332 multiletter control sequences out of 15000+50000
+ 6357 strings out of 495061
+ 87806 string characters out of 1182622
+ 186537 words of memory out of 3000000
+ 9333 multiletter control sequences out of 15000+50000
  17237 words of font info for 67 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 38i,22n,38p,458b,389s stack positions out of 5000i,500n,10000p,200000b,50000s
- </home/carmen/.texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0800
-.600pk></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
-r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/tex
-mf-texlive/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-texlive/f
-onts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-texlive/fonts/type
-1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/public/am
-sfonts/cmextra/cmex8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
-cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi6.pf
-b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/shar
-e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texmf-te
-xlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/
-type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public
-/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
-cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></us
-r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/tex
-mf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/f
-onts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/
-public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsf
-onts/cm/cmtt12.pfb>
-Output written on paper.pdf (5 pages, 282696 bytes).
+ 38i,22n,38p,458b,379s stack positions out of 5000i,500n,10000p,200000b,50000s
+ </home/carmen/.texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm
+0800.600pk></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share
+/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-texli
+ve/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-texlive/fonts/
+type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/publi
+c/amsfonts/cmextra/cmex8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfo
+nts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi
+6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/
+share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texm
+f-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fo
+nts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/pu
+blic/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
+/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb>
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share
+/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-texli
+ve/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/ty
+pe1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/public/
+amsfonts/cm/cmtt12.pfb>
+Output written on paper.pdf (5 pages, 286072 bytes).
 PDF statistics:
- 235 PDF objects out of 1000 (max. 8388607)
- 51 named destinations out of 1000 (max. 500000)
+ 244 PDF objects out of 1000 (max. 8388607)
+ 53 named destinations out of 1000 (max. 500000)
  89 words of extra memory for PDF output out of 10000 (max. 10000000)
 
