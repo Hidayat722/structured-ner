@@ -170,20 +170,19 @@ Often the context will not be disambiguating as in \ref{ex:Paris}.
 \ex. \emph{Paris is beautiful.} \label{ex:Paris}
 
 \emph{Metonymy} is frequently an issue in literary texts and news data (which is often used in NER), where two items that are in a part-whole
-relationship, are substituted for each other respectively. Example \ref{ex:Lon} shows an instance of \emph{whole-part}, where \emph{London} is supposedly substituted
-for the \textbf{Goverment in London}. 
+relationship, are substituted for each other respectively. Example \ref{ex:Lon} shows an instance of \emph{whole-part}, 
+where \emph{London} is supposedly substituted for the \textbf{Goverment in London}. 
 
 \ex. \emph{\textbf{London} decided to increase the 1200 military personnel involved in Olympic security.} \label{ex:Lon}
 
 \subsection{Methods employed for NER}
-For \emph{NER}, there exist both rule-based and statisical approaches. 
-Rule-based methods make use of the underlying rules governing languages to extract named entities. 
-However, this approach is high maintenance, quite time-consuming and requires extensive work of computational linguists \cite{nadeau2007survey}
-and although the results are often high in precision, lacks considerably in recall.
+For \emph{NER}, there exist two general approaches: one is rule-based and the other statistical. 
+Rule-based methods make use of the underlying rules governing a language to extract the named entities. 
+This approach, however, is rather high maintenance and requires extensive work by experts such as computational linguists \cite{nadeau2007survey}.
+The results are often quite high in precision, but lack considerably in recall. % rules are partly language-dependent
 
-In regard to statistical approaches, supervised-learning is the most common method applied in \emph{NER}. Although, there are unsupervised approaches, 
-their performance is not as high as for SL applications yet.
-
+For statistical approaches, supervised-learning is the most commonly method applied in \emph{NER}. 
+There are unsupervised methods, but they cannot compete with SL applications yet.
 Prominent algorithms in NER include maximum entropy models, 
 
 neural network
@@ -199,8 +198,8 @@ In 2002 and 2003, the task was Named Entity Recognition.
 In both years, the baseline rate for the individual languages was produced by a system, that had a unique class in the training data. 
 In case that a phrase was part of more than one entity, the system would choose the longest one \cite{TjongKimSang:2003:ICS:1119176.1119195}. 
 Table \ref{table:Base} shows the baseline for the four different languages.  
-The data is annotated with part-of-speech tags and named-entity tags, as well as Bio-tags that indicate the position in the Named Entity. 
-Our approach is based on the system that won the challenge for English and German in 2003. 
+The data is annotated with part-of-speech tags and named-entity tags, as well as Bio-tags that indicate the position in the Named Entity. %put in ``tokenized, chunked''
+Our approach is based on the system of \cite{strlearn} that won the challenge for English and German in 2003. 
 
 % A baseline rate was computed for the English and the
 % German test sets. It was produced by a system which
@@ -346,6 +345,9 @@ In the following section we present our experiments and the evalution of our sys
 
 \subsection*{Evaluation}
 For the evaluation of the system we used \emph{Precision} and \emph{Recall} as shown in \ref{Precision} and \ref{Recall} respectively.
+Precision is the percentage of Named Entities found by the system that are correct. Recall represents the the percentage of 
+named entites present in the corpus that were found by the system. 
+A named entity is only deemed correct if it is an exact match for the corresponding data file.
 The general formula for the \emph{F-Score} is shown in \ref{Fscore}. Since we rate both \emph{Precision} and \emph{Recall} evenly, we 
 use the harmonic mean as shown in \ref{F1}.
 
