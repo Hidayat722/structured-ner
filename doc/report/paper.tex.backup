@@ -13,6 +13,12 @@
 \usepackage{hyperref}
 \usepackage{amsmath}
 \usepackage{qtree}
+\usepackage{textcomp}
+
+%\usepackage{gb4e}
+
+%\usepackage{gb4e}
+
 
 % \usepackage{xcolor}
 % \definecolor{dark-red}{rgb}{0.4,0.15,0.15}
@@ -21,7 +27,7 @@
 % \hypersetup{
 %     colorlinks, linkcolor={dark-red},
 %     citecolor={dark-blue}, urlcolor={medium-blue}}
-\title{Named Entity Recognition using Structured Prediction}
+\title{Named Entity Recognition as Structured Prediction}
 
 % \author{Joachim Daiber \\
 %   %Affiliation / Address line 1 \\
@@ -38,12 +44,12 @@
 
 \author{Joachim Daiber \\
   University of Groningen \\
-  %Affiliation / Address line 2 \\
+  2397331\\
   %Affiliation / Address line 3 \\
   {\tt jodaiber@gmx.de} \\\And
   Carmen Klaussner \\
   University of Groningen \\
-  %Affiliation / Address line 2 \\
+  2401541\\
   %Affiliation / Address line 3 \\
   {\tt Carmen@wordsmith.de} \\}
 
@@ -51,80 +57,109 @@
 
 \DeclareMathOperator*{\argmax}{arg\,max}
 
+\newcommand{\namedentity}{Named Entity} 
+\newcommand{\Oo}{\texttt O} 
+
+
 \begin{document}
 \maketitle
 
-\section{Introduction}
+\begin{abstract}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\end{abstract}
+
+
+\section{Application: Named Entity Recognition}
+
 Named Entity Recognition (NER) is an information extraction task and has first been introduced as part of the 6th MUC (Sixth Message Understanding Conference)
 that was focusing on the extraction of structured information from unstructured text, such as company names from newspaper articles \cite{nadeau2007survey}.
-The most prominent types are generally known under the name of \emph{enamex} types, which are comprised of \texttt{Person Names}, \texttt{Organisations} and \texttt{Locations}. 
-An additional type \texttt{Miscellaneous} captures person names outside the classic \emph{enamax} type.
-Apart from these there is \emph{timex}, which covers date \& time expressions and \emph{numex} which is for monetary values \& percent. 
+The most prominent types are generally known under the name of \emph{enamex} types, which are comprised of \texttt{Person Names}, 
+\texttt{Organisations} and \texttt{Locations}. 
+An additional type \texttt{Miscellaneous} captures names outside the classic \emph{enamax} type.
+Apart from the above, there is the \emph{timex} type, which covers date \& time expressions and \emph{numex} which is for monetary values \& percent. 
 Table \ref{table:NETypes} gives an overview of the different NE types.
 
 \begin{table}[h!]
 \scriptsize
-\begin{tabular}{l|l}
+\begin{tabular}{| l | l |}
 \hline
 \bf Named Entity Type & \bf Example \\
 \hline
 Person Names & Greta Garbo, John, Mary \\
 Organisations& Benetton, Coca-Cola Gmbh\\
 Locations&  Paris, Australia, Bristol\\
-Miscellaneous& World Cup\\
+Miscellaneous& World Cup 2014\\
  Date Expression& 01-02-2012, January, 6th, 1998 \\
 Time Expression & 10 p.m.\\
-Monetary Value &  \$15, 100 Euro   \\
-Percent &   30\%
+Monetary Value &  \$15, \textsterling 100    \\
+Percent &   30\% \\
+\hline
 \end{tabular}
 \caption{NE Examples}
 \label{table:NETypes}
 \end{table}
 
 
-In considering named entities, it is important to distinguish between mention of entities that are non-specific as 
-time expressions, such as \emph{In June}, referring to any possible year or \emph{the prof} as a person name, which itself is not a specific entity, 
-but a deictic reference, which may point back to the mention of a real \emph{NE}, as in the following coreference chain: \\
+In considering named entities, it is important to distinguish between named entities and the mention of entities that are in fact non-specific. % reformulate
+The difference lies in the reference of the entity. A named entity refers to a specific, unique person/time/location, whereas in 
+mere mentions of entites, these can refer to multiple events, such as the time expression: \emph{In June}, referring to any possible year.
+Also, there could be a reference to a person, as in: \emph{the prof}, which in itself is not a specific entity.
+However, it would be a deictic reference and point back to the mention of a real \emph{NE}, as in the following coreference chain: \\
 
+\ex. $ Prof.\; Bateman \Rightarrow he \Rightarrow the \; prof$ \label{cor}\\
 
-\ex. $ Prof.\; Bateman \Rightarrow he \Rightarrow the \; prof$ \\
+Named Entities can consist of more than one syntactic type. Syntactic types feature in syntactic rules that define, how sentences can be build.
+Typical rules are: \\
+$S \rightarrow NP VP $ \footnote{ A sentence S breaks down into a noun phrase NP and a verb phrase VP} \\
+$ VP \rightarrow V (NP)$ \footnote{ A verb phrase VP consists of a verb followed by an optional NP} \\
 
-Named Entities can consist of more than one syntactic type. The usual overall type for a named entity is noun phrase, which can be both simple and complex. 
-An example for a simple heterogenous entity is displayed in syntactic tree represenation in ~\ref{tree1}.
- \Tree
+The usual overall type for a named entity is noun phrase, which can be both simple and complex, meaning it can consist of a only a noun or 
+also additional other syntactic types.
+An example for a simple homogenous entity is displayed in syntactic tree representation in ~\ref{tree1}.
+
+\begin{enumerate}
+ \item \Tree
     [.NP [.N' John ]  ] \label{tree1}
+\end{enumerate}
 
+
+\emph{N'} signals an intermediate state in the syntactic tree where adjuncts can be joined to the noun phrase. 
+The closer the entity is joined to a tree, the more it usually contributes to the meaning. 
 Most languages allow for a recursive definition of, for instance, a noun phrase that in theory can grow infinitely big. 
-An \textbf{NP} can consist of a determiner, such as \emph{the} and a common noun or simply a propernoun. \textbf{PP} stands
-for prepositional phrase and consists of a preposition and a noun phrase. 
-The syntactic rules for PP-attachment are displayed in \ref{PP}.
+A \textbf{NP} can consist of a determiner, such as \emph{the} and a common noun or simply a propernoun. \textbf{PP} stands
+for prepositional phrase (PP) and consists of a preposition and a noun phrase. 
+The syntactic rules for PPs are displayed in \ref{PP}.
 \begin{figure}
-$ NP \rightarrow NP PP$ \\
-$ PP \rightarrow P NP$ 
+$ NP \rightarrow NP \;PP$ \\
+$ PP \rightarrow P \;NP$ \\
 \caption{Recursive Noun Phrase}
 \label{PP}
 \end{figure}   
 These rules allow for constructions such as in sentence~\ref{PPrec}. 
 
-\ex. The princess of Scotland is in the castle in England with the brown bricks on its roof... \label{PPrec}
+\ex. The Bank of Scotland is in the brown building with the brown bricks on its roof... \label{PPrec}
 
-We distinguish between PP-complements and PP-modifiers, where modifiers simply add to the description of the noun phrase, maybe
-to set it apart and complements are more inherent to the meaning of the entity. 
-The PP-attachment \emph{of Scotland} is semantically defining for the noun \emph{princess}, whereas \emph{with the brown bricks on its roof} 
-just adds to the description of \emph{the castle in England}.
-Regarding named entities, one wants to differentiate between a PP-attachment that defines the entity an one that is irrelevant. 
+We distinguish between PP-complements and PP-modifiers, where modifiers simply add to the description of the noun phrase, and complements are more inherent to the meaning of the entity. 
+The PP \emph{of Scotland} is semantically defining for the noun \emph{bank}, whereas \emph{with the brown bricks on its roof} 
+just adds to the description of \emph{brown building}.
+Regarding named entities, one wants to differentiate between a PP that defines the entity an one that is not inherent to its meaning. 
+The phrases in \ref{bos} and \ref{Nirvana} give examples of how a syntactic tree defines semantic connection.
+In \emph{Bank of Scotland}, the PP \emph{of Scotland} is attached directly, whereas in \ref{Nirvana} both \emph{Kurt Cobain} and \emph{Nirvana} constitute own 
+concepts and are joined at a later level to express this distance.
+Thus, in connection with Named Enitites, we want to be able to capture types of the first example as a NE, but not of the second. 
 
-\begin{figure}
-\Tree
-    [.vP DP [.v' v^0 [.XP X ] ] ]
-\Tree
-    [.NP [ [.DT the ]  [ N' [.NN book ] ]  ] ]
 
+\begin{enumerate}
+\item \parbox[t]{2.4in}{ (a)~\Tree  
+   [.NP [ [.DT the ] [.N\1 [.N Bank ] [.PP [.P of ] [.NP Scotland ] ] ] ] ] } \label{bos}
+\parbox[t]{2in}{ (b)~\Tree 
+   [.NP  [.N\1 [.N\1  \qroof{Kurt Cobain}.N  ]  [.PP [.P of ] [.N\1 [.N\1 [.N Nirvana ] ] ] ] ] ]  } \label{Nirvana}
+\end{enumerate} 
     
- \end{figure}
 
 
-\subsection*{Issues in Named Entity Recognition}
+
+\subsection{Issues in Named Entity Recognition}
 Among the most common problems for NER is the issue of ambiguity, that is in particular \emph{Polysemy} \cite{nadeau2007survey}, 
 the property of some lexical representation having
 more than one possible meaning, and \emph{Metonymy}, which refers to the concept of the part-whole/whole-part relation between two expressions. 
@@ -140,7 +175,7 @@ for the \textbf{Goverment in London}.
 
 \ex. \emph{\textbf{London} decided to increase the 1200 military personnel involved in Olympic security.} \label{ex:Lon}
 
-\subsection*{Methods employed for NER}
+\subsection{Methods employed for NER}
 For \emph{NER}, there exist both rule-based and statisical approaches. 
 Rule-based methods make use of the underlying rules governing languages to extract named entities. 
 However, this approach is high maintenance, quite time-consuming and requires extensive work of computational linguists \cite{nadeau2007survey}
@@ -155,13 +190,18 @@ neural network
 
 
 
-\subsection*{CoNLL Data Set \& Baseline Performance}
-The training and test dataset was taken from the \emph{CoNLL Shared Task 2002} \cite{tksintro2002conll} and the \emph{CoNLL Shared Task 2003} \cite{TjongKimSang:2003:ICS:1119176.1119195}.
-for Spanish \& Dutch and English \& German respectively. The ConNLL shared tasks are organised challenges, where the organiser propose a task and provide the
-training and test data. For 2002/2003 it was Named Entity Recognition. Also we base our system on the approach that won the challenge for English and German in 2003. 
-The baseline rate for all languages was produced by a system, that had a unique class in the training data. In case that a phrase was part of more than one entity, 
+\subsection{CoNLL Data and Baseline Performance}
+The training and test data for Spanish \& Dutch was taken from the \emph{CoNLL Shared Task 2002} \cite{tksintro2002conll} and 
+the \emph{CoNLL Shared Task 2003} \cite{TjongKimSang:2003:ICS:1119176.1119195} provided the one for English \& German.
+The ConNLL shared tasks are organised challenges, where the organisers propose a task and provide the participants with the
+training and test data. 
+In 2002 and 2003, the task was Named Entity Recognition. 
+In both years, the baseline rate for the languages was produced by a system, that had a unique class in the training data. 
+In case that a phrase was part of more than one entity, 
 the system would choose the longest one \cite{TjongKimSang:2003:ICS:1119176.1119195}. 
 The data is annotated with POS-tags and NE-tags, as well as Bio-tags that indicate the position in the Named Entity. 
+Consequently, we base our system on the approach that won the challenge for English and German in 2003. 
+
 % A baseline rate was computed for the English and the
 % German test sets. It was produced by a system which
 % only identified entities which had a unique class in
@@ -179,16 +219,17 @@ The data is annotated with POS-tags and NE-tags, as well as Bio-tags that indica
 % A is significantly different from performance B if A
 % is not within the center 90% of the distribution of B.
 
-The baseline for \emph{Named Entity Recognition} in the four different languages is visualised in table \
+The baseline for \emph{Named Entity Recognition} in the four different languages is visualised in table \ref{table:Base}.
 \begin{table}[h!]
 \scriptsize
-\begin{tabular}{l|l|l|l}
+\begin{tabular}{|l|l|l|l|}
 \hline
 \bf Language & \bf Precision & \bf Recall & \bf $F_1$-measure \\ \hline
-Spanish &             26.27 \% & 56.48 \% & 35.86  \%        \\
-Dutch  &             64.38 \%  &45.19   \%    & 53.10 \%  \\
-English &              71.91\%& 50.90 \%  & 59.61 $\pm$ 1.2 \%\\
-German &      31.86 \%  & 28.89 \% & 30.30  $\pm$ \%1.3 \\
+Spanish &             26.27\% & 56.48\% & 35.86\%        \\
+Dutch  &             64.38\%  &45.19\%    & 53.10\%  \\
+English &              71.91\%& 50.90\%  & 59.61 $\pm$ 1.2\%\\
+German &      31.86\%  & 28.89\% & 30.30  $\pm$ 1.3\% \\
+\hline
 \end{tabular}
 \caption{NER Baseline}
 \label{table:Base}
@@ -205,34 +246,36 @@ multiclass problem.
 Structured Prediction gives back the prediction for the whole sequence. 
 For the sentence in \ref{PredEx1a}, it would return the corresponding labels combination in example~\ref{PredEx1b}. 
 
+\begin{figure*}[ht]
+
 \ex. \emph{The motor company 'Ford' was founded and incorporated  by Henry Ford.} \label{PredEx1a}
 %The motor company 'Ford' was founded and incorporated  by Henry Ford on June, 16th 1903.
  
-\ex. \textbf{x:} The motor company 'Ford' was founded and incorporated by Henry Ford.\\ \textbf{y:} 0  0  ORG  0  0 0 0 0 PER PER.  \label{PredEx1b} 
-     
+\exg. \textbf{x:} The motor company ' Ford ' was founded and incorporated by Henry Ford .\\
+      \textbf{y:}  O   O      O     0 ORG  O  O     O     O       O        O PER   PER  O  \label{PredEx1b} \\
+\caption{Input and predicted structure for the Named Entity task.}
+
+\end{figure*}
+
 Also, Structured Prediction is different from similar approaches through its combination of features and label interactions instead
 of concentrating mainly on label interactions like HMM or a rich set of features like local classifiers. 
 
-\section{Our Implementation}
+\section{Implementation}
+
+\subsection{Learning and Decoding}
+
 % problem external data / use Dbpedia - gazetteer
-Our NER system for the languages English, German, Dutch and Spanish is trained and tested on the \emph{CoNLL 2003} and \emph{CoNLL 2002} data sets
-respectively. 
+Our implementation for the languages English, German, Dutch and Spanish is trained and tested on the \emph{CoNLL 2003} and \emph{CoNLL 2002} data sets respectively. 
 
-\paragraph*{Learning}
-Labels of the whole sentence (0) for zero entity
+As the predicted structure, we use the labels for every token in the full sentence. If a token is not a \namedentity, it is assigned the label \Oo.
 
-
-\paragraph*{Structure}
-Structured Perceptron with Averaging
-
-\paragraph*{Decoding}
-In this system we are using viterbi decoding, thus we are looking for the prediction $\hat{y}$, which is the sequence with the highest overall score:
+Learning is implemented using the Structured Perceptron algorithm. To avoid overfitting, we average the parameters after the last iteration \cite{collins2002discriminative}. For finding the best sequence of labels for a sentence, we use a modified version of the Viterbi algorithm. The algorithm finds the sequence $\hat{y}$, such that:
 
 \[
-\hat{y} = \argmax_{\mathbf{y} \in \mathcal{Y}^{n}} \mathbf{w} \cdot \boldsymbol{f}(\mathbf{x}, i, y_{i-1}, y_{i})
+\hat{y} = \argmax_{\mathbf{y} \in \mathcal{Y}^{n}} \sum_{i=1}^{n}\mathbf{w} \cdot \boldsymbol{f}(\mathbf{x}, i, y_{i-1}, y_{i})
 \]
 
-This sequence can be computed efficiently in $ O( N^2 |\mathbf{x}| ) $ using the Viterbi algorithm. 
+This sequence can be computed efficiently in $ O( N^2 |\mathbf{x}| ) $ via dynamic programming. 
 As a first step, the trellis has to be constructed, then we have to find the $ a \in \mathcal{Y}$ in the 
 last column of the trellis with maximal score $\delta_n(a)$. From this, the sequence can be recovered via back-tracking trough the trellis. 
 The score of the best sequence ending in $a$ is:
@@ -241,7 +284,7 @@ The score of the best sequence ending in $a$ is:
 \delta_i(a) = \max_{\mathbf{y} \in \mathcal{Y}^{n}, y_n = a} \sum_{j=1}^{n}{\mathbf{w} \cdot \boldsymbol{f}(\mathbf{x}, j, y_{j-1}, y_{j})}
 \]
 
-\noindent And $\delta_i(a)$ can be calculated recursively:
+\noindent This function $\delta_i(a)$ can be defined recursively as:
 
 \begin{align*}
 \delta_1(a) &= \mathbf{w} \cdot \boldsymbol{f}(\mathbf{x}, 1, \emptyset, a) \\
@@ -249,17 +292,17 @@ The score of the best sequence ending in $a$ is:
 \end{align*}
 
 
-\subsection*{Features}
+\subsection{Features}
 The features employed in the system can be divided into three categories: node, label and gazetteer features. 
 We describe each of the three groups in the following.
 
 \paragraph*{Node features}
-These are only present on the word in question: the \emph{Token}, suffix and prefix, capitalisation.
+Node features are features that only depend on the current token (node): the \emph{Token}, suffix and prefix, capitalisation.
 
-Table \ref{table:node} shows the various node features with an example respectively.
+Table~\ref{table:node} shows the various node features with an example respectively.
 
 \begin{table}[h!]
-\begin{tabular}{l|l}
+\begin{tabular}{| l | l |}
 \hline
 \bf Feature & \bf Example \\
 \hline
@@ -270,7 +313,8 @@ Captitalized& \textbf{B}enetton\\
 Number Pattern & \\
 UPPERCASE &  \textbf{BENETTON}\\
 POS-tag &  Benetton \textbf{NNP}   \\
-Lemma &  produced $Rightarrow$ produce \\
+Lemma &  produced $\Rightarrow$ produce \\
+\hline
 \end{tabular}
 \caption{Node Features}
 \label{table:node}
@@ -283,9 +327,11 @@ than\emph{PER} and \emph{LOC} as presented in \ref{seq2}.
 .
 %current token and last label for prepositions or possessive ’s
 
-\ex. Jack London went to New York. \\ PER   PER  0  0  LOC   LOC. \label{seq1}
+\exg. Jack London went to New York .\\
+      PER   PER   O    O  LOC LOC  O \\\label{seq1}
 
-\ex. Jack London went to New York. \\ PER   LOC  0  0  LOC   LOC. \label{seq2}
+\exg. Jack London went to New York . \\ 
+      PER  LOC    O    O  LOC LOC O \\\label{seq2}
     
 
 \paragraph*{Gazetteer Features}
@@ -293,7 +339,7 @@ In order to create gazetteer lists for the more common named entities, we design
 languages. The reliability of the respective list is learnt be the perceptron. 
 
 
-\section{Experiments/ Evaluation}
+\section{Experiments and Evaluation}
 In the following section we present our experiments and the evalution of our system.
 \subsection*{Experiments}
 
@@ -319,14 +365,16 @@ use the harmonic mean as shown in \ref{F1}.
 
 \begin{table}[h!]
 \scriptsize
-\begin{tabular}{l |l| l| l| l| l| l}
- 
-\bf Language & \multicolumn{3}{c|}{ \bf testA}&\multicolumn{3}{c}{ \bf testB}\\\hline 
+\begin{tabular}{| l | l l l| l l l |}
+
+\hline
+\bf Language & \multicolumn{3}{c|}{ \bf Test A}&\multicolumn{3}{c|}{ \bf Test B}\\
              & Precision & Recall & $F_1$ & Precision & Recall & $F_1$ \\ \hline
 Spanish &       &          &     &          &               & \\
 Dutch  &         &          &     &          &               &   \\
 English &        &          &     &          &               &       \\
 German &      &          &       &          &             & \\
+\hline
 \end{tabular}
 \caption{NER Structured Prediction Results }
 \label{table:Results}

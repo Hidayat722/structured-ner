@@ -7,6 +7,15 @@ Xavier Carreras.
 \newblock Lecture at Lisbon Machine Learning School 2012,
   \url{http://lxmls.it.pt/strlearn.pdf}.
 
+\bibitem[\protect\citename{Collins}2002]{collins2002discriminative}
+M.~Collins.
+\newblock 2002.
+\newblock Discriminative training methods for hidden markov models: Theory and
+  experiments with perceptron algorithms.
+\newblock In {\em Proceedings of the ACL-02 conference on Empirical methods in
+  natural language processing-Volume 10}, pages 1--8. Association for
+  Computational Linguistics.
+
 \bibitem[\protect\citename{Nadeau and Sekine}2007]{nadeau2007survey}
 D.~Nadeau and S.~Sekine.
 \newblock 2007.

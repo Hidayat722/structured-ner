@@ -2,46 +2,46 @@ This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: paper.aux
 The style file: acl.bst
 Database file #1: paper.bib
-Warning--I didn't find a database entry for "tksintro2002conll"
-You've used 3 entries,
+Warning--I didn't find a database entry for "tksintro"
+You've used 4 entries,
             2490 wiz_defined-function locations,
-            575 strings with 5185 characters,
-and the built_in function-call counts, 1218 in all, are:
-= -- 136
-> -- 33
-< -- 1
-+ -- 11
-- -- 10
-* -- 80
-:= -- 193
-add.period$ -- 13
-call.type$ -- 3
-change.case$ -- 17
-chr.to.int$ -- 3
-cite$ -- 3
-duplicate$ -- 53
-empty$ -- 98
-format.name$ -- 15
-if$ -- 263
+            581 strings with 5425 characters,
+and the built_in function-call counts, 1637 in all, are:
+= -- 184
+> -- 40
+< -- 2
++ -- 13
+- -- 12
+* -- 104
+:= -- 254
+add.period$ -- 18
+call.type$ -- 4
+change.case$ -- 22
+chr.to.int$ -- 4
+cite$ -- 4
+duplicate$ -- 76
+empty$ -- 137
+format.name$ -- 18
+if$ -- 360
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 2
-newline$ -- 21
-num.names$ -- 9
-pop$ -- 19
+missing$ -- 3
+newline$ -- 27
+num.names$ -- 12
+pop$ -- 27
 preamble$ -- 1
-purify$ -- 20
+purify$ -- 26
 quote$ -- 0
-skip$ -- 48
+skip$ -- 64
 stack$ -- 0
-substring$ -- 64
-swap$ -- 15
-text.length$ -- 1
+substring$ -- 85
+swap$ -- 23
+text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 24
+type$ -- 32
 warning$ -- 0
-while$ -- 11
-width$ -- 4
-write$ -- 46
+while$ -- 16
+width$ -- 5
+write$ -- 61
 (There was 1 warning)

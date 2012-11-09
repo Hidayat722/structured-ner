@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.9.6)  3 NOV 2012 23:03
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.9.6)  9 NOV 2012 11:53
 entering extended mode
  %&-line parsing enabled.
 **paper.tex
@@ -647,23 +647,171 @@ File: p2e-pdftex.def 2009/08/05 v0.1s Driver-dependant file (RN,HjG,JT)
 \qroofx=\count122
 \qroofy=\count123
 \@qrscratchbox=\box57
+)
+(/usr/share/texmf-texlive/tex/latex/base/textcomp.sty
+Package: textcomp 2005/09/27 v1.99g Standard LaTeX package
+Package textcomp Info: Sub-encoding information:
+(textcomp)               5 = only ISO-Adobe without \textcurrency
+(textcomp)               4 = 5 + \texteuro
+(textcomp)               3 = 4 + \textohm
+(textcomp)               2 = 3 + \textestimated + \textcurrency
+(textcomp)               1 = TS1 - \textcircled - \t
+(textcomp)               0 = TS1 (full)
+(textcomp)             Font families with sub-encoding setting implement
+(textcomp)             only a restricted character set as indicated.
+(textcomp)             Family '?' is the default used for unknown fonts.
+(textcomp)             See the documentation for details.
+Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 71.
+
+(/usr/share/texmf-texlive/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+Now handling font encoding TS1 ...
+... processing UTF-8 mapping file for font encoding TS1
+
+(/usr/share/texmf-texlive/tex/latex/base/ts1enc.dfu
+File: ts1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
+   defining Unicode char U+00A2 (decimal 162)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00A4 (decimal 164)
+   defining Unicode char U+00A5 (decimal 165)
+   defining Unicode char U+00A6 (decimal 166)
+   defining Unicode char U+00A7 (decimal 167)
+   defining Unicode char U+00A8 (decimal 168)
+   defining Unicode char U+00A9 (decimal 169)
+   defining Unicode char U+00AA (decimal 170)
+   defining Unicode char U+00AC (decimal 172)
+   defining Unicode char U+00AE (decimal 174)
+   defining Unicode char U+00AF (decimal 175)
+   defining Unicode char U+00B0 (decimal 176)
+   defining Unicode char U+00B1 (decimal 177)
+   defining Unicode char U+00B2 (decimal 178)
+   defining Unicode char U+00B3 (decimal 179)
+   defining Unicode char U+00B4 (decimal 180)
+   defining Unicode char U+00B5 (decimal 181)
+   defining Unicode char U+00B6 (decimal 182)
+   defining Unicode char U+00B7 (decimal 183)
+   defining Unicode char U+00B9 (decimal 185)
+   defining Unicode char U+00BA (decimal 186)
+   defining Unicode char U+00BC (decimal 188)
+   defining Unicode char U+00BD (decimal 189)
+   defining Unicode char U+00BE (decimal 190)
+   defining Unicode char U+00D7 (decimal 215)
+   defining Unicode char U+00F7 (decimal 247)
+   defining Unicode char U+0192 (decimal 402)
+   defining Unicode char U+02C7 (decimal 711)
+   defining Unicode char U+02D8 (decimal 728)
+   defining Unicode char U+02DD (decimal 733)
+   defining Unicode char U+0E3F (decimal 3647)
+   defining Unicode char U+2016 (decimal 8214)
+   defining Unicode char U+2020 (decimal 8224)
+   defining Unicode char U+2021 (decimal 8225)
+   defining Unicode char U+2022 (decimal 8226)
+   defining Unicode char U+2030 (decimal 8240)
+   defining Unicode char U+2031 (decimal 8241)
+   defining Unicode char U+203B (decimal 8251)
+   defining Unicode char U+203D (decimal 8253)
+   defining Unicode char U+2044 (decimal 8260)
+   defining Unicode char U+204E (decimal 8270)
+   defining Unicode char U+2052 (decimal 8274)
+   defining Unicode char U+20A1 (decimal 8353)
+   defining Unicode char U+20A4 (decimal 8356)
+   defining Unicode char U+20A6 (decimal 8358)
+   defining Unicode char U+20A9 (decimal 8361)
+   defining Unicode char U+20AB (decimal 8363)
+   defining Unicode char U+20AC (decimal 8364)
+   defining Unicode char U+20B1 (decimal 8369)
+   defining Unicode char U+2103 (decimal 8451)
+   defining Unicode char U+2116 (decimal 8470)
+   defining Unicode char U+2117 (decimal 8471)
+   defining Unicode char U+211E (decimal 8478)
+   defining Unicode char U+2120 (decimal 8480)
+   defining Unicode char U+2122 (decimal 8482)
+   defining Unicode char U+2126 (decimal 8486)
+   defining Unicode char U+2127 (decimal 8487)
+   defining Unicode char U+212E (decimal 8494)
+   defining Unicode char U+2190 (decimal 8592)
+   defining Unicode char U+2191 (decimal 8593)
+   defining Unicode char U+2192 (decimal 8594)
+   defining Unicode char U+2193 (decimal 8595)
+   defining Unicode char U+2329 (decimal 9001)
+   defining Unicode char U+232A (decimal 9002)
+   defining Unicode char U+2422 (decimal 9250)
+   defining Unicode char U+25E6 (decimal 9702)
+   defining Unicode char U+25EF (decimal 9711)
+   defining Unicode char U+266A (decimal 9834)
+))
+LaTeX Info: Redefining \oldstylenums on input line 266.
+Package textcomp Info: Setting cmr sub-encoding to TS1/0 on input line 281.
+Package textcomp Info: Setting cmss sub-encoding to TS1/0 on input line 282.
+Package textcomp Info: Setting cmtt sub-encoding to TS1/0 on input line 283.
+Package textcomp Info: Setting cmvtt sub-encoding to TS1/0 on input line 284.
+Package textcomp Info: Setting cmbr sub-encoding to TS1/0 on input line 285.
+Package textcomp Info: Setting cmtl sub-encoding to TS1/0 on input line 286.
+Package textcomp Info: Setting ccr sub-encoding to TS1/0 on input line 287.
+Package textcomp Info: Setting ptm sub-encoding to TS1/4 on input line 288.
+Package textcomp Info: Setting pcr sub-encoding to TS1/4 on input line 289.
+Package textcomp Info: Setting phv sub-encoding to TS1/4 on input line 290.
+Package textcomp Info: Setting ppl sub-encoding to TS1/3 on input line 291.
+Package textcomp Info: Setting pag sub-encoding to TS1/4 on input line 292.
+Package textcomp Info: Setting pbk sub-encoding to TS1/4 on input line 293.
+Package textcomp Info: Setting pnc sub-encoding to TS1/4 on input line 294.
+Package textcomp Info: Setting pzc sub-encoding to TS1/4 on input line 295.
+Package textcomp Info: Setting bch sub-encoding to TS1/4 on input line 296.
+Package textcomp Info: Setting put sub-encoding to TS1/5 on input line 297.
+Package textcomp Info: Setting uag sub-encoding to TS1/5 on input line 298.
+Package textcomp Info: Setting ugq sub-encoding to TS1/5 on input line 299.
+Package textcomp Info: Setting ul8 sub-encoding to TS1/4 on input line 300.
+Package textcomp Info: Setting ul9 sub-encoding to TS1/4 on input line 301.
+Package textcomp Info: Setting augie sub-encoding to TS1/5 on input line 302.
+Package textcomp Info: Setting dayrom sub-encoding to TS1/3 on input line 303.
+Package textcomp Info: Setting dayroms sub-encoding to TS1/3 on input line 304.
+
+Package textcomp Info: Setting pxr sub-encoding to TS1/0 on input line 305.
+Package textcomp Info: Setting pxss sub-encoding to TS1/0 on input line 306.
+Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 307.
+Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 308.
+Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 309.
+Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 310.
+Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 311.
+Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 312.
+Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 313.
+Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 314.
+Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 315.
+Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 316.
+Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 317.
+Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 318.
+Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 319.
+Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 320.
+Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 321.
+Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 322.
+Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 323.
+Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 324.
+Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 325.
+Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 326.
 ) (./paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 64.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 64.
+
+(/usr/share/texmf-texlive/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 64.
 
 (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -678,7 +826,7 @@ LaTeX Font Info:    ... okay on input line 54.
 \MPnumerator=\count128
 \everyMPtoPDFconversion=\toks31
 )
-Package hyperref Info: Link coloring OFF on input line 54.
+Package hyperref Info: Link coloring OFF on input line 64.
  (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
 
@@ -687,24 +835,43 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
 \c@section@level=\count129
 )
-LaTeX Info: Redefining \ref on input line 54.
-LaTeX Info: Redefining \pageref on input line 54.
+LaTeX Info: Redefining \ref on input line 64.
+LaTeX Info: Redefining \pageref on input line 64.
  (./paper.out)
 (./paper.out)
 \@outlinefile=\write3
 \openout3 = `paper.out'.
 
 \AtBeginShipoutBox=\box59
-LaTeX Font Info:    Try loading font information for U+lasy on input line 56.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 66.
  (/usr/share/texmf-texlive/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-Underfull \hbox (badness 10000) in paragraph at lines 85--88
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \hbox (badness 1558) in paragraph at lines 103--108
+\OT1/cmr/m/n/10.95 The dif-fer-ence lies in the ref-er-ence of the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--108
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 91--91
+Underfull \hbox (badness 10000) in paragraph at lines 110--110
+
+ []
+
+
+Underfull \hbox (badness 1226) in paragraph at lines 111--115
+\OT1/cmr/m/n/10.95 syn-tac-tic type. Syn-tac-tic types fea-ture in
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--115
 
  []
 
@@ -713,19 +880,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 91--91
 
 
 
+]
+Underfull \hbox (badness 10000) in paragraph at lines 133--135
+
+ []
+
 pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.116 
-      ]
-Overfull \hbox (53.43689pt too wide) in paragraph at lines 122--122
-[]\OT1/cmr/m/n/10.95 (b)  []] 
+<to be read again> 
+                   \relax 
+l.141 
+      
+Overfull \hbox (12.68512pt too wide) in paragraph at lines 156--156
+[]\OT1/cmr/m/n/10.95 (b)  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--123
+Underfull \hbox (badness 10000) in paragraph at lines 154--157
 [][]
  []
 
@@ -733,43 +904,42 @@ pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.137 
-      pdfTeX warning (ext4): destination with the same identifier (name{ExDepth
-.1}) has been already used, duplicate ignored
+l.171 
+       [2]pdfTeX warning (ext4): destination with the same identifier (name{ExD
+epth.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.143 
+l.177 
       
-Underfull \hbox (badness 10000) in paragraph at lines 150--152
+Underfull \hbox (badness 10000) in paragraph at lines 184--186
 []\OT1/cmr/m/n/10.95 In re-gard to sta-tis-ti-cal ap-proaches,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--152
+Underfull \hbox (badness 10000) in paragraph at lines 184--186
 \OT1/cmr/m/n/10.95 supervised-learning is the most com-mon
  []
 
 
-LaTeX Warning: Citation `tksintro2002conll' on page 2 undefined on input line 1
-60.
+LaTeX Warning: Citation `tksintro' on page 3 undefined on input line 194.
 
-[2]
-Underfull \hbox (badness 1137) in paragraph at lines 199--200
+
+Underfull \hbox (badness 1137) in paragraph at lines 239--240
 \OT1/cmr/m/n/10.95 Structured Pre-dic-tion ([]Car-reras, 2012[]) is a
  []
 
 
-Underfull \hbox (badness 2326) in paragraph at lines 199--200
+Underfull \hbox (badness 2326) in paragraph at lines 239--240
 \OT1/cmr/m/n/10.95 supervised-learning ap-proach that maps an
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 199--200
+Underfull \hbox (badness 10000) in paragraph at lines 239--240
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 201--202
+Underfull \hbox (badness 10000) in paragraph at lines 241--242
 
  []
 
@@ -777,30 +947,17 @@ pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.211 
+l.253 
       pdfTeX warning (ext4): destination with the same identifier (name{ExDepth
 .1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.213 
-      
-Underfull \hbox (badness 1796) in paragraph at lines 213--213
-[]\OT1/cmr/bx/n/10.95 x: \OT1/cmr/m/n/10.95 The mo-tor com-pany 'Ford' was
- []
-
-
-Underfull \hbox (badness 2846) in paragraph at lines 213--213
-\OT1/cmr/m/n/10.95 founded and in-cor-po-rated by Henry
- []
-
+l.257 
+       [3]
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 233.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 275.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 233.
-
-Overfull \hbox (22.69174pt too wide) in paragraph at lines 263--276
-[][] 
- []
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 275.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -809,14 +966,14 @@ pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.288 
-       [3]pdfTeX warning (ext4): destination with the same identifier (name{ExD
-epth.1}) has been already used, duplicate ignored
+l.332 
+      pdfTeX warning (ext4): destination with the same identifier (name{ExDepth
+.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.290 
+l.335 
       
-Underfull \hbox (badness 4859) in paragraph at lines 293--295
+Underfull \hbox (badness 4859) in paragraph at lines 338--340
  \OT1/cmr/bx/n/10.95 Gazetteer Fea-tures \OT1/cmr/m/n/10.95 In or-der to cre-at
 e
  []
@@ -825,9 +982,19 @@ pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.309 
+l.354 
       
-Underfull \hbox (badness 10000) in paragraph at lines 309--309
+Underfull \hbox (badness 10000) in paragraph at lines 354--354
+
+ []
+
+[4]pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.357 
+      
+Underfull \hbox (badness 10000) in paragraph at lines 357--357
 
  []
 
@@ -835,9 +1002,9 @@ pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.312 
+l.360 
       
-Underfull \hbox (badness 10000) in paragraph at lines 312--312
+Underfull \hbox (badness 10000) in paragraph at lines 360--360
 
  []
 
@@ -845,70 +1012,61 @@ pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.315 
+l.362 
       
-Underfull \hbox (badness 10000) in paragraph at lines 315--315
-
- []
-
-pdfTeX warning (ext4): destination with the same identifier (name{ExDepth.1}) h
-as been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.317 
-      
-Underfull \hbox (badness 10000) in paragraph at lines 317--317
+Underfull \hbox (badness 10000) in paragraph at lines 362--362
 
  []
 
 
-Overfull \hbox (31.37921pt too wide) in paragraph at lines 323--332
+Overfull \hbox (30.57922pt too wide) in paragraph at lines 368--379
 [][] 
  []
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
 (./paper.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 18--25
+Underfull \hbox (badness 10000) in paragraph at lines 27--34
 []\OT1/cmr/m/n/10 Erik F.
  []
 
 
-Underfull \hbox (badness 2547) in paragraph at lines 18--25
+Underfull \hbox (badness 2547) in paragraph at lines 27--34
 \OT1/cmr/m/n/10 In \OT1/cmr/m/it/10 Pro-ceed-ings of the sev-enth con-fer-ence 
 on
  []
 
-) [4] (./paper.aux) ) 
+) [5
+
+] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 5851 strings out of 495061
- 80388 string characters out of 1182622
- 180458 words of memory out of 3000000
- 8850 multiletter control sequences out of 15000+50000
- 15657 words of font info for 61 fonts, out of 3000000 for 9000
+ 6354 strings out of 495061
+ 87722 string characters out of 1182622
+ 186409 words of memory out of 3000000
+ 9332 multiletter control sequences out of 15000+50000
+ 17237 words of font info for 67 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 38i,12n,38p,270b,383s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
-mbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
-/usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/t
-exmf-texlive/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-texl
-ive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/t
-ype1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texmf-texlive/fonts/type1/pu
-blic/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfon
-ts/cm/cmmi6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi8.
-pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/
-share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-
-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/font
-s/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1/publi
-c/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
-/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share
-/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texl
-ive/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on paper.pdf (4 pages, 259385 bytes).
+ 38i,22n,38p,458b,389s stack positions out of 5000i,500n,10000p,200000b,50000s
+ </home/carmen/.texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0800
+.600pk></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/tex
+mf-texlive/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-texlive/f
+onts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-texlive/fonts/type
+1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/public/am
+sfonts/cmextra/cmex8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
+cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi6.pf
+b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/shar
+e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texmf-te
+xlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/
+type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public
+/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
+cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></us
+r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/tex
+mf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/f
+onts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/
+public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsf
+onts/cm/cmtt12.pfb>
+Output written on paper.pdf (5 pages, 282696 bytes).
 PDF statistics:
- 195 PDF objects out of 1000 (max. 8388607)
- 47 named destinations out of 1000 (max. 500000)
- 49 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 235 PDF objects out of 1000 (max. 8388607)
+ 51 named destinations out of 1000 (max. 500000)
+ 89 words of extra memory for PDF output out of 10000 (max. 10000000)
 

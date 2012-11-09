@@ -150,8 +150,8 @@ Thus, in connection with Named Enitites, we want to be able to capture types of 
 
 
 \begin{enumerate}
-\item \parbox[t]{2.4in}{ (a)~\Tree  \label{bos}
-   [.NP [ [.DT the ] [.N\1 [.N Bank ] [.PP [.P of ] [.NP Scotland ] ] ] ] ]}
+\item \parbox[t]{2.4in}{ (a)~\Tree  
+   [.NP [ [.DT the ] [.N\1 [.N Bank ] [.PP [.P of ] [.NP Scotland ] ] ] ] ] } \label{bos}
 \parbox[t]{2in}{ (b)~\Tree 
    [.NP  [.N\1 [.N\1  \qroof{Kurt Cobain}.N  ]  [.PP [.P of ] [.N\1 [.N\1 [.N Nirvana ] ] ] ] ] ]  } \label{Nirvana}
 \end{enumerate} 
@@ -191,12 +191,17 @@ neural network
 
 
 \subsection{CoNLL Data and Baseline Performance}
-The training and test dataset was taken from the \emph{CoNLL Shared Task 2002} \cite{tksintro2002conll} and the \emph{CoNLL Shared Task 2003} \cite{TjongKimSang:2003:ICS:1119176.1119195}.
-for Spanish \& Dutch and English \& German respectively. The ConNLL shared tasks are organised challenges, where the organiser propose a task and provide the
-training and test data. For 2002/2003 it was Named Entity Recognition. Also we base our system on the approach that won the challenge for English and German in 2003. 
-The baseline rate for all languages was produced by a system, that had a unique class in the training data. In case that a phrase was part of more than one entity, 
-the system would choose the longest one \cite{TjongKimSang:2003:ICS:1119176.1119195}. 
-The data is annotated with POS-tags and NE-tags, as well as Bio-tags that indicate the position in the Named Entity. 
+The training and test data for Spanish \& Dutch was taken from the \emph{CoNLL Shared Task 2002} \cite{tksintro} and 
+the \emph{CoNLL Shared Task 2003} \cite{TjongKimSang:2003:ICS:1119176.1119195} provided the one for English \& German.
+The ConNLL shared tasks are organised challenges, where the organisers propose a task and provide the participants with the
+training and test data. 
+In 2002 and 2003, the task was Named Entity Recognition. 
+In both years, the baseline rate for the individual languages was produced by a system, that had a unique class in the training data. 
+In case that a phrase was part of more than one entity, the system would choose the longest one \cite{TjongKimSang:2003:ICS:1119176.1119195}. 
+Table \ref{table:Base} shows the baseline for the four different languages.  
+The data is annotated with part-of-speech tags and named-entity tags, as well as Bio-tags that indicate the position in the Named Entity. 
+Our approach is based on the system that won the challenge for English and German in 2003. 
+
 % A baseline rate was computed for the English and the
 % German test sets. It was produced by a system which
 % only identified entities which had a unique class in
@@ -214,7 +219,7 @@ The data is annotated with POS-tags and NE-tags, as well as Bio-tags that indica
 % A is significantly different from performance B if A
 % is not within the center 90% of the distribution of B.
 
-The baseline for \emph{Named Entity Recognition} in the four different languages is visualised in table \
+
 \begin{table}[h!]
 \scriptsize
 \begin{tabular}{|l|l|l|l|}
@@ -247,7 +252,7 @@ For the sentence in \ref{PredEx1a}, it would return the corresponding labels com
 %The motor company 'Ford' was founded and incorporated  by Henry Ford on June, 16th 1903.
  
 \exg. \textbf{x:} The motor company ' Ford ' was founded and incorporated by Henry Ford .\\
-      \textbf{y:} O O O O ORG  O  O O O O O PER PER O  \label{PredEx1b} \\
+      \textbf{y:}  O   O      O     0 ORG  O  O     O     O       O        O PER   PER  O  \label{PredEx1b} \\
 \caption{Input and predicted structure for the Named Entity task.}
 
 \end{figure*}
