@@ -65,9 +65,8 @@
 \maketitle
 
 \begin{abstract}
-This paper describes an approach to \namedentity Recognition using Structured Prediction. The System was applied to four different languages: Spanish, Dutch, English and
-German. Various sets of features were employed among them a Gazetteer feature that obtained a look-up list from the database DBPedia and which proved very useful.
-The results were...
+Named Entity Recognition is a task
+
 \end{abstract}
 
 
@@ -334,8 +333,23 @@ than\emph{PER} and \emph{LOC} as presented in \ref{seq2}.
     
 
 \paragraph*{Gazetteer Features}
-In order to create gazetteer lists for the more common named entities, we designed a \emph{SPARQL} query, that would retrieve entries from \emph{DBPedia} for all
-languages. The reliability of the respective list is learnt be the perceptron. 
+A technique commonly used in Named Entity Recognition is the use of external lists of names of a specific type (gazetteer). In order to create gazetteer lists for the more common named entities, we use a \emph{SPARQL} query to retrieve entries from \emph{DBpedia} for all required languages.
+
+\begin{figure}
+\begin{verbatim}
+PREFIX dbp: <http://dbpedia.org/ontology/>
+SELECT ?label
+WHERE {
+    ?entity rdf:type dbp:CLASS.
+    ?entity rdfs:label ?label.
+    FILTER (lang(?label) = LANGUAGE)
+}
+\end{verbatim}
+\caption{SPARQL query for retrieving names of the class \texttt{CLASS} from DBpedia.}
+\end{figure}
+
+
+
 
 
 \section{Experiments and Evaluation}
@@ -365,8 +379,8 @@ use the harmonic mean as shown in \ref{F1}.
 
 
 
-\begin{table}[h!]
-\scriptsize
+\begin{table*}[t]
+\centering
 \begin{tabular}{| l | l l l| l l l |}
 
 \hline
@@ -380,7 +394,7 @@ German &      &          &       &          &             & \\
 \end{tabular}
 \caption{NER Structured Prediction Results }
 \label{table:Results}
-\end{table}
+\end{table*}
 
 \section{Discussion of Results}
 
