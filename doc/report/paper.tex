@@ -101,21 +101,20 @@ Percent &   30\% \\
 \end{table}
 
 
-In considering \namedentity, it is important not to confuse them with non-specific entities. % reformulate
-The difference lies in the reference of the entity. A \namedentity refers to a specific, unique person/time/location, whereas
-mere mentions of entites can refer to multiple events, such as the time expression: \emph{In June}, which could refer to any year.
+In considering Named Entities, it is important not to confuse them with non-specific entities. % reformulate
+The difference lies in the reference of the entity. A Named Entity refers to a specific, unique person/time/location, whereas
+\emph{normal} entites can refer to multiple events, such as the time expression: \emph{In June}, which could refer to any year.
 Also, there could be a reference to a person, as in: \emph{the prof}, which in itself is not a \namedentity.
-However, it would be a deictic reference and point back to the mention of a real \namedentity, as in the following coreference chain: \\
+%However, it would be a deictic reference and point back to the mention of a real \namedentity, as in the following coreference chain: \\
 
-\ex. $ Prof.\; Bateman \Rightarrow he \Rightarrow the \; prof$ \label{cor}\\
-
-A \namedentity  can consist of more than one syntactic type. Syntactic types feature in syntactic rules that define how sentences can be build.
+%\ex. $ Prof.\; Bateman \Rightarrow he \Rightarrow the \; prof$ \label{cor}\\
+A Named Entity  can consist of more than one syntactic type. Syntactic types feature in syntactic rules that define how sentences can be build.
 Typical high-level rules include: \\
 $s \rightarrow np\quad vp $ \footnote{ A sentence s breaks down into a noun phrase np and a verb phrase vp} \\
 $ vp \rightarrow v\quad (np)$ \footnote{ A verb phrase vp consists of a verb followed by an optional np} \\
 
 Thus, sentences are often represented as syntactic trees that model the dependencies among the types.
-The overall type for a \namedentity is usually a noun phrase (np), which can be both simple and complex, meaning it can consist of a only a noun phrase or 
+The overall type for a Named Entity is usually a noun phrase (np), which can be both simple and complex, meaning it can consist of a only a noun phrase or 
 also additional other syntactic types, such as prepositional phrases (pp), that consist of a preposition and a noun phrase. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% - can be left out if not enough space/too detailed
 It is therefore a recursive definition and in theory, noun phrases can grow infinitely big, as shown by the following recursive rules:  % 
@@ -166,7 +165,7 @@ relation.
 \subsection{Issues in Named Entity Recognition}
 Among the most common challenges for NER is the issue of ambiguity, in particular \emph{Polysemy} and \emph{Metonymy} \cite{nadeau2007survey}.
 Polysemy refers to the property of a word that is a lexical representation having more than one possible meaning.
-\emph{Polysemy} could become an issue for NER when this lexical representation points to two different \namedentity types.
+\emph{Polysemy} could become an issue for NER when this lexical representation points to two different Named Entity types.
 This is quite frequent with \texttt{Person Names} and \texttt{Locations}, since many people are named after cities, such as \emph{Paris} or \emph{Georgia}. 
 Often the context will not be disambiguating as in example~\ref{ex:Georgia}.
 
@@ -180,13 +179,13 @@ Example \ref{ex:Lon} shows an instance of a \emph{whole-part}, where \emph{Londo
 
 \subsection{Methods employed for NER}
 For NER, there exist two general approaches: one is rule-based and the other statistical. 
-Rule-based methods make use of the underlying rules governing a language to extract \namedentity. 
+Rule-based methods make use of the underlying rules governing a language to extract Named Entities. 
 This approach, however, is rather high maintenance and requires extensive work by experts, such as computational linguists \cite{nadeau2007survey}.
 The results can be quite high in precision, but lack considerably in recall. % rules are partly language-dependent
 
 For statistical approaches, supervised-learning is the most common method applied in NER. 
 There are unsupervised methods, but they cannot compete with SL applications yet.
-For the shared task in 2002 \cite{tksintro}, 12 systems participated in the challenge and presented a wide variety of approaches to the \namedentity task.
+For the shared task in 2002 \cite{tksintro}, 12 systems participated in the challenge and presented a wide variety of approaches to the Named Entity task.
 The most successful system in the task, used AdaBoost applied to fixed-depth decision trees. Special attention was given to a variety of input features and the features were also
 partly adapted for each language with an F-score of 81.39 on the Spanish test set and 77.05 on the Dutch one.
 The second highest system \cite{Florian:2002:NER:1118853.1118863} employed three stacked
@@ -201,9 +200,6 @@ The best system in both German and English \cite{Florian:2003:NER:1119176.111920
 a maximum entropy, a transformation-based learning, and a hidden Markov model which are connected through a linear interpolation of the classifiers’ % combination scheme
 class probability distribution. Particular importance is also assigned to creating a rich feature space, also including a gazetteer feature. 
 This system gains a precision of 88.99\% on the English test set and  83.87\% on the German one. 
-More recent approaches to NER include Conditional Random Fields and Neural Networks.
-
-
 
 \subsection{CoNLL Data and Baseline Performance}
 The training and test data for Spanish \& Dutch was taken from the CoNLL Shared Task 2002 \cite{tksintro} and 
@@ -234,15 +230,15 @@ German &      31.86\%  & 28.89\% & 30.30  $\pm$ 1.3\% \\
 \end{table}
 
 \section{Structured Prediction}
-Structured Prediction \cite{strlearn} is a supervised-learning approach that maps an input \textbf{x} to an output \textbf{y}: \\
+Prediction \cite{strlearn} is a supervised-learning approach, where a system uses training data to learn the prediction
+of unseen data. It consequently maps an input \textbf{x} to an output \textbf{y}: \\
 
 $ x \rightarrow y $. \\
 
-Structured and  Non-structured prediction differ in the form of their output. 
-Non-structured output is atomic; it is binary prediction for a two-class problem and may corresponds to more than one of more than two possible labels for a 
-multiclass problem. 
-Structured Prediction gives back the prediction for the whole sequence. 
-For the sentence in \ref{PredEx1a}, it would return the corresponding labels combination in example~\ref{PredEx1b}. 
+Structured Prediction and Non-structured prediction differ in the form of their output.
+Non-Structured Prediction returns an atomic output: it is binary prediction for a two-class problem and one of many labels for a multiclass problem. 
+Structured Prediction, on the other hand, returns the prediction for a whole sequence. 
+For the sentence in \ref{PredEx1a}, it would return the corresponding label combination in example~\ref{PredEx1b}. 
 
 \begin{figure*}[ht]
 
@@ -255,10 +251,11 @@ For the sentence in \ref{PredEx1a}, it would return the corresponding labels com
 
 \end{figure*}
 
-Also, Structured Prediction is different from similar approaches through its combination of features and label interactions instead
+In comparison to other similar approaches, Structured Prediction sets itself apart through the combination of features and label interactions instead
 of concentrating mainly on label interactions like HMM or a rich set of features like local classifiers. 
 
 \section{Implementation}
+
 
 \subsection{Learning and Decoding}
 
@@ -267,7 +264,8 @@ Our implementation for the languages English, German, Dutch and Spanish is train
 
 As the predicted structure, we use the labels for every token in the full sentence. If a token is not a \namedentity, it is assigned the label \Oo.
 
-Learning is implemented using the Structured Perceptron algorithm. To avoid overfitting, we average the parameters after the last iteration \cite{collins2002discriminative}. For finding the best sequence of labels for a sentence, we use a modified version of the Viterbi algorithm. The algorithm finds the sequence $\hat{y}$, such that:
+Learning is implemented using the Structured Perceptron algorithm. To avoid overfitting, we average the parameters after the last iteration \cite{collins2002discriminative}. 
+For finding the best sequence of labels for a sentence, we use a modified version of the Viterbi algorithm. The algorithm finds the sequence $\hat{y}$, such that:
 
 \[
 \hat{y} = \argmax_{\mathbf{y} \in \mathcal{Y}^{n}} \sum_{i=1}^{n}\mathbf{w} \cdot \boldsymbol{f}(\mathbf{x}, i, y_{i-1}, y_{i})
@@ -333,7 +331,8 @@ than\emph{PER} and \emph{LOC} as presented in \ref{seq2}.
     
 
 \paragraph*{Gazetteer Features}
-A technique commonly used in Named Entity Recognition is the use of external lists of names of a specific type (gazetteer). In order to create gazetteer lists for the more common named entities, we use a \emph{SPARQL} query to retrieve entries from \emph{DBpedia} for all required languages.
+A technique commonly used in Named Entity Recognition is the use of external lists of names of a specific type (gazetteer). 
+In order to create gazetteer lists for the more common named entities, we use a \emph{SPARQL} query to retrieve entries from \emph{DBpedia} for all required languages.
 
 \begin{figure}
 \begin{verbatim}
