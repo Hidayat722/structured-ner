@@ -247,7 +247,7 @@ For the sentence in \ref{PredEx1a}, it would return the corresponding label comb
  
 \exg. \textbf{x:} The motor company ' Ford ' was founded and incorporated by Henry Ford .\\
       \textbf{y:}  O   O      O     0 ORG  O  O     O     O       O        O PER   PER  O  \label{PredEx1b} \\
-\caption{Input and predicted structure for the \namedentity task.}
+\caption{Input and predicted structure for the Named Entity Recognition task.}
 
 \end{figure*}
 
@@ -318,9 +318,7 @@ Lemma &  produced $\Rightarrow$ produce \\
 
 \paragraph*{Label Interaction Features}
 These features register which label has been assigned to the previous token and takes into account the most likely sequence. 
-Thus, for the sequence: ``Jack London went to New York'' the NE tag combination of \emph{PER} and \emph{PER} in example~\ref{seq1}is more likely 
-than\emph{PER} and \emph{LOC} as presented in \ref{seq2}.
-.
+Thus, for the sequence: ``Jack London went to New York'' the NE tag combination of \emph{PER} and \emph{PER} in example~\ref{seq1} is more likely than\emph{PER} and \emph{LOC} in \ref{seq2}.
 %current token and last label for prepositions or possessive ’s
 
 \exg. Jack London went to New York .\\
@@ -331,28 +329,36 @@ than\emph{PER} and \emph{LOC} as presented in \ref{seq2}.
     
 
 \paragraph*{Gazetteer Features}
-A technique commonly used in Named Entity Recognition is the use of external lists of names of a specific type (gazetteer). 
-In order to create gazetteer lists for the more common named entities, we use a \emph{SPARQL} query to retrieve entries from \emph{DBpedia} for all required languages.
+A technique commonly used in Named Entity Recognition is the use of external lists of names of a specific type (gazetteer). In order to create gazetteer lists for more common named entities, we use a \emph{SPARQL} query  (Figure~\ref{fig:sparql}) to automatically retrieve entries from DBpedia for all required languages from a public SPARQL endpoint.
 
 \begin{figure}
 \begin{verbatim}
-PREFIX dbp: <http://dbpedia.org/ontology/>
+PREFIX d: <http://dbpedia.org/ontology/>
 SELECT ?label
 WHERE {
-    ?entity rdf:type dbp:CLASS.
+    ?entity rdf:type   d:CLASS.
     ?entity rdfs:label ?label.
     FILTER (lang(?label) = LANGUAGE)
 }
 \end{verbatim}
 \caption{SPARQL query for retrieving names of the class \texttt{CLASS} from DBpedia.}
+\label{fig:sparql}
+
 \end{figure}
+
+Given the lists of entities retrieved, we then mark the longest matches of known entities in the input using a directed acyclic word graph. The mention is annotated with a reference to its list of origin, which is then used as a feature in our model. With this approach, it is not necessary to manually map the lists to target labels and the model can learn the reliability of each list.
+
+
+\subsection{Other Issues}
+
+One of the issues that we needed to address is the case of headlines. Headlines, mainly in the English data, are often written entirely in uppercase letters. This is problematic because from most of the data, the model might learn that a word in all uppercase letters is indicative of an organization (e.g.\ IBM, AIG, NYSE) and might thus mistake the tokens in headlines for organizations. We address this issue by converting all-uppercase headlines into their most likely original case (truecasing). To estimate the most likely case of a token from a monolingual corpus, we use the truecasing model from the Moses statistical machine translation system \cite{koehn2007moses}. 
 
 
 
 
 
 \section{Experiments and Evaluation}
-In the following section we present our experiments and the evalution of our system.
+In the following section, we present our experiments and the evaluation of our system.
 \subsection*{Experiments}
 
 
@@ -396,8 +402,6 @@ German &      &          &       &          &             & \\
 \end{table*}
 
 \section{Discussion of Results}
-
-\subsection*{Some Challenges} % maybe in previous section
 
 
 \section{Future Work \& Conclusion}
