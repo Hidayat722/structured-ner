@@ -14,9 +14,6 @@
 \usepackage{amsmath}
 \usepackage{qtree}
 \usepackage{textcomp}
-\usepackage{placeins}
-%\usepackage{float}
-
 
 %\usepackage{gb4e}
 
@@ -57,8 +54,6 @@
   {\tt Carmen@wordsmith.de} \\}
 
 \date{}
-%\restylefloat{figure} 
-%\restylefloat{table} 
 
 \DeclareMathOperator*{\argmax}{arg\,max}
 
@@ -66,16 +61,11 @@
 \newcommand{\Oo}{\texttt O} 
 
 
-
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Named Entity Recognition is a fundamental task for a wide variety of
-natural language processing applications, such as
-question answering, information retrieval.
-
-
+Named Entity Recognition is a task
 
 \end{abstract}
 
@@ -191,7 +181,7 @@ Example \ref{ex:Lon} shows an instance of a \emph{whole-part}, where \emph{Londo
 For NER, there exist two general approaches: one is rule-based and the other statistical. 
 Rule-based methods make use of the underlying rules governing a language to extract Named Entities. 
 This approach, however, is rather high maintenance and requires extensive work by experts, such as computational linguists \cite{nadeau2007survey}.
-The results are quite reasonable, but not readily portable to other domains or languages. % rules are partly language-dependent
+The results can be quite high in precision, but lack considerably in recall. % rules are partly language-dependent
 
 For statistical approaches, supervised-learning is the most common method applied in NER. 
 There are unsupervised methods, but they cannot compete with SL applications yet.
@@ -220,8 +210,8 @@ In 2002 and 2003, the task was Named Entity Recognition.
 In both years, the baseline rate for the individual languages was produced by a system, that had a unique class in the training data. 
 In case that a phrase was part of more than one entity, the system would choose the longest one \cite{TjongKimSang:2003:ICS:1119176.1119195}. 
 Table \ref{table:Base} shows the baseline for the four different languages.  
-The data is annotated with part-of-speech tags and named-entity tags, as well as Bio-tags that indicate the position in the Named Entity. %put in ``tokenized, chunked''
-Our approach is based on \cite{strlearn}, of the group that won the challenge for Spanish and Dutch in 2002. 
+The data is annotated with part-of-speech tags and named-entity tags, as well as BIO-tags that indicate the position in the Named Entity. %put in ``tokenized, chunked''
+%Our approach is based on \cite{strlearn}, of the group that won the challenge for Spanish and Dutch in 2002. 
 
 
 \begin{table}[h!]
@@ -238,7 +228,6 @@ German &      31.86\%  & 28.89\% & 30.30  $\pm$ 1.3\% \\
 \caption{NER Baseline}
 \label{table:Base}
 \end{table}
-
 
 \section{Structured Prediction}
 Prediction \cite{Taskar:2005:LSP:1102351.1102464} is a supervised-learning approach, where a system uses training data to learn the prediction
@@ -309,7 +298,7 @@ Node features are features that only depend on the current token (node): the \em
 
 Table~\ref{table:node} shows the various node features with an example respectively.
 
-\begin{table}[!h]
+\begin{table}[h!]
 \begin{tabular}{| l | l |}
 \hline
 \bf Feature & \bf Example \\
@@ -368,11 +357,28 @@ One of the issues that we needed to address is the case of headlines. Headlines,
 
 
 
-%\FloatBarrier 
+
 \section{Experiments and Evaluation}
-\begin{table*}[t!]
-\scriptsize
+
+\subsection{Experiments}
+
+\subsubsection{Influence of feature sets}
+
+In the following, we show the influence of each of the three sets of features on the resulting accuracy.
+
+%INSERT MATLAB PIC HERE
+
+\subsubsection{Extending monolingual gazetteers}
+
+% RESULTS FOR DUTCH
+
+
+\subsection{Evaluation}
+
+\begin{table*}[t]
+\centering
 \begin{tabular}{| l | l l l| l l l |}
+
 \hline
 \bf Language & \multicolumn{3}{c|}{ \bf Test A}&\multicolumn{3}{c|}{ \bf Test B}\\
              & Precision & Recall & $F_1$ & Precision & Recall & $F_1$ \\ \hline
@@ -385,38 +391,29 @@ German &      &          &       &          &             & \\
 \caption{NER Structured Prediction Results }
 \label{table:Results}
 \end{table*}
-In the following section, we present our experiments and the evaluation of our system.
-\subsection*{Experiments}
 
+For the evaluation of the system, we used the standard measure of \emph{precision} and \emph{recall} as shown below.
 
-\subsection*{Evaluation}
+\begin{align*}
+     precision =  \frac{  |\,gold\,\cap\,predicted\,| }{ |\,predicted\,| } \\
+     recall = \frac{ |\,gold\,\cap\,predicted\,| }{ |\,gold\,| }
+\end{align*}
 
+Precision is the percentage of Named Entities found by the system that are correct. Recall is the percentage of Named Entities present in the corpus that were found by the system. A Named Entity is only deemed correct if it is an exact match for the corresponding data file. The general formula for the \emph{F-Score} is shown below. Since we consider \emph{precision} and \emph{recall} as equally important, we use the $F_{1}$ score, which is the harmonic mean of precision and recall.
 
-For the evaluation of the system we used \emph{Precision} and \emph{Recall} as shown in \ref{Precision} and \ref{Recall} respectively.
-Precision is the percentage of Named Entities found by the system that are correct. Recall represents the the percentage of 
-named entites present in the corpus that were found by the system. 
-A named entity is only deemed correct if it is an exact match for the corresponding data file.
-The general formula for the \emph{F-Score} is shown in \ref{Fscore}. Since we rate both \emph{Precision} and \emph{Recall} evenly, we 
-use the harmonic mean as shown in \ref{F1}.
-
-
-\ex. \emph{Precision} = $ \frac{gold\; tag \bigcap predicted}{predicted}$ \label{Precision}\\
-
-
-\ex. \emph{Recall} = $ \frac{gold \;tag \bigcap predicted}{gold\; tag}$ \label{Recall}\\
-
-
-\ex. $F_{\beta}$ = $ (1+\beta^2)*\frac{precision *recall}{\beta^2* precision + recall}$ \label{Fscore}\\
-
-\ex. $F_1$ = $ 2*\frac{precision *recall}{precision + recall}$ \label{F1}\\
+\begin{align*}
+  F_{\beta} &=  (1+\beta^2)*\frac{precision *recall}{\beta^2* precision + recall}\\
+  F_1       &= 2*\frac{precision *recall}{precision + recall}
+\end{align*}
 
 
 
-\FloatBarrier
-\section{Discussion of Results}
 
 
-\section{Future Work \& Conclusion}
+\section{Discussion}
+
+
+\section{Future Work and Conclusion}
 
 This paper presented a system for \namedentity Recognition using Structured Prediction. 
 
