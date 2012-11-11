@@ -191,7 +191,7 @@ Often, context is not sufficient to disambiguate such names as in example~\ref{e
 
 Initially, rule-based methods to extract Named Entities were more common. These make use of the underlying rules governing a language.
 This approach, however, is very high in maintenance and requires extensive work by experts, such as computational linguists \cite{nadeau2007survey}.
-The results achieved were reasonably good, but presents some flaws since constructed rules depend on the language and  the domain and are not readily portable. 
+The results achieved were reasonably good, but presented some flaws since constructed rules depend on the language and  the domain and are not readily portable. 
 This is the reason, why nowadays machine learning methods are more attractive for this task as they offer more and faster adaptability. 
 
 For ML, supervised learning is the most common method applied in NER.
@@ -208,10 +208,12 @@ English and the two highest results in German \cite{TjongKimSang:2003:ICS:111917
 The best system in both German and English \cite{Florian:2003:NER:1119176.1119201} used a combination of classifiers: a robust linear classifier, 
 a maximum entropy classifier, a transformation-based learner, and a hidden Markov model. The models were connected through a linear interpolation of the classifiers’ % combination scheme
 class probability distribution. Particular importance is also assigned to creating a rich feature space, also including a gazetteer feature. 
-This system achieves a precision of 88.99\% on the English test set and 83.87\% German.
-Another, more recent approach involved the use of Deep Belief Nets for NER in Chinese \cite{Chen:2010:UDB:1870457.1870473}.
-
-
+This system achieves a F-score of 88.76\% on the English test set and 72.41\% on the German one.
+Another, more recent approach involved the use of Deep Belief Nets (DBN) for NER in Chinese \cite{Chen:2010:UDB:1870457.1870473}.
+Due to the special characteristics of Chinese of lacking boundary information, character-based methods are generally given preference over word-based methods.
+In their application for NER, DBN  is used to automatically discover the complicated composite effects of the characters to the NE categories from the input data. 
+The paper reports DBN's strong representative power in regard to detection of more complicated and efficient features. With a precision of 91.45\%,
+it achieves better performance than a SVM and a BP neural networks.
 
 \subsection{CoNLL Data and Baseline Performance}
 The training and test data for Spanish and Dutch was taken from the CoNLL Shared Task 2002 \cite{tksintro} and 
