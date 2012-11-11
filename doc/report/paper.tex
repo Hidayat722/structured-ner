@@ -15,6 +15,7 @@
 \usepackage{qtree}
 \usepackage{textcomp}
 \usepackage{todonotes}
+\usepackage{placeins}
 
 
 %\usepackage{gb4e}
@@ -395,8 +396,11 @@ Moses statistical machine translation system \cite{koehn2007moses}.
 \subsubsection{Influence of feature sets}
 
 In the following, we show the influence of each of the three sets of features on the resulting accuracy.
+\FloatBarrier
+\begin{figure*}[t!]
+ \includegraphics[scale=0.5]{Plot.png}
+\end{figure*}
 
-%INSERT MATLAB PIC HERE
 
 \subsubsection{Extending monolingual gazetteers}
 
@@ -445,7 +449,15 @@ is shown below. Since we consider \emph{precision} and \emph{recall} as equally 
 
 \section{Future Work and Conclusion}
 
-This paper presented a system for \namedentity Recognition using Structured Prediction. 
+In this paper, we presented a \namedentity~Recognition system based on the concept of Structured Prediction. 
+While the system does not achieve state-of-the-art performance on the CoNLL shared task, we believe that the results 
+are reasonable for the following reasons. We are using a simple model, which has the advantage that the final application 
+will be fast and it is easily extendable. In contrast to the best systems in the CoNLL task, we also do not use ensemble 
+learning methods and we use the same set of features for all languages, which enables simple extension of the system to additional languages.
+
+
+
+ 
 
 
 \bibliographystyle{acl}
