@@ -442,8 +442,8 @@ For the evaluation of the system, we used the standard measure of \emph{precisio
 \end{align*}
 
 Precision is the percentage of Named Entities found by the system that are correct. Recall is the percentage of Named Entities present in the corpus that were 
-found by the system. A Named Entity is only deemed correct if it is an exact match for the corresponding data file. The general formula for the \emph{F-Score} 
-is shown below. Since we consider \emph{precision} and \emph{recall} as equally important, we use the $F_{1}$ score, which is the harmonic mean of precision and recall.
+found by the system. A Named Entity is only deemed correct if it is an exact match for the corresponding data file. The general formula for the \emph{F-score} 
+is shown below. Since we consider precision and recall as equally important, we use the $F_{1}$-score, which is the harmonic mean of precision and recall.
 \begin{align*}
   F_{\beta} &=  (1+\beta^2)*\frac{precision *recall}{\beta^2* precision + recall}\\
   F_1       &= 2*\frac{precision *recall}{precision + recall}\\
@@ -464,9 +464,6 @@ are reasonable for the following reasons: We are using a simple model, which has
 will be fast and it is easily extendable. In contrast to the best systems in the CoNLL task, we also do not use ensemble 
 learning methods and we use the same set of features for all languages, which enables simple extension of the system to additional languages.
 
-
-
- 
 
 
 \bibliographystyle{acl}

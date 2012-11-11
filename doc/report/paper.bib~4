@@ -1,0 +1,101 @@
+@comment{x-kbibtex-personnameformatting=<%l><, %f>}
+
+%% This BibTeX bibliography file was created using BibDesk.
+%% http://bibdesk.sourceforge.net/
+
+%% Created for Jo Daiber at 2012-10-15 09:57:33 +0200 
+
+%% Saved with string encoding Unicode (UTF-8) 
+
+@inproceedings{collins2002discriminative,
+	author = "Collins, M.",
+	booktitle = "{Proceedings of the ACL-02 conference on Empirical methods in natural language processing-Volume 10}",
+	date-added = "2012-10-15 09:57:21 +0200",
+	date-modified = "2012-10-15 09:57:21 +0200",
+	organization = "Association for Computational Linguistics",
+	pages = "1--8",
+	title = "{Discriminative training methods for hidden markov models: Theory and experiments with perceptron algorithms}",
+	year = "2002"
+}
+
+@inproceedings{crammer2005scalable,
+	author = "Crammer, K. and McDonald, R. and Pereira, F.",
+	booktitle = "{NIPS Workshop on Learning With Structured Outputs}",
+	date-added = "2012-10-15 09:39:44 +0200",
+	date-modified = "2012-10-15 09:39:44 +0200",
+	title = "{Scalable large-margin online learning for structured classification}",
+	year = "2005"
+}
+
+@article{nadeau2007survey,
+	author = "Nadeau, D. and Sekine, S.",
+	date-added = "2012-10-14 12:39:19 +0200",
+	date-modified = "2012-10-14 12:39:19 +0200",
+	journal = "Lingvisticae Investigationes",
+	number = "1",
+	pages = "3--26",
+	publisher = "John Benjamins publishing company",
+	title = "{A survey of named entity recognition and classification}",
+	volume = "30",
+	year = "2007"
+}
+
+@article{goldberglearning,
+	author = "Goldberg, Y. and Elhadad, M.",
+	date-added = "2012-10-14 12:38:58 +0200",
+	date-modified = "2012-10-14 12:38:58 +0200",
+	title = "{Learning Sparser Perceptron Models}"
+}
+
+@misc{strlearn,
+	author = "Carreras, Xavier",
+	date-added = "2012-09-17 11:45:16 +0200",
+	date-modified = "2012-09-17 11:56:14 +0200",
+	howpublished = "Lecture at Lisbon Machine Learning School 2012, \url{http://lxmls.it.pt/strlearn.pdf}",
+	title = "{Learning Structured Predictors}",
+	year = "2012"
+}
+
+@inproceedings{TjongKimSang:2003:ICS:1119176.1119195,
+	acmid = "1119195",
+	address = "Stroudsburg, PA, USA",
+	author = "{Tjong Kim Sang}, Erik F. and {De Meulder}, Fien",
+	bdsk-url-1 = "http://dx.doi.org/10.3115/1119176.1119195",
+	booktitle = "{Proceedings of the seventh conference on Natural language learning at HLT-NAACL 2003 - Volume 4}",
+	doi = "10.3115/1119176.1119195",
+	location = "Edmonton, Canada",
+	numpages = "6",
+	pages = "142--147",
+	publisher = "Association for Computational Linguistics",
+	series = "{CONLL '03}",
+	title = "{Introduction to the CoNLL-2003 shared task: language-independent named entity recognition}",
+	url = "http://dx.doi.org/10.3115/1119176.1119195",
+	year = "2003"
+}
+
+@inproceedings{Collins:2002:DTM:1118693.1118694,
+	acmid = "1118694",
+	address = "Stroudsburg, PA, USA",
+	author = "Collins, Michael",
+	bdsk-url-1 = "http://dx.doi.org/10.3115/1118693.1118694",
+	booktitle = "{Proceedings of the ACL-02 conference on Empirical methods in natural language processing - Volume 10}",
+	doi = "10.3115/1118693.1118694",
+	numpages = "8",
+	pages = "1--8",
+	publisher = "Association for Computational Linguistics",
+	series = "{EMNLP '02}",
+	title = "{Discriminative training methods for hidden Markov models: theory and experiments with perceptron algorithms}",
+	url = "http://dx.doi.org/10.3115/1118693.1118694",
+	year = "2002"
+}
+
+@inproceedings{tksintro,
+	author = "{Tjong Kim Sang}, Erik F.",
+	booktitle = "{Proceedings of CoNLL-2002}",
+	editors = "Dan Roth and Antal van den Bosch",
+	pages = "155--158",
+	publisher = "Taipei, Taiwan",
+	title = "{Introduction to the CoNLL-2002 Shared Task: Language-Independent Named Entity Recognition}",
+	year = "2002"
+}
+
