@@ -256,12 +256,17 @@ For the sentence in \ref{PredEx1a}, it would return the corresponding label comb
 
 \begin{figure*}[ht]
 
+
+
 \ex. \emph{The motor company 'Ford' was founded and incorporated  by Henry Ford.} \label{PredEx1a}
 %The motor company 'Ford' was founded and incorporated  by Henry Ford on June, 16th 1903.
  
 \exg. \textbf{x:} The motor company ' Ford ' was founded and incorporated by Henry Ford .\\
       \textbf{y:}  O   O      O     0 ORG  O  O     O     O       O        O PER   PER  O  \label{PredEx1b} \\
+
+
 \caption{Input and predicted structure for the Named Entity Recognition task.}
+%\label{fig:predxy}
 
 \end{figure*}
 
@@ -277,11 +282,10 @@ In this section, we describe our implementation, the learning and decoding algor
 % problem external data / use Dbpedia - gazetteer
 Our implementation for the languages English, German, Dutch and Spanish is trained and tested on the CoNLL 2003 and CoNLL 2002 data sets respectively. 
 
-As the predicted structure, we use the labels for every token in the full sentence. If a token is not a \namedentity, it is assigned the label \Oo.
+As the predicted structure, we use the labels for every token in the full sentence (see Figure~3). If a token is not a \namedentity, it is assigned the label \Oo.
 
 Learning is implemented using the Structured Perceptron algorithm. To avoid overfitting, we average the parameters after the last iteration \cite{collins2002discriminative}. 
 For finding the best sequence of labels for a sentence, we use a modified version of the Viterbi algorithm. The algorithm finds the sequence $\hat{y}$, such that:
-
 \[
 \hat{y} = \argmax_{\mathbf{y} \in \mathcal{Y}^{n}} \sum_{i=1}^{n}\mathbf{w} \cdot \boldsymbol{f}(\mathbf{x}, i, y_{i-1}, y_{i})
 \]
@@ -290,7 +294,6 @@ This sequence can be computed efficiently in $ O( N^2 |\mathbf{x}| ) $ via dynam
 As a first step, the trellis has to be constructed, then we have to find the $ a \in \mathcal{Y}$ in the 
 last column of the trellis with maximal score $\delta_n(a)$. From this, the sequence can be recovered via back-tracking trough the trellis. 
 The score of the best sequence ending in $a$ is:
-
 \[
 \delta_i(a) = \max_{\mathbf{y} \in \mathcal{Y}^{n}, y_n = a} \sum_{j=1}^{n}{\mathbf{w} \cdot \boldsymbol{f}(\mathbf{x}, j, y_{j-1}, y_{j})}
 \]
@@ -366,7 +369,7 @@ Given the lists of entities retrieved, we then mark the longest matches of known
 
 \subsection{Other Issues}
 
-One of the issues that we needed to address is the case of headlines. Headlines, mainly in the English data, are often written entirely in uppercase letters. This is problematic because from most of the data, the model might learn that a word in all uppercase letters is indicative of an organization (e.g.\ IBM, AIG, NYSE) and might thus mistake the tokens in headlines for organizations. We address this issue by converting all-uppercase headlines into their most likely original case (truecasing). To estimate the most likely case of a token from a monolingual corpus, we use the truecasing model from the Moses statistical machine translation system \cite{koehn2007moses}. 
+One of the issues that we needed to address is the case of headlines. Headlines, mainly in the English data, are often written entirely in uppercase letters. This is problematic because from the data, the model might learn that a word in all uppercase letters is indicative of an organization (e.g.\ IBM, AIG, NYSE) and might thus mistake the tokens in headlines for organizations. We address this issue by converting all-uppercase headlines into their most likely original case (truecasing). To estimate the most likely case of a token from a monolingual corpus, we use the truecasing model from the Moses statistical machine translation system \cite{koehn2007moses}. 
 
 
 
@@ -383,6 +386,8 @@ In the following, we show the influence of each of the three sets of features on
 %INSERT MATLAB PIC HERE
 
 \subsubsection{Extending monolingual gazetteers}
+
+The experiment above has shown that the gazetteer features are beneficial for Dutch. In this experiment, we want to explore whether the gazetteer features can be improved by extending the monolingual gazetteer with entries from other languages. For this, we compare the Dutch-only gazetteer with a gazetteer extended with English data.
 
 % RESULTS FOR DUTCH
 
@@ -427,7 +432,7 @@ Precision is the percentage of Named Entities found by the system that are corre
 
 \section{Future Work and Conclusion}
 
-This paper presented a system for \namedentity Recognition using Structured Prediction. 
+In this paper, we presented a \namedentity~Recognition system based on the concept of Structured Prediction. While the system does not achieve state-of-the-art performance on the CoNLL shared task, we believe that the results are res
 
 
 \bibliographystyle{acl}
