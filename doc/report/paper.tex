@@ -247,16 +247,21 @@ German &      31.86\%  & 28.89\% & 30.30  $\pm$ 1.3\% \\
 \label{table:Base}
 \end{table}
 
-\section{Structured Prediction}
-Prediction \cite{Taskar:2005:LSP:1102351.1102464} is a supervised-learning approach, where a system uses training data to learn the prediction
-of unseen data. It consequently maps an input \textbf{x} to an output \textbf{y}: \\
 
-$ x \rightarrow y $. \\
 
-Structured Prediction and Non-structured prediction differ in the form of their output.
-Non-Structured Prediction returns an atomic output: it is binary prediction for a two-class problem and one of many labels for a multiclass problem. 
-Structured Prediction, on the other hand, returns the prediction for a whole sequence. 
-For the sentence in \ref{PredEx1a}, it would return the corresponding label combination in example~\ref{PredEx1b}. 
+\section{Implementation}
+In this section, we describe our implementation, the learning and decoding algorithm and the features we used.
+
+\subsection{Structured Prediction}
+Structured Prediction \cite{Taskar:2005:LSP:1102351.1102464} is an approach to supervised learning that is often used in natural language processing. Assuming our goal is to learn a function ${ \boldsymbol{f}\colon \mathcal{X}\to\mathcal{Y} }$, in structured prediction, we assume that $y \in \mathcal{Y}$ is not atomic (e.g.\ binary prediction), but that the prediction is a structure (e.g.\ a syntactic tree for a sentence or a sequence of part-of-speech tags). 
+
+The structured prediction approach we follow has advantages over traditional approaches like hidden Markov models. While a hidden Markov model can model interactions between labels as transition probabilities, it is restricted to tokens and Maximum Likelihood learning. Another alternative would be to use a classifier for each token and then concatenate the results, however this approach would not take into account label interactions. With structured prediction, we can use features and model label interactions at the same time.
+
+\subsection{Learning and Decoding}
+
+% problem external data / use Dbpedia - gazetteer
+Our implementation for the languages English, German, Dutch and Spanish is trained and tested on the CoNLL 2003 and CoNLL 2002 data sets respectively. 
+
 
 \begin{figure*}[ht]
 
@@ -269,17 +274,6 @@ For the sentence in \ref{PredEx1a}, it would return the corresponding label comb
 
 \end{figure*}
 
-In comparison to other similar approaches, Structured Prediction sets itself apart through the combination of features and label interactions instead
-of concentrating mainly on label interactions like HMM or a rich set of features like local classifiers. 
-
-\section{Implementation}
-In this section, we describe our implementation, the learning and decoding algorithm and the features we used.
-
-
-\subsection{Learning and Decoding}
-
-% problem external data / use Dbpedia - gazetteer
-Our implementation for the languages English, German, Dutch and Spanish is trained and tested on the CoNLL 2003 and CoNLL 2002 data sets respectively. 
 
 As the predicted structure, we use the labels for every token in the full sentence. If a token is not a \namedentity, it is assigned the label \Oo.
 
