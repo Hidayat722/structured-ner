@@ -15,6 +15,7 @@
 \usepackage{qtree}
 \usepackage{textcomp}
 \usepackage{todonotes}
+\usepackage{placeins}
 
 
 %\usepackage{gb4e}
@@ -112,19 +113,19 @@ Also, there could be a reference to a person, as in: \emph{the prof}, which in i
 %However, it would be a deictic reference and point back to the mention of a real \namedentity, as in the following coreference chain: \\
 
 %\ex. $ Prof.\; Bateman \Rightarrow he \Rightarrow the \; prof$ \label{cor}\\
-A Named Entity  can consist of more than one syntactic type. Syntactic types feature in syntactic rules that define how sentences can be build.
+A Named Entity can consist of more than one syntactic type. Syntactic types feature in syntactic rules that define how sentences can be build.
 Typical high-level rules include:
 
-\ex. $\text{S} \rightarrow \text{NP}\  \text{VP} $ \footnote{ A sentence S breaks down into a noun phrase NP and a verb phrase VP} \\
-$ \text{VP} \rightarrow \text{V}\  (\text{NP})$ \footnote{ A verb phrase VP consists of a verb followed by an optional NP} 
+\ex. $\text{S} \rightarrow \text{NP}\  \text{VP} $ \footnote{ A sentence (S) breaks down into a noun phrase (NP) and a verb phrase (VP)} \\
+$ \text{VP} \rightarrow \text{V}\  (\text{NP})$ \footnote{ A verb phrase (VP) consists of a verb followed by an optional NP} 
 
 Thus, sentences are often represented as syntactic trees that model the dependencies among the types.
 The overall type for a Named Entity is usually a noun phrase (NP), which can be both simple and complex, meaning it can consist of a only a noun phrase or 
 also additional other syntactic types, such as prepositional phrases (PP), that consist of a preposition and a noun phrase. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% - can be left out if not enough space/too detailed
-It is therefore a recursive definition and in theory, noun phrases can grow infinitely big, as shown by the following recursive rules:  % 
+It is therefore a recursive definition and in theory, noun phrases can grow infinitely big, as shown by the recursive rules in example~\ref{recRules}.  % 
 
-\ex. $ \text{NP} \rightarrow \text{NP} \  \text{PP}$ \\
+\ex. $ \text{NP} \rightarrow \text{NP} \  \text{PP}$ \\ \label{recRules}
      $ \text{PP} \rightarrow \text{P} \  \text{NP}$ 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
@@ -136,7 +137,7 @@ It is therefore a recursive definition and in theory, noun phrases can grow infi
 
 \subsection{Issues in Named Entity Recognition}
 
-To illustrate linguistically motivated problems in NER, we consider the following problem, which is addressed in our model by a feature.
+In order to illustrate linguistically motivated problems in NER, we consider the following problem, which is addressed in our model by a feature.
 
 We distinguish between PP-complements and PP-modifiers. Complements are non-optional elements of the noun phrase as they are
 inherent to the meaning of the entity. Modifiers add to the description and are optional.
@@ -144,7 +145,8 @@ The syntactic trees in \ref{fig:bos} and \ref{fig:nirvana} show two examples for
 \emph{N'} signals an intermediate state in the syntactic tree where modifiers can be joined.
 In \ref{fig:bos}, (\emph{Bank of Scotland}), the PP \emph{of Scotland} is attached directly; it is central to the meaning, 
 whereas in \ref{fig:nirvana} both \emph{Kurt Cobain} and \emph{Nirvana} constitute own concepts and are joined at a later level to express this distance.
-Thus, in Named Entity Recognition, we want to be able to capture types of the first example as a single \namedentity~(\emph{Bank of Scotland}), but treat the second example as two separate Named Entities (\emph{Kurt Cobain} and \emph{Nirvana}).
+Thus, in Named Entity Recognition, we want to be able to capture types of the first example as a single \namedentity~(\emph{Bank of Scotland}), 
+but treat the second example as two separate Named Entities (\emph{Kurt Cobain} and \emph{Nirvana}).
 
 % \begin{figure}
 % \begin{enumerate}
@@ -200,7 +202,7 @@ For the CoNLL shared task in 2002 \cite{tksintro}, 12 systems participated in th
 The most successful system used AdaBoost applied to fixed-depth decision trees. Special attention was given to a variety of input features and the features were also
 partly adapted for each language with an F-score of 81.39 on the Spanish test set and 77.05 on Dutch.
 The second best system \cite{Florian:2002:NER:1118853.1118863} employed three stacked
-learners (transformation-based learning for obtaining base-level non-typed Named Entites, Snow for improving the quality of these entities and the forward-backward algorithm for finding the categories for the Named Entites), where the combination of these three algorithms substantially outperformed any subset of them, with an F-score of 79.05 on the Spanish test set and 74.99 on Dutch.
+learners (transformation-based learning for obtaining base-level non-typed Named Entites, sparse network of winnows (Snow) for improving the quality of these entities and the forward-backward algorithm for finding the categories for the Named Entites), where the combination of these three algorithms substantially outperformed any subset of them, with an F-score of 79.05 on the Spanish test set and 74.99 on Dutch.
 Among the most prominent algorithms in NER are maximum entropy models, whose benefit in regard to this task became most apparent in CoNLL 2003. 
 For CoNLL 2003, five of the sixteen systems used this statistical learning method and three used maximum entropy models in isolation.
 Maximum entropy models appear to be a suitable choice for the NER task, since systems using this approach were ranked among the three highest results in 
@@ -256,17 +258,12 @@ For the sentence in \ref{PredEx1a}, it would return the corresponding label comb
 
 \begin{figure*}[ht]
 
-
-
 \ex. \emph{The motor company 'Ford' was founded and incorporated  by Henry Ford.} \label{PredEx1a}
 %The motor company 'Ford' was founded and incorporated  by Henry Ford on June, 16th 1903.
  
 \exg. \textbf{x:} The motor company ' Ford ' was founded and incorporated by Henry Ford .\\
       \textbf{y:}  O   O      O     0 ORG  O  O     O     O       O        O PER   PER  O  \label{PredEx1b} \\
-
-
 \caption{Input and predicted structure for the Named Entity Recognition task.}
-%\label{fig:predxy}
 
 \end{figure*}
 
@@ -282,7 +279,7 @@ In this section, we describe our implementation, the learning and decoding algor
 % problem external data / use Dbpedia - gazetteer
 Our implementation for the languages English, German, Dutch and Spanish is trained and tested on the CoNLL 2003 and CoNLL 2002 data sets respectively. 
 
-As the predicted structure, we use the labels for every token in the full sentence (see Figure~3). If a token is not a \namedentity, it is assigned the label \Oo.
+As the predicted structure, we use the labels for every token in the full sentence. If a token is not a \namedentity, it is assigned the label \Oo.
 
 Learning is implemented using the Structured Perceptron algorithm. To avoid overfitting, we average the parameters after the last iteration \cite{collins2002discriminative}. 
 For finding the best sequence of labels for a sentence, we use a modified version of the Viterbi algorithm. The algorithm finds the sequence $\hat{y}$, such that:
@@ -346,10 +343,18 @@ For the sequence ``Jack London went to New York'', the label combination of \emp
 
 \exg. Jack London went to New York . \\ 
       PER  LOC    O    O  LOC LOC O \\\label{seq2}
+      
+In addition, there is a prepositional phrase (PP) attachment feature, that registers the existence of a this attachment, that would
+result in a break of the sequence as in
+
+\exg. Bank of Scotland . \\ 
+      ORG   0    ORG   0  \\\label{seq3}
     
 
 \paragraph*{Gazetteer Features}
-A technique commonly used in Named Entity Recognition is the use of external lists of names of a specific type (gazetteer). In order to create gazetteer lists for more common named entities, we use a \emph{SPARQL} query  (Figure~\ref{fig:sparql}) to automatically retrieve entries from DBpedia for all required languages from a public SPARQL endpoint.
+A technique commonly used in Named Entity Recognition is the use of external lists of names of a specific type (gazetteer). 
+In order to create gazetteer lists for more common named entities, we use a \emph{SPARQL} query  (Figure~\ref{fig:sparql}) 
+to automatically retrieve entries from DBpedia for all required languages from a public SPARQL endpoint.
 
 \begin{figure}
 \begin{verbatim}
@@ -366,12 +371,19 @@ WHERE {
 
 \end{figure}
 
-Given the lists of entities retrieved, we then mark the longest matches of known entities in the input using a directed acyclic word graph. The mention is annotated with a reference to its list of origin, which is then used as a feature in our model. With this approach, it is not necessary to manually map the lists to target labels and the model can learn the reliability of each list.
+Given the lists of entities retrieved, we then mark the longest matches of known entities in the input using a directed acyclic word graph. 
+The mention is annotated with a reference to its list of origin, which is then used as a feature in our model. With this approach, it is not 
+necessary to manually map the lists to target labels and the model can learn the reliability of each list.
 
 
 \subsection{Other Issues}
 
-One of the issues that we needed to address is the case of headlines. Headlines, mainly in the English data, are often written entirely in uppercase letters. This is problematic because from the data, the model might learn that a word in all uppercase letters is indicative of an organization (e.g.\ IBM, AIG, NYSE) and might thus mistake the tokens in headlines for organizations. We address this issue by converting all-uppercase headlines into their most likely original case (truecasing). To estimate the most likely case of a token from a monolingual corpus, we use the truecasing model from the Moses statistical machine translation system \cite{koehn2007moses}. 
+One of the issues that we needed to address is the case of headlines. Headlines, mainly in the English data, are often written entirely 
+in uppercase letters. This is problematic because from most of the data, the model might learn that a word in all uppercase letters is 
+indicative of an organization (e.g.\ IBM, AIG, NYSE) and might thus mistake the tokens in headlines for organizations. 
+We address this issue by converting all-uppercase headlines into their most likely original case (truecasing). 
+To estimate the most likely case of a token from a monolingual corpus, we use the truecasing model from the 
+Moses statistical machine translation system \cite{koehn2007moses}. 
 
 
 
@@ -384,12 +396,13 @@ One of the issues that we needed to address is the case of headlines. Headlines,
 \subsubsection{Influence of feature sets}
 
 In the following, we show the influence of each of the three sets of features on the resulting accuracy.
+\FloatBarrier
+\begin{figure*}[t!]
+ \includegraphics[scale=0.5]{Plot.png}
+\end{figure*}
 
-%INSERT MATLAB PIC HERE
 
 \subsubsection{Extending monolingual gazetteers}
-
-The experiment above has shown that the gazetteer features are beneficial for Dutch. In this experiment, we want to explore whether the gazetteer features can be improved by extending the monolingual gazetteer with entries from other languages. For this, we compare the Dutch-only gazetteer with a gazetteer extended with English data.
 
 % RESULTS FOR DUTCH
 
@@ -419,7 +432,9 @@ For the evaluation of the system, we used the standard measure of \emph{precisio
      recall = \frac{ |\,gold\,\cap\,predicted\,| }{ |\,gold\,| }
 \end{align*}
 
-Precision is the percentage of Named Entities found by the system that are correct. Recall is the percentage of Named Entities present in the corpus that were found by the system. A Named Entity is only deemed correct if it is an exact match for the corresponding data file. The general formula for the \emph{F-Score} is shown below. Since we consider \emph{precision} and \emph{recall} as equally important, we use the $F_{1}$ score, which is the harmonic mean of precision and recall.
+Precision is the percentage of Named Entities found by the system that are correct. Recall is the percentage of Named Entities present in the corpus that were 
+found by the system. A Named Entity is only deemed correct if it is an exact match for the corresponding data file. The general formula for the \emph{F-Score} 
+is shown below. Since we consider \emph{precision} and \emph{recall} as equally important, we use the $F_{1}$ score, which is the harmonic mean of precision and recall.
 \begin{align*}
   F_{\beta} &=  (1+\beta^2)*\frac{precision *recall}{\beta^2* precision + recall}\\
   F_1       &= 2*\frac{precision *recall}{precision + recall}\\
@@ -434,7 +449,15 @@ Precision is the percentage of Named Entities found by the system that are corre
 
 \section{Future Work and Conclusion}
 
-In this paper, we presented a \namedentity~Recognition system based on the concept of Structured Prediction. While the system does not achieve state-of-the-art performance on the CoNLL shared task, we believe that the results are reasonable for the following reasons: We are using a simple model, which has the advantage that the final application will be fast and it is easily extendable. In contrast to the best systems in the CoNLL task, we also do not use ensemble learning methods and we use the same set of features for all languages, which enables simple extension of the system to additional languages.
+In this paper, we presented a \namedentity~Recognition system based on the concept of Structured Prediction. 
+While the system does not achieve state-of-the-art performance on the CoNLL shared task, we believe that the results 
+are reasonable for the following reasons. We are using a simple model, which has the advantage that the final application 
+will be fast and it is easily extendable. In contrast to the best systems in the CoNLL task, we also do not use ensemble 
+learning methods and we use the same set of features for all languages, which enables simple extension of the system to additional languages.
+
+
+
+ 
 
 
 \bibliographystyle{acl}
