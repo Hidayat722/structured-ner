@@ -14,6 +14,8 @@
 \usepackage{amsmath}
 \usepackage{qtree}
 \usepackage{textcomp}
+\usepackage{todonotes}
+
 
 %\usepackage{gb4e}
 
@@ -65,7 +67,8 @@
 \maketitle
 
 \begin{abstract}
-Named Entity Recognition is a task
+In this paper, we apply the method of structure prediction to the information extraction task Named Entity Recognition (NER). We illustrate a number issues relevant to the NER task, describe our implementation and compare it to state-of-the art methods.
+%We use a structured version of the Perceptron algorithm with averaging and Viterbi decoding.
 
 \end{abstract}
 
@@ -74,11 +77,10 @@ Named Entity Recognition is a task
 
 Named Entity Recognition (NER) is an information extraction task and has first been introduced as part of the 6th MUC (Sixth Message Understanding Conference)
 that was focusing on the extraction of structured information from unstructured text, such as company names from newspaper articles \cite{nadeau2007survey}.
-The most prominent types are generally known under the name of \emph{enamex} types, which are comprised of \texttt{Person Names}, 
-\texttt{Organisations} and \texttt{Locations}. 
-An additional type \texttt{Miscellaneous} captures names outside the classic \emph{enamax} type.
-Apart from the above, there is also the \emph{timex} type, which covers date and time expressions and \emph{numex} for monetary values and percentages. 
-Table \ref{table:NETypes} gives an overview of the different Named Entity (NE) types.
+The most prominent types of named entities are generally known under the name ENAMEX and are comprised of \texttt{Person Names}, \texttt{Organisations} and \texttt{Locations}.
+An additional type \texttt{Miscellaneous} captures names outside the classic ENAMEX types.
+Apart from the above, there is also the TIMEX type, which covers date and time expressions and \emph{NUMEX} for monetary values and percentages.
+Table~\ref{table:NETypes} provides an overview of the different Named Entity (NE) types.
 
 \begin{table}[h!]
 \scriptsize
@@ -96,41 +98,52 @@ Monetary Value &  \$15, \textsterling 100    \\
 Percent &   30\% \\
 \hline
 \end{tabular}
-\caption{NE Examples}
+\caption{Named Entity Examples}
 \label{table:NETypes}
 \end{table}
 
 
 In considering Named Entities, it is important not to confuse them with non-specific entities. % reformulate
 The difference lies in the reference of the entity. A Named Entity refers to a specific, unique person/time/location, whereas
-\emph{normal} entites can refer to multiple events, such as the time expression: \emph{In June}, which could refer to any year.
+\emph{normal} entities can refer to multiple events, such as the time expression: \emph{In June}, which could refer to any year.
 Also, there could be a reference to a person, as in: \emph{the prof}, which in itself is not a \namedentity.
 %However, it would be a deictic reference and point back to the mention of a real \namedentity, as in the following coreference chain: \\
 
 %\ex. $ Prof.\; Bateman \Rightarrow he \Rightarrow the \; prof$ \label{cor}\\
 A Named Entity  can consist of more than one syntactic type. Syntactic types feature in syntactic rules that define how sentences can be build.
-Typical high-level rules include: \\
-$s \rightarrow np\quad vp $ \footnote{ A sentence s breaks down into a noun phrase np and a verb phrase vp} \\
-$ vp \rightarrow v\quad (np)$ \footnote{ A verb phrase vp consists of a verb followed by an optional np} \\
+Typical high-level rules include:
+
+\ex. $\text{S} \rightarrow \text{NP}\  \text{VP} $ \footnote{ A sentence S breaks down into a noun phrase NP and a verb phrase VP} \\
+$ \text{VP} \rightarrow \text{V}\  (\text{NP})$ \footnote{ A verb phrase VP consists of a verb followed by an optional NP} 
 
 Thus, sentences are often represented as syntactic trees that model the dependencies among the types.
-The overall type for a Named Entity is usually a noun phrase (np), which can be both simple and complex, meaning it can consist of a only a noun phrase or 
-also additional other syntactic types, such as prepositional phrases (pp), that consist of a preposition and a noun phrase. 
+The overall type for a Named Entity is usually a noun phrase (NP), which can be both simple and complex, meaning it can consist of a only a noun phrase or 
+also additional other syntactic types, such as prepositional phrases (PP), that consist of a preposition and a noun phrase. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% - can be left out if not enough space/too detailed
 It is therefore a recursive definition and in theory, noun phrases can grow infinitely big, as shown by the following recursive rules:  % 
 
-\ex. $ np \rightarrow np \quad pp$ \\
-     $ pp \rightarrow p \quad np$ 
+\ex. $ \text{NP} \rightarrow \text{NP} \  \text{PP}$ \\
+     $ \text{PP} \rightarrow \text{P} \  \text{NP}$ 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
-We distinguish between pp-complements and pp-modifiers; where complements are non-optional elements of the noun phrase as they are
-inherent to the meaning of the entity and modifiers simply add to the description and are optional. 
-The syntactic trees in \ref{fig:bos} and \ref{fig:nirvana}  show two examples for a complex noun phrase containing a \namedentity.
+
+% \ex. The Bank of Scotland is in the brown building with the brown bricks on its roof... \label{PPrec}
+% 
+% The PP \emph{of Scotland} is semantically defining for the noun \emph{bank}, whereas \emph{with the brown bricks on its roof} 
+% just adds to the description of \emph{brown building}.
+
+\subsection{Issues in Named Entity Recognition}
+
+To illustrate linguistically motivated problems in NER, we consider the following problem, which is addressed in our model by a feature.
+
+We distinguish between PP-complements and PP-modifiers. Complements are non-optional elements of the noun phrase as they are
+inherent to the meaning of the entity. Modifiers add to the description and are optional.
+The syntactic trees in \ref{fig:bos} and \ref{fig:nirvana} show two examples for a complex noun phrase containing a \namedentity.
 \emph{N'} signals an intermediate state in the syntactic tree where modifiers can be joined.
-In \ref{fig:bos}, (\emph{Bank of Scotland}), the pp \emph{of Scotland} is attached directly; it is central to the meaning, 
+In \ref{fig:bos}, (\emph{Bank of Scotland}), the PP \emph{of Scotland} is attached directly; it is central to the meaning, 
 whereas in \ref{fig:nirvana} both \emph{Kurt Cobain} and \emph{Nirvana} constitute own concepts and are joined at a later level to express this distance.
-Thus, in connection with Named Entities, we want to be able to capture types of the first example as a \namedentity, but not of the second more distantly joined 
-relation.
+Thus, in Named Entity Recognition, we want to be able to capture types of the first example as a single \namedentity~(\emph{Bank of Scotland}), but treat the second example as two separate Named Entities (\emph{Kurt Cobain} and \emph{Nirvana}).
+
 % \begin{figure}
 % \begin{enumerate}
 % \item \parbox[t]{2.4in}{~\Tree  
@@ -157,60 +170,54 @@ relation.
 \label{fig:nirvana}
 \end{figure}
 
-% \ex. The Bank of Scotland is in the brown building with the brown bricks on its roof... \label{PPrec}
-% 
-% The PP \emph{of Scotland} is semantically defining for the noun \emph{bank}, whereas \emph{with the brown bricks on its roof} 
-% just adds to the description of \emph{brown building}.
-
-\subsection{Issues in Named Entity Recognition}
-Among the most common challenges for NER is the issue of ambiguity, in particular \emph{Polysemy} and \emph{Metonymy} \cite{nadeau2007survey}.
-Polysemy refers to the property of a word that is a lexical representation having more than one possible meaning.
-\emph{Polysemy} could become an issue for NER when this lexical representation points to two different Named Entity types.
-This is quite frequent with \texttt{Person Names} and \texttt{Locations}, since many people are named after cities, such as \emph{Paris} or \emph{Georgia}. 
-Often the context will not be disambiguating as in example~\ref{ex:Georgia}.
+Generally, one of the most common challenges for NER is the issue of ambiguity, in particular \emph{Polysemy} and \emph{Metonymy} \cite{nadeau2007survey}.
+Polysemy refers to the property of a word that is a lexical representation having more than one possible meaning. Polysemy can become an issue for NER when this lexical representation points to two different Named Entity types.
+This is quite frequent with \texttt{Person Names} and \texttt{Locations}, since many people are named after cities and vice versa, for example \emph{Paris} or \emph{Georgia}. 
+Often, context is not sufficient to disambiguate such names as in example~\ref{ex:Georgia}.
 
 \ex. \emph{Georgia is beautiful.} \label{ex:Georgia}
 
-\emph{Metonymy} is the relationship of a part-whole relation between two items.
-It is frequently employed in literary texts and news data (which is often used in NER), where one item is substituted for another. 
-Example \ref{ex:Lon} shows an instance of a \emph{whole-part}, where \emph{London} probably stands for the smaller 'item': \textbf{Goverment in London}. 
+% So lange ich nicht sicher weiß, wie damit in den CONLL Annotationen umgegangen wird, find ich das ein bisschen gefährlich...
+%\emph{Metonymy} is the relationship of a part-whole relation between two items.
+%It is frequently employed in literary texts and news data (which is often used in NER), where one item is substituted for another. 
+%Example \ref{ex:Lon} shows an instance of a \emph{whole-part}, where \emph{London} probably stands for the smaller 'item': \textbf{Goverment in London}. 
 
-\ex. \emph{\textbf{London} decided to increase the 1200 military personnel involved in Olympic security.} \label{ex:Lon}
+%\ex. \emph{\textbf{London} decided to increase the 1200 military personnel involved in Olympic security.} %\label{ex:Lon}
 
-\subsection{Methods employed for NER}
-For NER, there exist two general approaches: one is rule-based and the other statistical. 
+
+\subsection{Approaches to NER}
+
+There exist two general approaches: one is rule-based and the other statistical. 
 Rule-based methods make use of the underlying rules governing a language to extract Named Entities. 
-This approach, however, is rather high maintenance and requires extensive work by experts, such as computational linguists \cite{nadeau2007survey}.
-The results can be quite high in precision, but lack considerably in recall. % rules are partly language-dependent
+This approach, however, is high in maintenance and requires extensive work by experts, such as computational linguists \cite{nadeau2007survey}.
+The results can have high precision, but generally lack considerably in recall. % rules are partly language-dependent
 
-For statistical approaches, supervised-learning is the most common method applied in NER. 
-There are unsupervised methods, but they cannot compete with SL applications yet.
-For the shared task in 2002 \cite{tksintro}, 12 systems participated in the challenge and presented a wide variety of approaches to the Named Entity task.
-The most successful system in the task, used AdaBoost applied to fixed-depth decision trees. Special attention was given to a variety of input features and the features were also
-partly adapted for each language with an F-score of 81.39 on the Spanish test set and 77.05 on the Dutch one.
-The second highest system \cite{Florian:2002:NER:1118853.1118863} employed three stacked
-learners (transformation-based learning for obtaining base-level non-typed Named Entites, Snow for improving the quality of these entities and the forward-backward algorithm for
-finding categories for the Named Entites), where the combination of these three algorithms substantially outperformed any subset of them, with an F-score of 79.05 on the Spanish test
-set and 74.99 on the Dutch one.
+For statistical approaches, supervised learning is the most common method applied in NER.
+There are unsupervised methods, however they cannot currently compete with supervised applications.
+For the CoNLL shared task in 2002 \cite{tksintro}, 12 systems participated in the challenge and presented a wide variety of approaches to the Named Entity task.
+The most successful system used AdaBoost applied to fixed-depth decision trees. Special attention was given to a variety of input features and the features were also
+partly adapted for each language with an F-score of 81.39 on the Spanish test set and 77.05 on Dutch.
+The second best system \cite{Florian:2002:NER:1118853.1118863} employed three stacked
+learners (transformation-based learning for obtaining base-level non-typed Named Entites, Snow for improving the quality of these entities and the forward-backward algorithm for finding the categories for the Named Entites), where the combination of these three algorithms substantially outperformed any subset of them, with an F-score of 79.05 on the Spanish test set and 74.99 on Dutch.
 Among the most prominent algorithms in NER are maximum entropy models, whose benefit in regard to this task became most apparent in CoNLL 2003. 
-For CoNLL 2003, five of the sixteen systems used this statistical learning method and three of of those used maximum entropy models in isolation.
-Maximum entropy models seem a very suitable choice for the NER task, since systems using this approach were ranked among the three highest results in 
+For CoNLL 2003, five of the sixteen systems used this statistical learning method and three used maximum entropy models in isolation.
+Maximum entropy models appear to be a suitable choice for the NER task, since systems using this approach were ranked among the three highest results in 
 English and the two highest results in German \cite{TjongKimSang:2003:ICS:1119176.1119195}.
 The best system in both German and English \cite{Florian:2003:NER:1119176.1119201} used a combination of classifiers: a robust linear classifier, 
-a maximum entropy, a transformation-based learning, and a hidden Markov model which are connected through a linear interpolation of the classifiers’ % combination scheme
+a maximum entropy classifier, a transformation-based learner, and a hidden Markov model. The models were connected through a linear interpolation of the classifiers’ % combination scheme
 class probability distribution. Particular importance is also assigned to creating a rich feature space, also including a gazetteer feature. 
-This system gains a precision of 88.99\% on the English test set and  83.87\% on the German one. 
+This system achieves a precision of 88.99\% on the English test set and 83.87\% German.
 
 \subsection{CoNLL Data and Baseline Performance}
-The training and test data for Spanish \& Dutch was taken from the CoNLL Shared Task 2002 \cite{tksintro} and 
-the CoNLL Shared Task 2003 \cite{TjongKimSang:2003:ICS:1119176.1119195} provided the one for English \& German.
-The ConNLL shared tasks are organised challenges, where the organisers propose a task and provide the participants with the
-training and test data. 
-In 2002 and 2003, the task was Named Entity Recognition. 
-In both years, the baseline rate for the individual languages was produced by a system, that had a unique class in the training data. 
-In case that a phrase was part of more than one entity, the system would choose the longest one \cite{TjongKimSang:2003:ICS:1119176.1119195}. 
-Table \ref{table:Base} shows the baseline for the four different languages.  
-The data is annotated with part-of-speech tags and named-entity tags, as well as BIO-tags that indicate the position in the Named Entity. %put in ``tokenized, chunked''
+The training and test data for Spanish and Dutch was taken from the CoNLL Shared Task 2002 \cite{tksintro} and 
+the CoNLL Shared Task 2003 \cite{TjongKimSang:2003:ICS:1119176.1119195} provided the data for English and German.
+%The ConNLL shared tasks are organized challenges, where the organisers propose a task and provide the participants with the
+%training and test data. 
+%In 2002 and 2003, the task was Named Entity Recognition. 
+In 2002 and 2003 CoNLL shared tasks on Named Entity Recognition, the baseline rate for the individual languages was produced by a system, that had a unique class in the training data. 
+In case that a phrase was part of more than one entity, the system would choose the longest one \cite{TjongKimSang:2003:ICS:1119176.1119195}.\todo{? hab ich nicht kapiert :D}
+Table~\ref{table:Base} shows the baselines for the four different languages.  
+The data is annotated with part-of-speech tags and named-entity tags, as well as BIO-tags that indicate the position of a token in the Named Entity. %put in ``tokenized, chunked''
 %Our approach is based on \cite{strlearn}, of the group that won the challenge for Spanish and Dutch in 2002. 
 
 
@@ -255,7 +262,7 @@ In comparison to other similar approaches, Structured Prediction sets itself apa
 of concentrating mainly on label interactions like HMM or a rich set of features like local classifiers. 
 
 \section{Implementation}
-In this section, we describe our implementation, the learning and decoding algorithm and the features.
+In this section, we describe our implementation, the learning and decoding algorithm and the features we used.
 
 
 \subsection{Learning and Decoding}
@@ -393,17 +400,15 @@ German &      &          &       &          &             & \\
 \end{table*}
 
 For the evaluation of the system, we used the standard measure of \emph{precision} and \emph{recall} as shown below.
-
 \begin{align*}
      precision =  \frac{  |\,gold\,\cap\,predicted\,| }{ |\,predicted\,| } \\
      recall = \frac{ |\,gold\,\cap\,predicted\,| }{ |\,gold\,| }
 \end{align*}
 
 Precision is the percentage of Named Entities found by the system that are correct. Recall is the percentage of Named Entities present in the corpus that were found by the system. A Named Entity is only deemed correct if it is an exact match for the corresponding data file. The general formula for the \emph{F-Score} is shown below. Since we consider \emph{precision} and \emph{recall} as equally important, we use the $F_{1}$ score, which is the harmonic mean of precision and recall.
-
 \begin{align*}
   F_{\beta} &=  (1+\beta^2)*\frac{precision *recall}{\beta^2* precision + recall}\\
-  F_1       &= 2*\frac{precision *recall}{precision + recall}
+  F_1       &= 2*\frac{precision *recall}{precision + recall}\\
 \end{align*}
 
 
