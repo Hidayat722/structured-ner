@@ -223,7 +223,9 @@ the CoNLL Shared Task 2003 \cite{TjongKimSang:2003:ICS:1119176.1119195} provided
 %The ConNLL shared tasks are organized challenges, where the organisers propose a task and provide the participants with the
 %training and test data. 
 %In 2002 and 2003, the task was Named Entity Recognition. 
-In 2002 and 2003 CoNLL shared tasks on Named Entity Recognition, the baseline rate for the individual languages was produced by a system, that had a unique class in the training data. 
+In 2002 and 2003 CoNLL shared tasks were on Named Entity Recognition. The baseline system first decides on the most frequent Named Entity class C in the training data
+and then labels all occurrences of a Named Entity found in the test data with class C regardless of context. 
+Any named entities that did not occur in the training data are also not assigned any class in the test data.
 In case that a phrase was part of more than one entity, the system would choose the longest one \cite{TjongKimSang:2003:ICS:1119176.1119195}.\todo{? hab ich nicht kapiert :D}
 Table~\ref{table:Base} shows the baselines for the four different languages.  
 The data is annotated with part-of-speech tags and named-entity tags, as well as BIO-tags that indicate the position of a token in the Named Entity. %put in ``tokenized, chunked''
@@ -398,6 +400,7 @@ Moses statistical machine translation system \cite{koehn2007moses}.
 In the following, we show the influence of each of the three sets of features on the resulting accuracy.
 \FloatBarrier
 \begin{figure*}[t!]
+\centering
  \includegraphics[scale=0.5]{Plot.png}
 \end{figure*}
 
