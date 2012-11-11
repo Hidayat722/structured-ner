@@ -320,23 +320,25 @@ Table~\ref{table:node} shows the various node features with an example respectiv
 \begin{tabular}{ l l }
 \bf Feature & \bf Example \\
 \hline
-Token &  \textbf{``Amsterdam''}\\
+Token &  \textbf{Amsterdam}\\
 Suffix& Amster\textbf{dam}\\
-Prefix&  \textbf{San} Sebastian\\
+Prefix&  \textbf{Mc}Cartney\\
 Captitalized& \textbf{B}enetton\\
-Number Pattern & \\
 UPPERCASE &  \textbf{BENETTON}\\
-POS-tag &  Benetton \textbf{NNP}   \\
-Lemma &  produced $\Rightarrow$ produce \\
+Number patterns & 2005\\
+POS tag &  Benetton \textbf{NNP}   \\
+Lemma & produced $\Rightarrow$ produce \\
 
 \end{tabular}
-\caption{Node Features}
+
+
+\caption{\normalsize Examples of node features.}
 \label{table:node}
 \end{table}
 
 \paragraph*{Label Interaction Features}
-These features register which label has been assigned to the previous token and takes into account the most likely sequence. 
-Thus, for the sequence: ``Jack London went to New York'' the NE tag combination of \emph{PER} and \emph{PER} in example~\ref{seq1} is more likely than\emph{PER} and \emph{LOC} in \ref{seq2}.
+These features model the interaction between the labels of adjacent tokens and take into account the most likely sequence. 
+For the sequence ``Jack London went to New York'', the label combination of \emph{PER} and \emph{PER} as in \ref{seq1} is more likely than \emph{PER} and \emph{LOC} in \ref{seq2}.
 %current token and last label for prepositions or possessive ’s
 
 \exg. Jack London went to New York .\\
@@ -432,7 +434,7 @@ Precision is the percentage of Named Entities found by the system that are corre
 
 \section{Future Work and Conclusion}
 
-In this paper, we presented a \namedentity~Recognition system based on the concept of Structured Prediction. While the system does not achieve state-of-the-art performance on the CoNLL shared task, we believe that the results are reasonable for the following reasons. We are using a simple model, which has the advantage that the final application will be fast and it is easily extendable. In contrast to the best systems in the CoNLL task, we also do not use ensemble learning methods and we use the same set of features for all languages, which enables simple extension of the system to additional languages.
+In this paper, we presented a \namedentity~Recognition system based on the concept of Structured Prediction. While the system does not achieve state-of-the-art performance on the CoNLL shared task, we believe that the results are reasonable for the following reasons: We are using a simple model, which has the advantage that the final application will be fast and it is easily extendable. In contrast to the best systems in the CoNLL task, we also do not use ensemble learning methods and we use the same set of features for all languages, which enables simple extension of the system to additional languages.
 
 
 \bibliographystyle{acl}
