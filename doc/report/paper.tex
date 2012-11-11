@@ -67,27 +67,30 @@
 \maketitle
 
 \begin{abstract}
-In this paper, we apply the method of structure prediction to the information extraction task Named Entity Recognition (NER). We illustrate a number issues relevant to the NER task, describe our implementation and compare it to state-of-the art methods.
+In this paper, we apply the method of structure prediction to the information extraction task: Named Entity Recognition (NER). 
+We illustrate a number issues relevant to the NER task, describe our implementation and compare it to state-of-the art methods.
 %We use a structured version of the Perceptron algorithm with averaging and Viterbi decoding.
-
 \end{abstract}
 
 
 \section{Application: Named Entity Recognition}
 
-Named Entity Recognition (NER) is an information extraction task and has first been introduced as part of the 6th MUC (Sixth Message Understanding Conference)
+Named Entity Recognition (NER) is a fundamental task for wide variety of natural language processing applications, including information retrieval and question answering
+and thus provides a general basis for semantic analysis of texts \cite{Chen:2010:UDB:1870457.1870473}.
+
+NER is an information extraction task and has first been introduced as part of the 6th MUC (Sixth Message Understanding Conference)
 that was focusing on the extraction of structured information from unstructured text, such as company names from newspaper articles \cite{nadeau2007survey}.
-The most prominent types of named entities are generally known under the name ENAMEX and are comprised of \texttt{Person Names}, \texttt{Organisations} and \texttt{Locations}.
+The most prominent types of Named Entities are generally known under the name ENAMEX and are comprised of \texttt{Person Names}, \texttt{Organisations} and \texttt{Locations}.
 An additional type \texttt{Miscellaneous} captures names outside the classic ENAMEX types.
-Apart from the above, there is also the TIMEX type, which covers date and time expressions and \emph{NUMEX} for monetary values and percentages.
+Apart from the above, there is also the TIMEX type, which covers date and time expressions and NUMEX for monetary values and percentages.
 Table~\ref{table:NETypes} provides an overview of the different Named Entity (NE) types.
 
 \begin{table}[h!]
-\scriptsize
-\begin{tabular}{| l | l |}
-\hline
+\small
+\begin{tabular}{ l | l }
+
 \bf Named Entity Type & \bf Example \\
-\hline
+\hline 
 Person Names & Greta Garbo, John, Mary \\
 Organisations& Benetton, Coca-Cola Gmbh\\
 Locations&  Paris, Australia, Bristol\\
@@ -96,7 +99,6 @@ Miscellaneous& World Cup 2014, Italien\\
 Time Expression & 10 p.m.\\
 Monetary Value &  \$15, \textsterling 100    \\
 Percent &   30\% \\
-\hline
 \end{tabular}
 \caption{Named Entity Examples}
 \label{table:NETypes}
@@ -187,12 +189,12 @@ Often, context is not sufficient to disambiguate such names as in example~\ref{e
 
 \subsection{Approaches to NER}
 
-There exist two general approaches: one is rule-based and the other statistical. 
-Rule-based methods make use of the underlying rules governing a language to extract Named Entities. 
-This approach, however, is high in maintenance and requires extensive work by experts, such as computational linguists \cite{nadeau2007survey}.
-The results can have high precision, but generally lack considerably in recall. % rules are partly language-dependent
+Initially, rule-based methods to extract Named Entities were more common. These make use of the underlying rules governing a language.
+This approach, however, is very high in maintenance and requires extensive work by experts, such as computational linguists \cite{nadeau2007survey}.
+The results achieved were reasonably good, but presents some flaws since constructed rules depend on the language and  the domain and are not readily portable. 
+This is the reason, why nowadays machine learning methods are more attractive for this task as they offer more and faster adaptability. 
 
-For statistical approaches, supervised learning is the most common method applied in NER.
+For ML, supervised learning is the most common method applied in NER.
 There are unsupervised methods, however they cannot currently compete with supervised applications.
 For the CoNLL shared task in 2002 \cite{tksintro}, 12 systems participated in the challenge and presented a wide variety of approaches to the Named Entity task.
 The most successful system used AdaBoost applied to fixed-depth decision trees. Special attention was given to a variety of input features and the features were also
@@ -207,6 +209,9 @@ The best system in both German and English \cite{Florian:2003:NER:1119176.111920
 a maximum entropy classifier, a transformation-based learner, and a hidden Markov model. The models were connected through a linear interpolation of the classifiers’ % combination scheme
 class probability distribution. Particular importance is also assigned to creating a rich feature space, also including a gazetteer feature. 
 This system achieves a precision of 88.99\% on the English test set and 83.87\% German.
+Another, more recent approach involved the use of Deep Belief Nets for NER in Chinese \cite{Chen:2010:UDB:1870457.1870473}.
+
+
 
 \subsection{CoNLL Data and Baseline Performance}
 The training and test data for Spanish and Dutch was taken from the CoNLL Shared Task 2002 \cite{tksintro} and 
@@ -306,8 +311,7 @@ Node features are features that only depend on the current token (node): the \em
 Table~\ref{table:node} shows the various node features with an example respectively.
 
 \begin{table}[h!]
-\begin{tabular}{| l | l |}
-\hline
+\begin{tabular}{ l | l }
 \bf Feature & \bf Example \\
 \hline
 Token &  \textbf{``Amsterdam''}\\
@@ -318,7 +322,7 @@ Number Pattern & \\
 UPPERCASE &  \textbf{BENETTON}\\
 POS-tag &  Benetton \textbf{NNP}   \\
 Lemma &  produced $\Rightarrow$ produce \\
-\hline
+
 \end{tabular}
 \caption{Node Features}
 \label{table:node}
