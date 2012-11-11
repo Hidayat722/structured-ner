@@ -67,7 +67,7 @@
 \maketitle
 
 \begin{abstract}
-In this paper, we apply the method of Structured Prediction to the Named Entity Recognition task. %(NER) information extraction task. 
+In this paper, we apply the method of structure prediction to the Named Entity Recognition (NER) information extraction task. 
 We illustrate a number of issues relevant to the NER task, describe our implementation and compare it to state-of-the art methods.
 %We use a structured version of the Perceptron algorithm with averaging and Viterbi decoding.
 \end{abstract}
@@ -75,19 +75,20 @@ We illustrate a number of issues relevant to the NER task, describe our implemen
 
 \section{Application: Named Entity Recognition}
 
-Named Entity Recognition (NER) is a fundamental task for a wide variety of natural language processing applications, including information retrieval and question answering
+Named Entity Recognition (NER) is a fundamental task for wide variety of natural language processing applications, including information retrieval and question answering
 and thus provides a general basis for semantic analysis of texts \cite{Chen:2010:UDB:1870457.1870473}.
 
 NER is an information extraction task and has first been introduced as part of the 6th MUC (Sixth Message Understanding Conference)
 that was focusing on the extraction of structured information from unstructured text, such as company names from newspaper articles \cite{nadeau2007survey}.
-The most prominent types of Named Entities are generally known under the name of ENAMEX and are comprised of \texttt{Person Names}, \texttt{Organisations} and \texttt{Locations}.
-An additional type: \texttt{Miscellaneous} captures names outside the classic ENAMEX type.
-Apart from the above, there is also the TIMEX type, which covers date and time expressions and the NUMEX type for monetary values and percentages.
+The most prominent types of Named Entities are generally known under the name ENAMEX and are comprised of \texttt{Person Names}, \texttt{Organisations} and \texttt{Locations}.
+An additional type \texttt{Miscellaneous} captures names outside the classic ENAMEX types.
+Apart from the above, there is also the TIMEX type, which covers date and time expressions and NUMEX for monetary values and percentages.
 Table~\ref{table:NETypes} provides an overview of the different Named Entity (NE) types.
 
 \begin{table}[h!]
-\small
+\scriptsize
 \begin{tabular}{ l l }
+
 \bf Named Entity Type & \bf Example \\
 \hline 
 Person Names & Greta Garbo, John, Mary \\
@@ -105,9 +106,9 @@ Percent &   30\% \\
 
 
 In considering Named Entities, it is important not to confuse them with non-specific entities. % reformulate
-The difference lies in the reference of the entity. A Named Entity refers to a specific, unique person/time/location..., whereas
-\emph{normal} entities can refer to multiple events, such as the time expression: \emph{In June}, which is ambiguous in regard to the year.
-%Also, there could be a reference to a person, as in: \emph{the prof}, which in itself is not a \namedentity.
+The difference lies in the reference of the entity. A Named Entity refers to a specific, unique person/time/location, whereas
+\emph{normal} entities can refer to multiple events, such as the time expression: \emph{In June}, which could refer to any year.
+Also, there could be a reference to a person, as in: \emph{the prof}, which in itself is not a \namedentity.
 %However, it would be a deictic reference and point back to the mention of a real \namedentity, as in the following coreference chain: \\
 
 %\ex. $ Prof.\; Bateman \Rightarrow he \Rightarrow the \; prof$ \label{cor}\\
@@ -260,7 +261,7 @@ For the sentence in \ref{PredEx1a}, it would return the corresponding label comb
 %The motor company 'Ford' was founded and incorporated  by Henry Ford on June, 16th 1903.
  
 \exg. \textbf{x:} The motor company ' Ford ' was founded and incorporated by Henry Ford .\\
-      \textbf{y:}  0   O      O     0 ORG  O  O     O     O       O        O PER   PER  O  \label{PredEx1b} \\
+      \textbf{y:}  O   O      O     0 ORG  O  O     O     O       O        O PER   PER  O  \label{PredEx1b} \\
 \caption{Input and predicted structure for the Named Entity Recognition task.}
 
 \end{figure*}
@@ -333,8 +334,7 @@ Lemma &  produced $\Rightarrow$ produce \\
 
 \paragraph*{Label Interaction Features}
 These features register which label has been assigned to the previous token and takes into account the most likely sequence. 
-Thus, for the sequence: ``Jack London went to New York'' the NE tag combination of \emph{PER} and \emph{PER} in example~\ref{seq1} 
-is more likely than\emph{PER} and \emph{LOC} in \ref{seq2}.
+Thus, for the sequence: ``Jack London went to New York'' the NE tag combination of \emph{PER} and \emph{PER} in example~\ref{seq1} is more likely than\emph{PER} and \emph{LOC} in \ref{seq2}.
 %current token and last label for prepositions or possessive ’s
 
 \exg. Jack London went to New York .\\
@@ -385,6 +385,9 @@ To estimate the most likely case of a token from a monolingual corpus, we use th
 Moses statistical machine translation system \cite{koehn2007moses}. 
 
 
+
+
+
 \section{Experiments and Evaluation}
 
 \subsection{Experiments}
@@ -432,6 +435,8 @@ is shown below. Since we consider \emph{precision} and \emph{recall} as equally 
   F_{\beta} &=  (1+\beta^2)*\frac{precision *recall}{\beta^2* precision + recall}\\
   F_1       &= 2*\frac{precision *recall}{precision + recall}\\
 \end{align*}
+
+
 
 
 
