@@ -140,8 +140,8 @@ It is therefore a recursive definition and in theory, noun phrases can grow infi
 In order to illustrate linguistically motivated problems in NER, we consider the following problem, which is addressed in our model by a feature.
 
 We distinguish between PP-complements and PP-modifiers. Complements are non-optional elements of the noun phrase as they are
-inherent to the meaning of the entity. Modifiers add to the description and are optional.
-The syntactic trees in \ref{fig:bos} and \ref{fig:nirvana} show two examples for a complex noun phrase containing a \namedentity.
+inherent to the meaning of the entity. Modifiers only add to the description and are optional.
+The syntactic trees in \ref{fig:bos} and \ref{fig:nirvana} show two examples for a complex noun phrase containing Named Entites.
 \emph{N'} signals an intermediate state in the syntactic tree where modifiers can be joined.
 In \ref{fig:bos}, (\emph{Bank of Scotland}), the PP \emph{of Scotland} is attached directly; it is central to the meaning, 
 whereas in \ref{fig:nirvana} both \emph{Kurt Cobain} and \emph{Nirvana} constitute own concepts and are joined at a later level to express this distance.
@@ -174,8 +174,9 @@ but treat the second example as two separate Named Entities (\emph{Kurt Cobain} 
 \label{fig:nirvana}
 \end{figure}
 
-Generally, one of the most common challenges for NER is the issue of ambiguity, in particular \emph{Polysemy} and \emph{Metonymy} \cite{nadeau2007survey}.
-Polysemy refers to the property of a word that is a lexical representation having more than one possible meaning. Polysemy can become an issue for NER when this lexical representation points to two different Named Entity types.
+Generally, one of the most common challenges for NER is the issue of ambiguity, in particular \emph{Polysemy} \cite{nadeau2007survey}. %and \emph{Metonymy} insert with other section
+Polysemy refers to the property of a lexical representation (\~ word) having more than one possible meaning. Polysemy can become an issue for NER when this lexical representation 
+points to two different Named Entity types.
 This is quite frequent with \texttt{Person Names} and \texttt{Locations}, since many people are named after cities and vice versa, for example \emph{Paris} or \emph{Georgia}. 
 Often, context is not sufficient to disambiguate such names as in example~\ref{ex:Georgia}.
 
@@ -191,31 +192,33 @@ Often, context is not sufficient to disambiguate such names as in example~\ref{e
 
 \subsection{Approaches to NER}
 
-Initially, rule-based methods to extract Named Entities were more common. These make use of the underlying rules governing a language.
+Initially, rule-based methods were prevailing in the extraction of Named Entities. These methods make use of the underlying rules governing a language.
 This approach, however, is very high in maintenance and requires extensive work by experts, such as computational linguists \cite{nadeau2007survey}.
-The results achieved were reasonably good, but presented some flaws since constructed rules depend on the language and  the domain and are not readily portable. 
-This is the reason, why nowadays machine learning methods are more attractive for this task as they offer more and faster adaptability. 
+The results achieved were reasonably good, but presented some flaws since constructed rules are dependent on the language and the domain and are not readily portable. 
+This is the reason why nowadays machine learning methods are more attractive for this task as they offer more adaptability. 
 
 For ML, supervised learning is the most common method applied in NER.
-There are unsupervised methods, however they cannot currently compete with supervised applications.
-For the CoNLL shared task in 2002 \cite{tksintro}, 12 systems participated in the challenge and presented a wide variety of approaches to the Named Entity task.
-The most successful system used AdaBoost applied to fixed-depth decision trees. Special attention was given to a variety of input features and the features were also
-partly adapted for each language with an F-score of 81.39 on the Spanish test set and 77.05 on Dutch.
+Although there are unsupervised methods, they cannot currently compete with supervised applications.
+For the CoNLL shared task in 2002 \cite{tksintro}, 12 systems participated in the challenge and introduced a wide variety of approaches to the Named Entity task.
+The most successful system used AdaBoost applied to fixed-depth decision trees. Special attention was given to a variety of input features, some which were also
+particularly adapted for each language. I achieved an F-score of 81.39 on the Spanish test set and 77.05 on Dutch.
 The second best system \cite{Florian:2002:NER:1118853.1118863} employed three stacked
-learners (transformation-based learning for obtaining base-level non-typed Named Entites, sparse network of winnows (Snow) for improving the quality of these entities and the forward-backward algorithm for finding the categories for the Named Entites), where the combination of these three algorithms substantially outperformed any subset of them, with an F-score of 79.05 on the Spanish test set and 74.99 on Dutch.
+learners (transformation-based learning for obtaining base-level non-typed Named Entites, sparse network of winnows (Snow) for improving the quality of these entities 
+and the forward-backward algorithm for finding the categories for the Named Entites), where the combination of these three algorithms substantially outperformed 
+any subset of them and yielded an F-score of 79.05 on the Spanish test set and 74.99 on Dutch.
 Among the most prominent algorithms in NER are maximum entropy models, whose benefit in regard to this task became most apparent in CoNLL 2003. 
-For CoNLL 2003, five of the sixteen systems used this statistical learning method and three used maximum entropy models in isolation.
-Maximum entropy models appear to be a suitable choice for the NER task, since systems using this approach were ranked among the three highest results in 
-English and the two highest results in German \cite{TjongKimSang:2003:ICS:1119176.1119195}.
+Five of the sixteen systems that participated used maximum entropy models, which appear to be a suitable choice for the NER task, 
+since systems using this approach were ranked among the highest results in English and in German \cite{TjongKimSang:2003:ICS:1119176.1119195}.
 The best system in both German and English \cite{Florian:2003:NER:1119176.1119201} used a combination of classifiers: a robust linear classifier, 
-a maximum entropy classifier, a transformation-based learner, and a hidden Markov model. The models were connected through a linear interpolation of the classifiers’ % combination scheme
-class probability distribution. Particular importance is also assigned to creating a rich feature space, also including a gazetteer feature. 
-This system achieves a F-score of 88.76\% on the English test set and 72.41\% on the German one.
+a maximum entropy classifier, a transformation-based learner, and a hidden Markov model. The models were connected through a linear interpolation 
+of the classifiers’ % combination scheme
+class probability distribution. Particular importance was also assigned to creating a rich feature space, also including a gazetteer feature. 
+This system achieved a F-score of 88.76\% on the English test set and 72.41\% on the German one.
 Another, more recent approach involved the use of Deep Belief Nets (DBN) for NER in Chinese \cite{Chen:2010:UDB:1870457.1870473}.
-Due to the special characteristics of Chinese of lacking boundary information, character-based methods are generally given preference over word-based methods.
-In their application for NER, DBN  is used to automatically discover the complicated composite effects of the characters to the NE categories from the input data. 
+Due to the language's special characteristics of lacking boundary information, character-based methods are generally given preference over word-based methods.
+In their application for NER, DBN  was used to automatically discover the complicated composite effects of the characters to the NE categories from the input data. 
 The paper reports DBN's strong representative power in regard to detection of more complicated and efficient features. With a precision of 91.45\%,
-it achieves better performance than a SVM and a BP neural networks.
+it achieved better performance than both a SVM and a BP neural networks.
 
 \subsection{CoNLL Data and Baseline Performance}
 The training and test data for Spanish and Dutch was taken from the CoNLL Shared Task 2002 \cite{tksintro} and 
@@ -223,12 +226,12 @@ the CoNLL Shared Task 2003 \cite{TjongKimSang:2003:ICS:1119176.1119195} provided
 %The ConNLL shared tasks are organized challenges, where the organisers propose a task and provide the participants with the
 %training and test data. 
 %In 2002 and 2003, the task was Named Entity Recognition. 
-In 2002 and 2003 CoNLL shared tasks were on Named Entity Recognition. The baseline system first decides on the most frequent Named Entity class C in the training data
-and then labels all occurrences of a Named Entity found in the test data with class C regardless of context. 
-Any named entities that did not occur in the training data are also not assigned any class in the test data.
-In case that a phrase was part of more than one entity, the system would choose the longest one \cite{TjongKimSang:2003:ICS:1119176.1119195}.\todo{? hab ich nicht kapiert :D}
+In 2002 and 2003 CoNLL shared tasks were on Named Entity Recognition. The baseline system was constructed by first determining
+on the most frequent Named Entity class C in the training data and then labeling all occurrences of a Named Entity found in the test data with class C regardless of context. 
+Any Named Entities that did not occur in the training data were also not assigned any class in the test data.
+Given that a phrase was part of more than one entity, the system would choose the longest one \cite{TjongKimSang:2003:ICS:1119176.1119195}.
 Table~\ref{table:Base} shows the baselines for the four different languages.  
-The data is annotated with part-of-speech tags and named-entity tags, as well as BIO-tags that indicate the position of a token in the Named Entity. %put in ``tokenized, chunked''
+The data was annotated with part-of-speech tags and Named-Entity tags, as well as BIO-tags that indicate the position of a token in the current Named Entity. %put in ``tokenized, chunked''
 %Our approach is based on \cite{strlearn}, of the group that won the challenge for Spanish and Dutch in 2002. 
 
 
@@ -250,12 +253,17 @@ German &      31.86\%  & 28.89\% & 30.30  $\pm$ 1.3\% \\
 
 
 \section{Implementation}
-In this section, we describe our implementation, the learning and decoding algorithm and the features we used.
+In this section, we describe our implementation, the learning and decoding algorithm and the features that were used.
 
 \subsection{Structured Prediction}
-Structured Prediction \cite{Taskar:2005:LSP:1102351.1102464} is an approach to supervised learning that is often used in natural language processing. Assuming our goal is to learn a function ${ \boldsymbol{f}\colon \mathcal{X}\to\mathcal{Y} }$, in structured prediction, we assume that $y \in \mathcal{Y}$ is not atomic (e.g.\ binary prediction), but that the prediction is a structure (e.g.\ a syntactic tree for a sentence or a sequence of part-of-speech tags). 
+Structured Prediction \cite{Taskar:2005:LSP:1102351.1102464} is an approach to supervised learning that is often used in natural language processing. 
+Assuming our goal is to learn a function ${ \boldsymbol{f}\colon \mathcal{X}\to\mathcal{Y} }$, in Structured Prediction, we assume that $y \in \mathcal{Y}$ 
+is not atomic (e.g.\ binary prediction), but that the prediction is a structure (e.g.\ a syntactic tree for a sentence or a sequence of part-of-speech tags). 
 
-The structured prediction approach we follow has advantages over traditional approaches like hidden Markov models. While a hidden Markov model can model interactions between labels as transition probabilities, it is restricted to tokens and Maximum Likelihood learning. Another alternative would be to use a classifier for each token and then concatenate the results, however this approach would not take into account label interactions. With structured prediction, we can use features and model label interactions at the same time.
+The structured prediction approach we follow has advantages over traditional approaches like hidden Markov models. While a hidden Markov model can model interactions 
+between labels as transition probabilities, it is restricted to tokens and Maximum Likelihood learning. Another alternative would be to use a classifier for each 
+token and then concatenate the results. However, this approach would not take into account label interactions. With Structured Prediction, we can use features and 
+model label interactions at the same time.
 
 \subsection{Learning and Decoding}
 
@@ -304,7 +312,7 @@ The features employed in the system can be divided into three categories: node, 
 We describe each of the three groups in the following.
 
 \paragraph*{Node features}
-Node features are features that only depend on the current token (node): the \emph{Token}, suffix and prefix, capitalisation.
+Node features are features that only depend on the current token (node): the \emph{Token}, suffix and prefix and capitalisation.
 
 Table~\ref{table:node} shows the various node features with an example respectively.
 
@@ -340,7 +348,7 @@ For the sequence ``Jack London went to New York'', the label combination of \emp
 \exg. Jack London went to New York . \\ 
       PER  LOC    O    O  LOC LOC O \\\label{seq2}
       
-In addition, there is a prepositional phrase (PP) attachment feature, that registers the existence of a this attachment, that would
+In addition, there is a prepositional phrase (PP) attachment feature, that registers the existence of an attachment, that would
 result in a break of the sequence as in
 
 \exg. Bank of Scotland . \\ 
@@ -349,7 +357,7 @@ result in a break of the sequence as in
 
 \paragraph*{Gazetteer Features}
 A technique commonly used in Named Entity Recognition is the use of external lists of names of a specific type (gazetteer). 
-In order to create gazetteer lists for more common named entities, we use a \emph{SPARQL} query  (Figure~\ref{fig:sparql}) 
+In order to create gazetteer lists for more common Named Entities, we use a \emph{SPARQL} query  (Figure~\ref{fig:sparql}) 
 to automatically retrieve entries from DBpedia for all required languages from a public SPARQL endpoint.
 
 \begin{figure}
@@ -374,9 +382,9 @@ necessary to manually map the lists to target labels and the model can learn the
 
 \subsection{Other Issues}
 
-One of the issues that we needed to address is the case of headlines. Headlines, mainly in the English data, are often written entirely 
+One of the issues that we needed to address was the case of headlines. Headlines, mainly in the English data, are often written entirely 
 in uppercase letters. This is problematic because from most of the data, the model might learn that a word in all uppercase letters is 
-indicative of an organization (e.g.\ IBM, AIG, NYSE) and might thus mistake the tokens in headlines for organizations. 
+indicative of an organisation (e.g.\ IBM, AIG, NYSE) and might thus mistake the tokens in headlines for organisations. 
 We address this issue by converting all-uppercase headlines into their most likely original case (truecasing). 
 To estimate the most likely case of a token from a monolingual corpus, we use the truecasing model from the 
 Moses statistical machine translation system \cite{koehn2007moses}. 
@@ -401,7 +409,9 @@ In the following, we show the influence of each of the three sets of features on
 
 \subsubsection{Extending monolingual gazetteers}
 
-The experiment above has shown that the gazetteer features are beneficial for Dutch. In this experiment, we want to explore whether the gazetteer features can be improved by extending the monolingual gazetteer with entries from other languages. For this, we compare the Dutch-only gazetteer with a gazetteer extended with English data.
+The experiment above has shown that the gazetteer feature is beneficial for Dutch. In this experiment, we wanted to explore whether the 
+gazetteer feature can be improved by extending the monolingual gazetteer with entries from other languages. For this, we compare the 
+Dutch-only gazetteer with a gazetteer extended with English data.
 
 % RESULTS FOR DUTCH
 
