@@ -285,7 +285,6 @@ As the predicted structure, we use the labels for every token in the full senten
 
 Learning is implemented using the Structured Perceptron algorithm. To avoid overfitting, we average the parameters after the last iteration \cite{collins2002discriminative}. 
 For finding the best sequence of labels for a sentence, we use a modified version of the Viterbi algorithm. The algorithm finds the sequence $\hat{y}$, such that:
-
 \[
 \hat{y} = \argmax_{\mathbf{y} \in \mathcal{Y}^{n}} \sum_{i=1}^{n}\mathbf{w} \cdot \boldsymbol{f}(\mathbf{x}, i, y_{i-1}, y_{i})
 \]
@@ -294,7 +293,6 @@ This sequence can be computed efficiently in $ O( N^2 |\mathbf{x}| ) $ via dynam
 As a first step, the trellis has to be constructed, then we have to find the $ a \in \mathcal{Y}$ in the 
 last column of the trellis with maximal score $\delta_n(a)$. From this, the sequence can be recovered via back-tracking trough the trellis. 
 The score of the best sequence ending in $a$ is:
-
 \[
 \delta_i(a) = \max_{\mathbf{y} \in \mathcal{Y}^{n}, y_n = a} \sum_{j=1}^{n}{\mathbf{w} \cdot \boldsymbol{f}(\mathbf{x}, j, y_{j-1}, y_{j})}
 \]
@@ -321,23 +319,25 @@ Table~\ref{table:node} shows the various node features with an example respectiv
 \begin{tabular}{ l l }
 \bf Feature & \bf Example \\
 \hline
-Token &  \textbf{``Amsterdam''}\\
+Token &  \textbf{Amsterdam}\\
 Suffix& Amster\textbf{dam}\\
-Prefix&  \textbf{San} Sebastian\\
+Prefix&  \textbf{Mc}Cartney\\
 Captitalized& \textbf{B}enetton\\
-Number Pattern & \\
 UPPERCASE &  \textbf{BENETTON}\\
-POS-tag &  Benetton \textbf{NNP}   \\
-Lemma &  produced $\Rightarrow$ produce \\
+Number patterns & 2005\\
+POS tag &  Benetton \textbf{NNP}   \\
+Lemma & produced $\Rightarrow$ produce \\
 
 \end{tabular}
-\caption{Node Features}
+
+
+\caption{\normalsize Examples of node features.}
 \label{table:node}
 \end{table}
 
 \paragraph*{Label Interaction Features}
-These features register which label has been assigned to the previous token and takes into account the most likely sequence. 
-Thus, for the sequence: ``Jack London went to New York'' the NE tag combination of \emph{PER} and \emph{PER} in example~\ref{seq1} is more likely than\emph{PER} and \emph{LOC} in \ref{seq2}.
+These features model the interaction between the labels of adjacent tokens and take into account the most likely sequence. 
+For the sequence ``Jack London went to New York'', the label combination of \emph{PER} and \emph{PER} as in \ref{seq1} is more likely than \emph{PER} and \emph{LOC} in \ref{seq2}.
 %current token and last label for prepositions or possessive ’s
 
 \exg. Jack London went to New York .\\
