@@ -68,8 +68,8 @@
 \maketitle
 
 \begin{abstract}
-In this paper, we apply the method of structure prediction to the Named Entity Recognition (NER) information extraction task. 
-We illustrate a number of issues relevant to the NER task, describe our implementation and compare it to state-of-the art methods.
+In this paper, we apply the method of structure prediction to the Named Entity Recognition (NER) information extraction task.
+We illustrate a number of issues arising in the NER task, describe our implementation and compare it to state-of-the art methods.
 %We use a structured version of the Perceptron algorithm with averaging and Viterbi decoding.
 \end{abstract}
 
@@ -79,12 +79,12 @@ We illustrate a number of issues relevant to the NER task, describe our implemen
 Named Entity Recognition (NER) is a fundamental task for wide variety of natural language processing applications, including information retrieval and question answering
 and thus provides a general basis for semantic analysis of texts \cite{Chen:2010:UDB:1870457.1870473}.
 
-NER is an information extraction task and has first been introduced as part of the 6th MUC (Sixth Message Understanding Conference)
-that was focusing on the extraction of structured information from unstructured text, such as company names from newspaper articles \cite{nadeau2007survey}.
+NER has first been introduced as part of the 6th MUC (Sixth Message Understanding Conference),
+which focused on the extraction of structured information from unstructured text, such as company names from newspaper articles \cite{nadeau2007survey}.
 The most prominent types of Named Entities are generally known under the name ENAMEX and are comprised of \texttt{Person Names}, \texttt{Organisations} and \texttt{Locations}.
 An additional type \texttt{Miscellaneous} captures names outside the classic ENAMEX types.
 Apart from the above, there is also the TIMEX type, which covers date and time expressions and NUMEX for monetary values and percentages.
-Table~\ref{table:NETypes} provides an overview of the different Named Entity (NE) types.
+Table~\ref{table:NETypes} provides an overview of the different Named Entity (NE) types and examples.
 
 \begin{table}[h!]
 \scriptsize
@@ -108,20 +108,20 @@ Percent &   30\% \\
 
 In considering Named Entities, it is important not to confuse them with non-specific entities. % reformulate
 The difference lies in the reference of the entity. A Named Entity refers to a specific, unique person/time/location, whereas
-\emph{normal} entities can refer to multiple events, such as the time expression: \emph{In June}, which could refer to any year.
-Also, there could be a reference to a person, as in: \emph{the prof}, which in itself is not a \namedentity.
+non-specific entities can refer to multiple events, such as the time expression: \emph{In June}, which could refer to the month June of any year.
+Another example, is a reference to a person in \emph{the prof}, which is not a \namedentity.
 %However, it would be a deictic reference and point back to the mention of a real \namedentity, as in the following coreference chain: \\
 
 %\ex. $ Prof.\; Bateman \Rightarrow he \Rightarrow the \; prof$ \label{cor}\\
-A Named Entity can consist of more than one syntactic type. Syntactic types feature in syntactic rules that define how sentences can be build.
+A Named Entity can consist of more than one syntactic type. Syntactic types feature in syntactic rules that define how sentences can be built.
 Typical high-level rules include:
 
 \ex. $\text{S} \rightarrow \text{NP}\  \text{VP} $ \footnote{ A sentence (S) breaks down into a noun phrase (NP) and a verb phrase (VP)} \\
 $ \text{VP} \rightarrow \text{V}\  (\text{NP})$ \footnote{ A verb phrase (VP) consists of a verb followed by an optional NP} 
 
-Thus, sentences are often represented as syntactic trees that model the dependencies among the types.
-The overall type for a Named Entity is usually a noun phrase (NP), which can be both simple and complex, meaning it can consist of a only a noun phrase or 
-also additional other syntactic types, such as prepositional phrases (PP), that consist of a preposition and a noun phrase. 
+Sentences are often represented as syntactic trees that model the dependencies among the types.
+The overall type for a Named Entity is usually a noun phrase (NP), which can be both simple and complex, meaning it can consist of only a noun phrase or 
+additionally other syntactic types, such as prepositional phrases (PP) that consist of a preposition and a noun phrase. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% - can be left out if not enough space/too detailed
 It is therefore a recursive definition and in theory, noun phrases can grow infinitely big, as shown by the recursive rules in example~\ref{recRules}.  % 
 
@@ -175,10 +175,10 @@ but treat the second example as two separate Named Entities (\emph{Kurt Cobain} 
 \end{figure}
 
 Generally, one of the most common challenges for NER is the issue of ambiguity, in particular \emph{Polysemy} \cite{nadeau2007survey}. %and \emph{Metonymy} insert with other section
-Polysemy refers to the property of a lexical representation (\~ word) having more than one possible meaning. Polysemy can become an issue for NER when this lexical representation 
+Polysemy refers to the property of a lexical representation~(word) having more than one possible meanings. Polysemy can become an issue for NER when this lexical representation 
 points to two different Named Entity types.
 This is quite frequent with \texttt{Person Names} and \texttt{Locations}, since many people are named after cities and vice versa, for example \emph{Paris} or \emph{Georgia}. 
-Often, context is not sufficient to disambiguate such names as in example~\ref{ex:Georgia}.
+Often, the textual context is not sufficient to disambiguate such names as in example~\ref{ex:Georgia}.
 
 \ex. \emph{Georgia is beautiful.} \label{ex:Georgia}
 
@@ -195,13 +195,13 @@ Often, context is not sufficient to disambiguate such names as in example~\ref{e
 Initially, rule-based methods were prevailing in the extraction of Named Entities. These methods make use of the underlying rules governing a language.
 This approach, however, is very high in maintenance and requires extensive work by experts, such as computational linguists \cite{nadeau2007survey}.
 The results achieved were reasonably good, but presented some flaws since constructed rules are dependent on the language and the domain and are not readily portable. 
-This is the reason why nowadays machine learning methods are more attractive for this task as they offer more adaptability. 
+This is the reason why nowadays machine learning methods are more attractive for this task as they offer better adaptability.
 
 For ML, supervised learning is the most common method applied in NER.
 Although there are unsupervised methods, they cannot currently compete with supervised applications.
-For the CoNLL shared task in 2002 \cite{tksintro}, 12 systems participated in the challenge and introduced a wide variety of approaches to the Named Entity task.
+For the CoNLL shared task in 2002 \cite{tksintro}, 12 systems participated in a challenge and introduced a wide variety of approaches to the Named Entity task.
 The most successful system used AdaBoost applied to fixed-depth decision trees. Special attention was given to a variety of input features, some which were also
-particularly adapted for each language. I achieved an F-score of 81.39 on the Spanish test set and 77.05 on Dutch.
+particularly adapted for each language. This system achieved an F-score of 81.39 on the Spanish test set and 77.05 on Dutch.
 The second best system \cite{Florian:2002:NER:1118853.1118863} employed three stacked
 learners (transformation-based learning for obtaining base-level non-typed Named Entites, sparse network of winnows (Snow) for improving the quality of these entities 
 and the forward-backward algorithm for finding the categories for the Named Entites), where the combination of these three algorithms substantially outperformed 
@@ -210,15 +210,15 @@ Among the most prominent algorithms in NER are maximum entropy models, whose ben
 Five of the sixteen systems that participated used maximum entropy models, which appear to be a suitable choice for the NER task, 
 since systems using this approach were ranked among the highest results in English and in German \cite{TjongKimSang:2003:ICS:1119176.1119195}.
 The best system in both German and English \cite{Florian:2003:NER:1119176.1119201} used a combination of classifiers: a robust linear classifier, 
-a maximum entropy classifier, a transformation-based learner, and a hidden Markov model. The models were connected through a linear interpolation 
+a maximum entropy classifier, a transformation-based learner, and a hidden Markov model. The models were connected through linear interpolation 
 of the classifiers’ % combination scheme
-class probability distribution. Particular importance was also assigned to creating a rich feature space, also including a gazetteer feature. 
-This system achieved a F-score of 88.76\% on the English test set and 72.41\% on the German one.
+class probability distributions. Particular importance was also assigned to creating a rich feature space, also including a gazetteer feature. 
+This system achieved an F-score of 88.76\% on the English test set and 72.41\% on the German one.
 Another, more recent approach involved the use of Deep Belief Nets (DBN) for NER in Chinese \cite{Chen:2010:UDB:1870457.1870473}.
-Due to the language's special characteristics of lacking boundary information, character-based methods are generally given preference over word-based methods.
-In their application for NER, DBN  was used to automatically discover the complicated composite effects of the characters to the NE categories from the input data. 
+Due to the Chinese language's special characteristics of lacking boundary information, character-based methods are generally given preference over word-based methods.
+In their application for NER, the DBN  was used to automatically discover the complicated composite effects of the characters to the NE categories from the input data. 
 The paper reports DBN's strong representative power in regard to detection of more complicated and efficient features. With a precision of 91.45\%,
-it achieved better performance than both a SVM and a BP neural networks.
+it achieved better performance than SVMs and back-propagation neural networks.
 
 \subsection{CoNLL Data and Baseline Performance}
 The training and test data for Spanish and Dutch was taken from the CoNLL Shared Task 2002 \cite{tksintro} and 
@@ -226,12 +226,12 @@ the CoNLL Shared Task 2003 \cite{TjongKimSang:2003:ICS:1119176.1119195} provided
 %The ConNLL shared tasks are organized challenges, where the organisers propose a task and provide the participants with the
 %training and test data. 
 %In 2002 and 2003, the task was Named Entity Recognition. 
-In 2002 and 2003 CoNLL shared tasks were on Named Entity Recognition. The baseline system was constructed by first determining
-on the most frequent Named Entity class C in the training data and then labeling all occurrences of a Named Entity found in the test data with class C regardless of context. 
+%In 2002 and 2003 CoNLL shared tasks were on Named Entity Recognition. 
+The baseline system was constructed by first determining the most frequent Named Entity class C in the training data and then labeling all occurrences of a Named Entity found in the test data with class C regardless of context. 
 Any Named Entities that did not occur in the training data were also not assigned any class in the test data.
 Given that a phrase was part of more than one entity, the system would choose the longest one \cite{TjongKimSang:2003:ICS:1119176.1119195}.
 Table~\ref{table:Base} shows the baselines for the four different languages.  
-The data was annotated with part-of-speech tags and Named-Entity tags, as well as BIO-tags that indicate the position of a token in the current Named Entity. %put in ``tokenized, chunked''
+The data was annotated with part-of-speech tags and Named-Entity tags in BIO format. %put in ``tokenized, chunked''
 %Our approach is based on \cite{strlearn}, of the group that won the challenge for Spanish and Dutch in 2002. 
 
 
@@ -253,12 +253,11 @@ German &      31.86\%  & 28.89\% & 30.30  $\pm$ 1.3\% \\
 
 
 \section{Implementation}
-In this section, we describe our implementation, the learning and decoding algorithm and the features that were used.
 
 \subsection{Structured Prediction}
 Structured Prediction \cite{Taskar:2005:LSP:1102351.1102464} is an approach to supervised learning that is often used in natural language processing. 
 Assuming our goal is to learn a function ${ \boldsymbol{f}\colon \mathcal{X}\to\mathcal{Y} }$, in Structured Prediction, we assume that $y \in \mathcal{Y}$ 
-is not atomic (e.g.\ binary prediction), but that the prediction is a structure (e.g.\ a syntactic tree for a sentence or a sequence of part-of-speech tags). 
+is not atomic (e.g.\ binary prediction), but that the prediction is a structure (e.g.\ the syntactic tree for a sentence or a sequence of part-of-speech tags). 
 
 The structured prediction approach we follow has advantages over traditional approaches like hidden Markov models. While a hidden Markov model can model interactions 
 between labels as transition probabilities, it is restricted to tokens and Maximum Likelihood learning. Another alternative would be to use a classifier for each 
@@ -285,25 +284,26 @@ Our implementation for the languages English, German, Dutch and Spanish is train
 
 As the predicted structure, we use the labels for every token in the full sentence. If a token is not a \namedentity, it is assigned the label \Oo.
 
-Learning is implemented using the Structured Perceptron algorithm. To avoid overfitting, we average the parameters after the last iteration \cite{collins2002discriminative}. 
-For finding the best sequence of labels for a sentence, we use a modified version of the Viterbi algorithm. The algorithm finds the sequence $\hat{y}$, such that:
+Learning is implemented using the structured Perceptron algorithm. To avoid overfitting, we average the parameters after the last iteration \cite{collins2002discriminative}. 
+For finding the best sequence of labels for a sentence, we use a modified version of the Viterbi algorithm. 
+
+Let $\mathbf{w}$ be the weight vector and $\boldsymbol{f}(\mathbf{x}, i, y_{i-1}, y_{i})$  be a binary feature function of the input vector $\mathbf{x}$ and the predicted labels at position $i$ and ${i-1}$ ($y_{i}$, $y_{i-1}$). The Viterbi algorithm finds the sequence $\hat{y}$, such that:
 \[
 \hat{y} = \argmax_{\mathbf{y} \in \mathcal{Y}^{n}} \sum_{i=1}^{n}\mathbf{w} \cdot \boldsymbol{f}(\mathbf{x}, i, y_{i-1}, y_{i})
 \]
 
-This sequence can be computed efficiently in $ O( N^2 |\mathbf{x}| ) $ via dynamic programming. 
-As a first step, the trellis has to be constructed, then we have to find the $ a \in \mathcal{Y}$ in the 
-last column of the trellis with maximal score $\delta_n(a)$. From this, the sequence can be recovered via back-tracking trough the trellis. 
+Given $N$ labels to be predicted, this sequence can be computed efficiently in $ O( N^2 |\mathbf{x}| ) $ via dynamic programming. 
+As a first step, a \todo{erklären?}trellis is constructed and we determine the $ a \in \mathcal{Y}$ in the 
+last column of the trellis that provides the maximal score $\delta_n(a)$. From this, the sequence can be recovered via back-tracking trough the trellis. 
 The score of the best sequence ending in $a$ is:
 \[
 \delta_i(a) = \max_{\mathbf{y} \in \mathcal{Y}^{n}, y_n = a} \sum_{j=1}^{n}{\mathbf{w} \cdot \boldsymbol{f}(\mathbf{x}, j, y_{j-1}, y_{j})}
 \]
 
 \noindent This function $\delta_i(a)$ can be defined recursively as:
-
 \begin{align*}
 \delta_1(a) &= \mathbf{w} \cdot \boldsymbol{f}(\mathbf{x}, 1, \emptyset, a) \\
-\delta_i(a) &= \max_{b \in \mathcal{Y}} \delta_{i-1}(b) + \mathbf{w} \cdot \boldsymbol{f}(\mathbf{x}, i, b, a) \\
+\delta_i(a) &= \max_{b \in \mathcal{Y}} \delta_{i-1}(b) + \mathbf{w} \cdot \boldsymbol{f}(\mathbf{x}, i, b, a) \
 \end{align*}
 
 
@@ -312,23 +312,23 @@ The features employed in the system can be divided into three categories: node, 
 We describe each of the three groups in the following.
 
 \paragraph*{Node features}
-Node features are features that only depend on the current token (node): the \emph{Token}, suffix and prefix and capitalisation.
+Node features are features that only depend on the current token (node), e.g. the token itself, its suffixes and prefixes and its capitalisation.
 
-Table~\ref{table:node} shows the various node features with an example respectively.
+Table~\ref{table:node} illustrates node features used in our system with examples.
 
 \begin{table}[h!]
 \small
 \begin{tabular}{ l l }
 \bf Feature & \bf Example \\
 \hline
-Token &  \textbf{Amsterdam}\\
-Suffix& Amster\textbf{dam}\\
-Prefix&  \textbf{Mc}Cartney\\
-Captitalized& \textbf{B}enetton\\
-UPPERCASE &  \textbf{BENETTON}\\
-Number patterns & 2005\\
-POS tag &  Benetton \textbf{NNP}   \\
-Lemma & produced $\Rightarrow$ produce \\
+Token &  Amsterdam $\Rightarrow$ Amsterdam \\
+Suffix (2-4)& \emph{Amsterdam}  $\Rightarrow$ am, dam, rdam\\
+Prefix (2-4)&  \emph{McCartney}  $\Rightarrow$ Mc, McC, McCa\\
+Capitalised?& \emph{Benetton}  $\Rightarrow$ True\\
+UPPERCASE? &  \emph{BENETTON} $\Rightarrow$ True\\
+Number patterns & \emph{2005}  $\Rightarrow$ year pattern\\
+POS tag &  \emph{Benetton}  $\Rightarrow$  NNP   \\
+Lemma & \emph{produced} $\Rightarrow$ produce \\
 
 \end{tabular}
 
@@ -352,13 +352,13 @@ In addition, there is a prepositional phrase (PP) attachment feature, that regis
 result in a break of the sequence as in
 
 \exg. Bank of Scotland . \\ 
-      ORG   0    ORG   0  \\\label{seq3}
+      ORG  O  ORG      O  \\\label{seq3}
     
 
 \paragraph*{Gazetteer Features}
-A technique commonly used in Named Entity Recognition is the use of external lists of names of a specific type (gazetteer). 
-In order to create gazetteer lists for more common Named Entities, we use a \emph{SPARQL} query  (Figure~\ref{fig:sparql}) 
-to automatically retrieve entries from DBpedia for all required languages from a public SPARQL endpoint.
+A technique commonly used in Named Entity Recognition is the utilisation of external lists of names for a specific type (gazetteer). 
+In order to create gazetteer lists for the more common types of Named Entities, we use a \emph{SPARQL} query 
+to automatically retrieve entries from DBpedia for all required languages from a public SPARQL endpoint (Figure~\ref{fig:sparql}).\todo{citation fur SPARQL?}
 
 \begin{figure}
 \begin{verbatim}
@@ -375,22 +375,18 @@ WHERE {
 
 \end{figure}
 
-Given the lists of entities retrieved, we then mark the longest matches of known entities in the input using a directed acyclic word graph. 
-The mention is annotated with a reference to its list of origin, which is then used as a feature in our model. With this approach, it is not 
-necessary to manually map the lists to target labels and the model can learn the reliability of each list.
+Given the retrieved lists of entities, we then mark the longest matches of known entities in the input using a directed acyclic word graph. \todo{cit.}
+The mention is annotated with a reference to its list of origin, which is then used as a feature in our model.  With this approach, it is not necessary to manually map the lists to target labels and the model can learn the reliability of each list. The gazetteer features also distinguish whether a gazetteer entry consist only of a single token or of two or more tokens. This distinction is useful since single tokens are likely less reliable than longer matches.
 
 
 \subsection{Other Issues}
 
-One of the issues that we needed to address was the case of headlines. Headlines, mainly in the English data, are often written entirely 
-in uppercase letters. This is problematic because from most of the data, the model might learn that a word in all uppercase letters is 
+One of the issues that we needed to address was the capitalisation of headlines. Headlines, mainly in the English data, are often written entirely 
+in uppercase letters. This is problematic since from most of the data, the model might learn that a word in all uppercase letters is 
 indicative of an organisation (e.g.\ IBM, AIG, NYSE) and might thus mistake the tokens in headlines for organisations. 
 We address this issue by converting all-uppercase headlines into their most likely original case (truecasing). 
-To estimate the most likely case of a token from a monolingual corpus, we use the truecasing model from the 
+To do this, we estimate the most likely case of a token from a monolingual corpus by using the truecasing model from the 
 Moses statistical machine translation system \cite{koehn2007moses}. 
-
-
-
 
 
 \section{Experiments and Evaluation}
@@ -423,7 +419,7 @@ Dutch-only gazetteer with a gazetteer extended with English data.
 \begin{tabular}{| l | l l l| l l l |}
 
 \hline
-\bf Language & \multicolumn{3}{c|}{ \bf Test A}&\multicolumn{3}{c|}{ \bf Test B}\\
+\bf Language & \multicolumn{3}{c|}{ \bf Dev Set}&\multicolumn{3}{c|}{ \bf Test Set}\\
              & Precision & Recall & $F_1$ & Precision & Recall & $F_1$ \\ \hline
 Spanish &       &          &     &          &               & \\
 Dutch  &         &          &     &          &               &   \\
@@ -435,7 +431,7 @@ German &      &          &       &          &             & \\
 \label{table:Results}
 \end{table*}
 
-For the evaluation of the system, we used the standard measure of \emph{precision} and \emph{recall} as shown below.
+For the evaluation of the system, we used the standard measures of \emph{precision} and \emph{recall} as shown below.
 \begin{align*}
      precision =  \frac{  |\,gold\,\cap\,predicted\,| }{ |\,predicted\,| } \\
      recall = \frac{ |\,gold\,\cap\,predicted\,| }{ |\,gold\,| }
@@ -451,19 +447,15 @@ is shown below. Since we consider precision and recall as equally important, we 
 
 
 
+\section{Discussion and Future Work}
 
-
-\section{Discussion}
-
-
-\section{Future Work and Conclusion}
-
-In this paper, we presented a \namedentity~Recognition system based on the concept of Structured Prediction. 
+In this paper, we have presented a \namedentity~Recognition system based on the concept of Structured Prediction.
 While the system does not achieve state-of-the-art performance on the CoNLL shared task, we believe that the results 
 are reasonable for the following reasons: We are using a simple model, which has the advantage that the final application
-will be fast and it is easily extendable. In contrast to the best systems in the CoNLL task, we also do not use ensemble 
+will be fast and it is easily extendable. In contrast to the best systems in the CoNLL tasks, we do not use ensemble 
 learning methods and we use the same set of features for all languages, which enables simple extension of the system to additional languages.
 
+We have demonstrated that the structured Perceptron with averaging is a suitable learning algorithm for the NER task. In future work, we plan to use ensemble methods on top of the basic model and experiment with using longer state histories in model.
 
 
 \bibliographystyle{acl}
